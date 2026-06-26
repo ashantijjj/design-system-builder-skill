@@ -28,6 +28,8 @@ The skill provides default templates, naming rules, Figma write flow, validation
 - Include the concrete pixel value in every radius variable name.
 - Default radius values must include `8px`, `12px`, `20px`, and `28px`, plus `999px` for capsule/pill radius.
 - Build `Neutrals/Grey` and `Neutrals/White` from opacity-based tokens: paint styles for lightweight style-first systems, variables for standard, multi-theme, or explicitly variable-enabled systems.
+- Adapt semantic colors to the brand primary color instead of using fixed defaults. Match the primary color's perceived lightness and mutedness/greyness so success, warning, error, and info feel like one palette.
+- For multi-theme systems, adapt semantic colors separately for each theme mode.
 - Group text style names with slash namespaces for scanability, such as `Headline/H1`, `Subtitle/S1`, `Body/B1`, `Caption/C1`, and `Button/Large`.
 - Use only three default shadow effect styles: `Shadow/S`, `Shadow/M`, and `Shadow/L`. Default shadows must cast downward only and use the current theme primary color with opacity. Designers may customize shadow layers in agent/UI configuration.
 - Complete variables and styles first, validate them, then ask whether the user wants base components.

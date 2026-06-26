@@ -87,6 +87,7 @@ Generate:
 - `Semantic`
   - complete success, warning, error, info colors
   - 10% background/helper color for each semantic color
+  - generated colors adapted to the brand primary's lightness and mutedness/greyness
 - `Auxiliary`
   - only if the user provides auxiliary colors
 - `Radius`
@@ -125,6 +126,7 @@ For each theme, generate:
 - Grey opacity variables
 - White opacity variables
 - complete semantic colors and 10% helper backgrounds
+- semantic colors adapted independently to that theme's brand primary lightness and mutedness/greyness
 - optional auxiliary colors if provided
 
 Shared across themes by default:

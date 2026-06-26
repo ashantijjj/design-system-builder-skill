@@ -81,6 +81,17 @@ For standard product and multi-theme systems, semantic colors must be complete:
 
 Each semantic color should also have a 10% helper/background variable.
 
+Semantic colors must visually fit the brand primary color. Do not use one fixed red/green/yellow/blue set for every project.
+
+Adapt generated semantic colors by:
+
+- matching the brand primary's perceived lightness level: bright primary colors should receive brighter semantic colors; dark primary colors may use slightly lifted semantic colors for readability; mid-tone primary colors should receive mid-tone semantic colors
+- matching the brand primary's mutedness/greyness: highly saturated primary colors can support clearer semantic colors; greyish or muted primary colors should receive more restrained, lower-chroma semantic colors
+- keeping semantic meaning recognizable: success remains green, warning remains yellow/orange, error remains red, and info remains blue/cyan, but their brightness and greyness should be tuned to the project palette
+- checking contrast against the neutral background and `Brand/primary-text`; adjust lightness before writing if the semantic color is too faint or visually louder than the primary
+
+For multi-theme systems, generate or tune semantic colors independently for each theme mode. Do not copy one theme's semantic values into another theme when their brand primary colors have different lightness or greyness.
+
 Example names:
 
 - `Semantic/success`
@@ -88,7 +99,7 @@ Example names:
 - `Semantic/warning`
 - `Semantic/warning-10%`
 
-If the user provides semantic colors, use them. If missing in a standard product or multi-theme system, infer a balanced set and report the chosen values before writing.
+If the user provides semantic colors, use them unless they visibly clash with the primary; in that case, surface the mismatch and ask whether to keep the provided colors or adapt them. If missing in a standard product or multi-theme system, infer an adapted set and report the chosen values before writing.
 
 ## Radius
 

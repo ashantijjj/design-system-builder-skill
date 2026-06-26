@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design System Builder"
+  short_description: "Create Figma app design system tokens"
+  default_prompt: "Use $design-system-builder to create or audit a Figma design system for a consumer mobile app."

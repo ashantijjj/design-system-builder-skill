@@ -91,9 +91,11 @@ Generate:
   - only if the user provides auxiliary colors
 - `Radius`
   - named with concrete pixel values
+  - default set includes `4px`, `8px`, `12px`, `16px`, `20px`, `24px`, `28px`, `32px`, and `999px`
   - capsule radius `999px`
 - `Spacing`
   - all multiples of 4
+  - default set includes `4px`, `8px`, `12px`, `16px`, `20px`, `24px`, `28px`, `32px`, `40px`, and `48px`
 - Text styles
   - compact or full typography preset from `typography-presets.md`; ask which preset to use if the user has not specified
 - `Shadow/S`, `Shadow/M`, and `Shadow/L` effect styles

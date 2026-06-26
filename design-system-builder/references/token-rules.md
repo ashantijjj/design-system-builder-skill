@@ -94,9 +94,22 @@ If the user provides semantic colors, use them. If missing in a standard product
 
 Every radius variable name must include the concrete pixel value.
 
+Default radius values:
+
+- `Radius/4px`
+- `Radius/8px`
+- `Radius/12px`
+- `Radius/16px`
+- `Radius/20px`
+- `Radius/24px`
+- `Radius/28px`
+- `Radius/32px`
+- `Radius/999px`
+
 Rules:
 
 - Use `999px` for capsule/pill radius.
+- Always include `8px`, `12px`, `20px`, and `28px` in the default radius set.
 - Do not create radius names without values.
 - Use number variables scoped to corner radius when writing to Figma.
 
@@ -112,7 +125,7 @@ Example names:
 
 Spacing must use multiples of 4.
 
-Example names:
+Default spacing values:
 
 - `Spacing/4px`
 - `Spacing/8px`
@@ -120,8 +133,12 @@ Example names:
 - `Spacing/16px`
 - `Spacing/20px`
 - `Spacing/24px`
+- `Spacing/28px`
 - `Spacing/32px`
 - `Spacing/40px`
+- `Spacing/48px`
+
+Always include `8px`, `12px`, `20px`, and `28px` in the default spacing set.
 
 If a custom configuration includes non-4 spacing, ask for confirmation before writing it.
 

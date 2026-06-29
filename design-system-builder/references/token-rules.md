@@ -20,9 +20,22 @@ Figma has no native radius or spacing style objects. In lightweight mode, treat 
 
 ## Neutrals
 
-Create neutral colors as opacity variables, preferably RGBA.
+Support two grey modes:
+
+- opacity grey: grey tokens are RGBA opacity steps from the designer-provided black/gray base color
+- solid neutral scale: grey tokens are opaque hex colors generated from a designer-provided black/base color to pure white
+
+If the user does not specify the grey mode, ask whether to use opacity grey or solid neutral scale before writing.
+
+The black/gray base color is required. If it is missing, ask for it. Do not invent or default it.
+
+Do not use `#000000` as the black/gray base color. If the designer provides `#000000`, explain that pure black is too harsh as a system base and ask for a product-appropriate near-black value, such as a slightly warm, cool, or neutral black.
 
 For standard and multi-theme systems, do not create duplicate paint styles for neutral colors. Solid colors belong in variables. Paint styles are reserved for gradients or fills that color variables cannot represent.
+
+### Opacity Grey
+
+Create opacity grey colors as RGBA variables or paint styles, depending on system type.
 
 Default `Neutrals/Grey` opacities:
 
@@ -32,13 +45,54 @@ Default `Neutrals/White` opacities:
 
 - 90%, 80%, 70%, 60%, 50%, 40%, 30%, 20%, 10%
 
-Use the user-provided black/gray base color for grey opacities. Use `#FFFFFF` for white unless the user provides a different white.
+Use the user-provided non-`#000000` black/gray base color for grey opacities. Use `#FFFFFF` for white unless the user provides a different white.
 
 Example names:
 
 - `Neutrals/Grey/90%`
 - `Neutrals/Grey/7%`
 - `Neutrals/White/40%`
+
+### Solid Neutral Scale
+
+Use solid neutral scale when the designer prefers opaque grey values instead of opacity tokens.
+
+Default names:
+
+- `Neutral/900`
+- `Neutral/800`
+- `Neutral/700`
+- `Neutral/600`
+- `Neutral/500`
+- `Neutral/400`
+- `Neutral/300`
+- `Neutral/200`
+- `Neutral/100`
+- `Neutral/50`
+- `Neutral/00`
+
+Rules:
+
+- `Neutral/900` is the designer-provided non-`#000000` black/base color.
+- `Neutral/00` is pure white `#FFFFFF`.
+- Generate the intermediate values by changing perceived lightness in OKLCH/OKLab/LAB-like color space, not by equal RGB increments or simple white mixing.
+- Preserve subtle hue bias from the base color, such as blue-black or warm-black, while reducing chroma as colors approach white.
+- Keep visual distance between adjacent steps perceptually even; avoid tiny changes in the dark steps and sudden jumps in the light steps.
+- Before writing generated solid neutral values to Figma, report the generated hex list to the user unless the user explicitly asked for direct execution.
+
+Example from base `#21242A`:
+
+- `Neutral/900` `#21242A`
+- `Neutral/800` `#373A40`
+- `Neutral/700` `#4F5257`
+- `Neutral/600` `#686B6F`
+- `Neutral/500` `#838589`
+- `Neutral/400` `#9EA0A3`
+- `Neutral/300` `#BABBBE`
+- `Neutral/200` `#D2D3D5`
+- `Neutral/100` `#E6E6E7`
+- `Neutral/50` `#F5F5F6`
+- `Neutral/00` `#FFFFFF`
 
 ## Brand
 
@@ -68,7 +122,29 @@ If the user provides a different naming convention, follow it consistently.
 
 ## Auxiliary
 
-Auxiliary colors are optional. Only create them when the user provides auxiliary colors or explicitly asks Codex to suggest them.
+Auxiliary colors are optional. If the user does not provide auxiliary colors, ask whether they are needed. If not needed, skip the `Auxiliary` category.
+
+If auxiliary colors are needed, collect only one key/base color by default and derive two helper colors:
+
+- `Auxiliary/base`: the designer-provided auxiliary color
+- `Auxiliary/02`: derived helper color
+- `Auxiliary/03`: derived helper color
+
+Ask the designer whether derived helper colors should be solid colors or opacity colors when they have not specified a preference.
+
+Solid derivation:
+
+- `Auxiliary/02` mixes the base color with 50% white.
+- `Auxiliary/03` mixes the base color with 90% white.
+- Use opaque hex colors.
+
+Opacity derivation:
+
+- `Auxiliary/02` uses the base color at 50% opacity.
+- `Auxiliary/03` uses the base color at 10% opacity, equivalent to mixing 90% white when placed on white.
+- Use RGBA/opacity values.
+
+Do not create broad auxiliary palettes by default. If the designer provides multiple auxiliary base colors, repeat the same `base`, `02`, and `03` structure per auxiliary group using names provided by the designer or a simple numbered namespace.
 
 ## Semantic
 
@@ -81,16 +157,25 @@ For standard product and multi-theme systems, semantic colors must be complete:
 
 Each semantic color should also have a 10% helper/background variable.
 
-Semantic colors must visually fit the brand primary color. Do not use one fixed red/green/yellow/blue set for every project.
+Semantic colors must visually fit the brand primary color while preserving familiar semantic hue families.
+
+Use these hue families by default:
+
+- success: green
+- warning: yellow/orange
+- error: red
+- info: blue/cyan
+
+Do not use the same bright red/green/yellow/blue set for every project. Keep the hue meanings recognizable, but tune each color so it belongs to the same palette as the brand primary.
 
 Adapt generated semantic colors by:
 
 - matching the brand primary's perceived lightness level: bright primary colors should receive brighter semantic colors; dark primary colors may use slightly lifted semantic colors for readability; mid-tone primary colors should receive mid-tone semantic colors
-- matching the brand primary's mutedness/greyness: highly saturated primary colors can support clearer semantic colors; greyish or muted primary colors should receive more restrained, lower-chroma semantic colors
-- keeping semantic meaning recognizable: success remains green, warning remains yellow/orange, error remains red, and info remains blue/cyan, but their brightness and greyness should be tuned to the project palette
+- matching the brand primary's mutedness/greyness: highly saturated primary colors can support clearer semantic colors; muted, greyish, or Morandi-like primary colors should receive restrained, lower-chroma semantic colors
+- preserving semantic recognition while adjusting palette mood: success remains green, warning remains yellow/orange, error remains red, and info remains blue/cyan, but their brightness, saturation, and greyness should be tuned to the project palette
 - checking contrast against the neutral background and `Brand/primary-text`; adjust lightness before writing if the semantic color is too faint or visually louder than the primary
 
-For multi-theme systems, generate or tune semantic colors independently for each theme mode. Do not copy one theme's semantic values into another theme when their brand primary colors have different lightness or greyness.
+For multi-theme systems, generate or tune semantic colors independently for each theme mode. Do not copy one theme's semantic values into another theme when their brand primary colors have different lightness, saturation, or greyness.
 
 Example names:
 
@@ -161,7 +246,7 @@ Use `typography-presets.md` for the default compact and full mobile typography p
 
 Ask for font family before writing text styles. The default is one font family. Support one to three font families when the user provides a mapping; discourage more than three unless explicitly confirmed.
 
-Use slash namespaces for text style grouping, such as `Headline/H1`, `Subtitle/S1`, `Body/B1`, `Caption/C1`, `Label`, and `Button/Large`. Avoid flat names like `H1. Headline` when the group can be represented as a Figma style folder.
+Use slash namespaces for text style grouping, such as `Headline/H1`, `Subtitle/S1`, `Body/B1`, `Caption/C1`, and `Label`. Use `Button/Large` or `Button/Medium` only when optional dedicated button text styles are requested or needed; skip any button text style that duplicates an existing text style role, size, line height, weight, and spacing. Avoid flat names like `H1. Headline` when the group can be represented as a Figma style folder.
 
 Use existing fonts and local conventions when present. If weight, line height, size, or letter spacing is missing, use the selected preset or ask for a custom type scale before writing.
 
@@ -177,18 +262,22 @@ Default shadow values:
 
 | Style | Layer | X | Y | Blur | Spread | Color |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| `Shadow/S` | 1 | 0 | 1 | 4 | 0 | theme primary 4% |
-| `Shadow/S` | 2 | 0 | 4 | 10 | 0 | theme primary 6% |
-| `Shadow/M` | 1 | 0 | 2 | 16 | 0 | theme primary 4% |
-| `Shadow/M` | 2 | 0 | 8 | 28 | 0 | theme primary 8% |
-| `Shadow/L` | 1 | 0 | 8 | 24 | 0 | theme primary 6% |
-| `Shadow/L` | 2 | 0 | 20 | 56 | 0 | theme primary 10% |
+| `Shadow/S` | 1 | 0 | 1 | 4 | 0 | shadow color source 4% |
+| `Shadow/S` | 2 | 0 | 4 | 10 | 0 | shadow color source 6% |
+| `Shadow/M` | 1 | 0 | 2 | 16 | 0 | shadow color source 4% |
+| `Shadow/M` | 2 | 0 | 8 | 28 | 0 | shadow color source 8% |
+| `Shadow/L` | 1 | 0 | 8 | 24 | 0 | shadow color source 6% |
+| `Shadow/L` | 2 | 0 | 20 | 56 | 0 | shadow color source 10% |
 
 Rules:
 
 - Default shadows must cast downward only. Do not create upward shadows by default.
 - Use `X = 0` unless the user explicitly wants a directional shadow.
-- Use the current theme primary color with opacity, not black opacity, unless the user explicitly asks for neutral shadows.
-- For multi-theme systems, shadow colors should follow each theme primary color.
+- Ask whether the main background is light or dark when collecting inputs for shadow decisions. If the designer does not specify, assume a light background.
+- For light backgrounds, use the darkest derived brand primary color as the shadow color source. Use `Brand/darker-02` or the darkest primary gradient stop/derived shade, not `Brand/primary` when a darker shade exists.
+- For dark backgrounds, use the lightest derived brand primary color as the shadow color source at low opacity. Use `Brand/lighter-02` or the lightest primary gradient stop/derived shade, and keep shadows subtle.
+- For Light/Dark multi-theme systems, use the darkest derived primary in Light mode and the lightest derived primary in Dark mode.
+- For multi-brand / multi-primary systems, choose the shadow color source per theme. If all themes share a light background, use each theme's darkest derived primary.
+- Do not use black opacity unless the user explicitly asks for neutral shadows.
 - If the user wants custom shadows, allow them to customize layer count, color source, opacity, x/y, blur, spread, and names.
 - Avoid decorative or excessive shadow scales.

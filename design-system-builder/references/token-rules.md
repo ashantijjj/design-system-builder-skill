@@ -7,6 +7,7 @@ Use clear slash-separated names. Preserve these top-level categories unless the 
 - `Neutrals/Grey`
 - `Neutrals/White`
 - `Brand`
+- `Background`
 - `Auxiliary`
 - `Semantic`
 - `Radius`
@@ -116,9 +117,33 @@ For standard product and multi-theme systems, derive:
 - `Brand/primary-light-2`
 - `Brand/primary-dark-1`
 - `Brand/primary-dark-2`
-- `Brand/primary-text`
+
+Without an explicit custom configuration, the `Brand` color group contains exactly five solid color variables: primary, two lighter colors, and two darker colors. Do not create `Brand/primary-text`, `Brand/on-primary`, or any white/black text color inside `Brand`.
+
+White belongs in `Neutrals/White` opacity tokens or `Neutral/00` for solid neutral scale. Text colors for primary backgrounds should reuse neutral/white tokens unless a later alias or text color layer is explicitly requested.
 
 If the user provides a different naming convention, follow it consistently.
+
+## Background
+
+Background colors are optional. Ask once whether the designer wants background color tokens. If they do not provide or want background colors, skip the `Background` category.
+
+Do not invent background colors by default. Use designer-provided background colors, or derive them only when the user explicitly asks for suggestions.
+
+Default name for one provided background color:
+
+- `Background/default`
+
+For multiple background colors, use purpose-based names:
+
+- `Background/page`
+- `Background/surface`
+- `Background/card`
+- `Background/elevated`
+
+For multi-theme systems, background colors may be shared across themes or set per theme. Do not assume every primary theme needs its own background color unless the designer provides per-theme backgrounds.
+
+For standard and multi-theme systems, solid background colors belong in variables. Do not create duplicate paint styles for background colors unless the selected system is lightweight style-first.
 
 ## Auxiliary
 
@@ -173,7 +198,7 @@ Adapt generated semantic colors by:
 - matching the brand primary's perceived lightness level: bright primary colors should receive brighter semantic colors; dark primary colors may use slightly lifted semantic colors for readability; mid-tone primary colors should receive mid-tone semantic colors
 - matching the brand primary's mutedness/greyness: highly saturated primary colors can support clearer semantic colors; muted, greyish, or Morandi-like primary colors should receive restrained, lower-chroma semantic colors
 - preserving semantic recognition while adjusting palette mood: success remains green, warning remains yellow/orange, error remains red, and info remains blue/cyan, but their brightness, saturation, and greyness should be tuned to the project palette
-- checking contrast against the neutral background and `Brand/primary-text`; adjust lightness before writing if the semantic color is too faint or visually louder than the primary
+- checking contrast against the neutral background and available neutral/white text colors; adjust lightness before writing if the semantic color is too faint or visually louder than the primary
 
 For multi-theme systems, generate or tune semantic colors independently for each theme mode. Do not copy one theme's semantic values into another theme when their brand primary colors have different lightness, saturation, or greyness.
 

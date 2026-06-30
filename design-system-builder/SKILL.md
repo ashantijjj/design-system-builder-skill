@@ -17,6 +17,7 @@ The skill provides default templates, naming rules, Figma write flow, validation
 - Ask only for token inputs needed to create variables and styles. Do not ask for app name, audience, or business context unless creative color/style inference is needed.
 - Do not invent the brand primary color. Ask for it if missing.
 - Accept a solid brand primary or a brand primary gradient. If the brand primary is a gradient, require gradient stops, direction, and a solid fallback color because Figma color variables are solid RGBA values.
+- Unless the user explicitly asks for more, the `Brand` color group must contain only five solid colors: `Brand/primary`, two lighter primary colors, and two darker primary colors. Do not create `Brand/primary-text`; white belongs in `Neutrals/White` or `Neutral/00`.
 - Require the designer to provide the black/gray base color used for grey or neutral tokens. Do not default to `#000000`, and do not accept `#000000` as the base; ask for a product-appropriate black instead.
 - Default to consumer mobile app interaction patterns.
 - Do not generate hover, focus-visible, desktop cursor, tooltip, dashboard, or web-only states unless the user explicitly asks for web/desktop/admin behavior.
@@ -31,6 +32,7 @@ The skill provides default templates, naming rules, Figma write flow, validation
 - Default radius values must include `8px`, `12px`, `20px`, and `28px`, plus `999px` for capsule/pill radius.
 - Support two neutral grey modes: opacity grey and solid neutral scale. If the user does not specify which grey mode to use, ask before writing.
 - For solid neutral scale, use `Neutral/900` through `Neutral/00`; `Neutral/900` is the designer-provided black/base color and `Neutral/00` is pure white.
+- Background colors are optional. Ask once whether the designer wants background color tokens; if not provided or not needed, skip them.
 - Auxiliary colors are optional. If the user does not provide auxiliary colors, ask whether they are needed; if yes, collect one base color and create `Auxiliary/base`, `Auxiliary/02`, and `Auxiliary/03`.
 - Keep semantic colors in familiar hue families: success green, warning yellow/orange, error red, and info blue/cyan. Tune their lightness, saturation, and greyness to match the brand primary so all semantic colors feel like one harmonious palette.
 - For multi-theme systems, first classify the subtype: one provided primary means Light/Dark; two or more primaries means multi-brand / multi-primary. Adapt semantic colors separately for each theme mode.

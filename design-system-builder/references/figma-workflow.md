@@ -75,7 +75,7 @@ If the user wants a visual template, create or reuse a Figma page named `Design 
 
 Create visual documentation for the generated variables and styles:
 
-- color variables or paint styles, including brand, neutral, semantic, auxiliary, and gradient tokens
+- color variables or paint styles, including brand, background, neutral, semantic, auxiliary, and gradient tokens
 - radius variables or documented radius specs
 - spacing variables or documented spacing specs
 - text styles, grouped by the same slash namespaces used in Figma

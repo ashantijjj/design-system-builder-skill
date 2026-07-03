@@ -8,9 +8,8 @@ Follow this safe procedure for all Figma writes and audits.
 2. Extract the file key and node id when available.
 3. Follow the `figma-use` skill before every `use_figma` call.
 4. Run a lightweight preflight inspection: return only counts and names for variable collections, text styles, and effect styles. Do not return every variable value unless conflicts need inspection.
-5. During first intake, ask whether to create a visual design-system template page for the generated variables and styles.
-6. Build a planned change list from the selected system type or custom configuration.
-7. If any existing variable collections, variables, text styles, or effect styles are present, stop before writing and ask the user how to proceed.
+5. Build a planned change list from the selected system type or custom configuration.
+6. If any existing variable collections, variables, text styles, or effect styles are present, stop before writing and ask the user how to proceed.
 
 Ask the user to choose one of these paths:
 
@@ -64,34 +63,9 @@ Create or update in this logical order, but combine steps into one `use_figma` c
 2. Number variables: radius and spacing
 3. Text styles
 4. Effect styles
-5. Optional visual template page for variables and styles, when requested
-6. Optional base components only after user confirmation
+5. Optional base components only after user confirmation
 
-For multi-theme systems, use Figma variable modes for theme values where possible.
-
-## Visual Template Page
-
-If the user wants a visual template, create or reuse a Figma page named `Design System`.
-
-Create visual documentation for the generated variables and styles:
-
-- color variables or paint styles, including brand, background, neutral, semantic, auxiliary, and gradient tokens
-- radius variables or documented radius specs
-- spacing variables or documented spacing specs
-- text styles, grouped by the same slash namespaces used in Figma
-- effect styles, including `Shadow/S`, `Shadow/M`, and `Shadow/L`
-- theme modes, shown as separate sections when the system is multi-theme
-
-Layout rules:
-
-- Use auto layout for the main page content frames and every repeated section where possible.
-- Use clear section frames rather than loose nodes scattered on the canvas.
-- Keep swatches, labels, and values readable and non-overlapping.
-- Use the generated variables/styles as fills, text styles, and effects when possible so the visualization reflects the actual system.
-- Do not create decorative marketing layouts; keep it as a practical design-system reference page.
-- If a `Design System` page already exists, inspect it first and append or update the relevant sections instead of blindly duplicating the entire page.
-
-If the user did not request the visual template during first intake, ask again after variables/styles validation and before asking about optional base components. In a future agent UI, present this as an end-of-flow option.
+For multi-theme systems, use Figma variable modes for theme values where possible. Light/Dark systems should use `Light` and `Dark` modes for Brand, Solid Neutral, and Semantic values instead of literal duplicated names such as `Light/Semantic/error`. Alpha Overlay stays global as `Overlay/Black` and `Overlay/White`. Multi-primary systems should use theme modes for Brand values while sharing Solid Neutral or Overlay Alpha and Semantic values by default unless the user has customized them.
 
 ## Validation
 
@@ -99,15 +73,14 @@ After writing, read Figma again with a compact validation call and validate:
 
 - Required collections and categories exist
 - Required variables exist for the chosen system type or custom configuration
-- `Neutrals/Grey` and `Neutrals/White` are opacity-based
+- Solid Neutral or Alpha Overlay follows the selected neutral model
 - Standard product semantic colors are complete
-- Multi-theme modes contain values for every theme
+- Multi-theme modes contain values for every theme where the token is theme-specific. For Light/Dark systems, Brand, Solid Neutral, and Semantic need Light/Dark values when Solid Neutral is selected; Alpha Overlay remains global. For multi-primary systems, Brand needs theme values while Solid Neutral or Overlay Alpha and Semantic may intentionally be shared.
 - Radius variable names include concrete pixel values
 - Capsule radius is `999px`
 - Spacing values are multiples of 4 unless confirmed as an exception
 - Text styles and effect styles were created or intentionally skipped
 - No duplicate variables/styles were introduced
-- Visual template page exists and uses auto layout, if requested
 
 Report a short summary of what was created, updated, skipped, and any unresolved conflicts.
 

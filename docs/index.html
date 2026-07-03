@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design System Builder</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="config-panel" aria-label="Design system configuration">
+        <div class="panel-heading">
+          <p class="eyebrow">Design System Setup</p>
+          <h1>项目样式初始化</h1>
+        </div>
+
+        <section class="control-section">
+          <h2>快速开始</h2>
+          <label class="field">
+            <span class="field-label">Figma 链接 <b class="required-mark">*</b></span>
+            <input id="figmaLink" type="url" placeholder="https://www.figma.com/design/..." spellcheck="false" />
+          </label>
+          <div class="field">
+            <span class="field-label">项目类型 <b class="required-mark">*</b></span>
+            <div class="segmented" role="radiogroup" aria-label="System type">
+              <label>
+                <input type="radio" name="systemType" value="lightweight" />
+                <span>轻量</span>
+              </label>
+              <label>
+                <input type="radio" name="systemType" value="standard" checked />
+                <span>标准</span>
+              </label>
+              <label>
+                <input type="radio" name="systemType" value="multi-theme" />
+                <span>多主题</span>
+              </label>
+            </div>
+          </div>
+          <label id="primaryColorField" class="field">
+            <span class="field-label">主色 <b class="required-mark">*</b></span>
+            <input id="primaryColor" type="text" placeholder="#4C82D6" spellcheck="false" />
+          </label>
+          <label class="field">
+            <span class="field-label">黑色 / Neutral 基准 <b class="required-mark">*</b></span>
+            <input id="blackColor" type="text" placeholder="#28354D" spellcheck="false" />
+          </label>
+          <label class="field">
+            <span class="field-label">主字体 <b class="required-mark">*</b></span>
+            <input id="primaryFont" type="text" placeholder="例如 Poppins" />
+            <small id="primaryFontStatus" class="field-hint" aria-live="polite"></small>
+          </label>
+          <div class="field">
+            <span class="field-label">Neutral 类型 <b class="required-mark">*</b></span>
+            <div class="radio-pair" role="radiogroup" aria-label="Neutral mode">
+              <label>
+                <input type="radio" name="neutralMode" value="opacity" />
+                <span>透明 Overlay</span>
+              </label>
+              <label>
+                <input type="radio" name="neutralMode" value="solid" checked />
+                <span>实色灰阶</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="field-label">颜色输出 <b class="required-mark">*</b></span>
+            <div class="radio-pair" role="radiogroup" aria-label="Color output">
+              <label>
+                <input type="radio" name="colorOutput" value="style" />
+                <span>Style</span>
+              </label>
+              <label>
+                <input type="radio" name="colorOutput" value="variable" checked />
+                <span>变量</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section id="multiThemeSection" class="control-section conditional-section is-hidden">
+          <h2>多主题配置</h2>
+          <div class="field">
+            <span class="field-label">多主题类型 <b class="required-mark">*</b></span>
+            <div class="radio-pair" role="radiogroup" aria-label="Multi-theme type">
+              <label>
+                <input type="radio" name="multiThemeType" value="light-dark" checked />
+                <span>明暗</span>
+              </label>
+              <label>
+                <input type="radio" name="multiThemeType" value="multi-primary" />
+                <span>多主色</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="lightDarkOptions" class="theme-options">
+            <label class="field">
+              <span class="field-label">浅色背景 <small id="lightBackgroundRequirementTag" class="optional-tag">选填</small></span>
+              <input id="lightBackgroundColor" type="text" placeholder="#F7F8FA" spellcheck="false" />
+            </label>
+            <label class="field">
+              <span class="field-label">深色背景 <small id="darkBackgroundRequirementTag" class="optional-tag">选填</small></span>
+              <input id="darkBackgroundColor" type="text" placeholder="#111827" spellcheck="false" />
+            </label>
+            <label class="toggle-row">
+              <input id="autoTuneDarkPrimary" type="checkbox" checked />
+              <span>Dark 主色自动适配</span>
+            </label>
+          </div>
+
+          <div id="multiPrimaryOptions" class="theme-options is-hidden">
+            <div id="themeCardList" class="theme-card-list"></div>
+
+            <div class="field">
+              <span class="field-label">背景策略 <b class="required-mark">*</b></span>
+              <div class="radio-pair" role="radiogroup" aria-label="Theme background strategy">
+                <label>
+                  <input type="radio" name="themeBackgroundStrategy" value="shared" checked />
+                  <span>共用</span>
+                </label>
+                <label>
+                  <input type="radio" name="themeBackgroundStrategy" value="per-theme" />
+                  <span>单独</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-section">
+          <h2>可选颜色</h2>
+          <label class="field">
+            <span class="field-label">语义色 <small class="optional-tag">选填</small></span>
+            <select id="semanticSet">
+              <option value="full">完整：红 / 黄 / 绿 / 蓝</option>
+              <option value="red-green">仅红 / 绿</option>
+              <option value="none">暂不生成</option>
+            </select>
+          </label>
+          <label id="globalAuxField" class="field">
+            <span class="field-label">辅助色 <small id="auxRequirementTag" class="optional-tag">选填</small></span>
+            <input id="auxColor" type="text" placeholder="#F7B0C6" spellcheck="false" />
+          </label>
+          <label id="backgroundColorField" class="field">
+            <span class="field-label">背景色 <small id="backgroundRequirementTag" class="optional-tag">选填</small></span>
+            <input id="backgroundColor" type="text" placeholder="#F7F8FA" spellcheck="false" />
+          </label>
+        </section>
+
+        <section class="control-section">
+          <div class="section-heading-row">
+            <h2>字体细节</h2>
+            <div class="theme-card-actions">
+              <button id="removeSecondaryFont" class="icon-button" type="button" aria-label="删除副字体" title="删除副字体">−</button>
+              <button id="addSecondaryFont" class="icon-button" type="button" aria-label="添加副字体" title="添加副字体">+</button>
+            </div>
+          </div>
+          <div id="secondaryFontList" class="secondary-font-list"></div>
+          <div class="field">
+            <span class="field-label">字体输出 <b class="required-mark">*</b></span>
+            <div class="radio-pair" role="radiogroup" aria-label="Typography output">
+              <label>
+                <input type="radio" name="typographyOutput" value="style" checked />
+                <span>Style</span>
+              </label>
+              <label>
+                <input type="radio" name="typographyOutput" value="variable" />
+                <span>变量</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <span class="field-label">字体预设 <b class="required-mark">*</b></span>
+            <div class="radio-pair" role="radiogroup" aria-label="Type preset">
+              <label>
+                <input type="radio" name="typePreset" value="compact" />
+                <span>精简</span>
+              </label>
+              <label>
+                <input type="radio" name="typePreset" value="full" checked />
+                <span>完整</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-section">
+          <h2>生成模块</h2>
+          <div class="module-groups">
+            <div class="module-group">
+              <div class="module-group-title">基础默认</div>
+              <div class="checkbox-grid">
+                <label><input type="checkbox" data-module="brand" checked /> Brand</label>
+                <label><input type="checkbox" data-module="neutral" checked /> Neutral / Overlay</label>
+                <label><input type="checkbox" data-module="semantic" checked /> Semantic</label>
+                <label><input type="checkbox" data-module="typography" checked /> Typography</label>
+                <label><input type="checkbox" data-module="radius" checked /> Radius</label>
+                <label><input type="checkbox" data-module="spacing" checked /> Spacing</label>
+                <label><input type="checkbox" data-module="shadow" checked /> Shadow</label>
+              </div>
+            </div>
+            <div class="module-group">
+              <div class="module-group-title">可选补充</div>
+              <div class="checkbox-grid">
+                <label><input type="checkbox" data-module="visualTemplate" /> Visual page</label>
+              </div>
+            </div>
+            <div class="module-group">
+              <div class="module-group-title">高级</div>
+              <div class="checkbox-grid">
+                <label><input type="checkbox" data-module="surface" /> Surface</label>
+                <label><input type="checkbox" data-module="border" /> Border</label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="action-row">
+          <button id="resetButton" type="button" class="secondary-button">重置</button>
+          <button id="exportButton" type="button" class="primary-button">导出配置 JSON</button>
+        </div>
+      </aside>
+
+      <section class="preview-panel" aria-label="Preview">
+        <header class="preview-header">
+          <div>
+            <p class="eyebrow">实时预览</p>
+            <h2 id="previewTitle">标准产品型</h2>
+          </div>
+          <span id="configStatus" class="status-pill">待确认</span>
+        </header>
+
+        <section class="preview-section summary-section">
+          <div class="section-title">
+            <h3>生成摘要</h3>
+            <span id="summaryStatus">等待链接</span>
+          </div>
+          <div class="summary-grid">
+            <article class="summary-card">
+              <span id="colorSummaryLabel">颜色变量</span>
+              <strong id="colorVariableCount">0</strong>
+            </article>
+            <article class="summary-card">
+              <span id="numberSummaryLabel">数值变量</span>
+              <strong id="numberVariableCount">0</strong>
+            </article>
+            <article class="summary-card">
+              <span id="typeSummaryLabel">字体样式</span>
+              <strong id="textStyleCount">0</strong>
+            </article>
+            <article class="summary-card">
+              <span>阴影样式</span>
+              <strong id="effectStyleCount">0</strong>
+            </article>
+            <article class="summary-card">
+              <span>可视化页</span>
+              <strong id="pageCount">0</strong>
+            </article>
+          </div>
+          <div id="summaryList" class="summary-list"></div>
+        </section>
+
+        <section class="preview-section" data-preview="brand">
+          <div class="section-title">
+            <h3>Brand</h3>
+            <span data-color-kind>变量</span>
+          </div>
+          <div id="brandSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="background">
+          <div class="section-title">
+            <h3>Background</h3>
+            <span data-color-kind>可选变量</span>
+          </div>
+          <div id="backgroundSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="surface">
+          <div class="section-title">
+            <h3>Surface</h3>
+            <span data-color-kind>表面颜色</span>
+          </div>
+          <div id="surfaceSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="border">
+          <div class="section-title">
+            <h3>Border</h3>
+            <span data-color-kind>1px 辅助分离</span>
+          </div>
+          <div id="borderSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="neutral">
+          <div class="section-title">
+            <h3 id="neutralTitle">Neutral</h3>
+            <span id="neutralLabel">全局透明度</span>
+          </div>
+          <div id="neutralSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="semantic">
+          <div class="section-title">
+            <h3>Semantic</h3>
+            <span data-color-kind>适配主色</span>
+          </div>
+          <div id="semanticSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="auxiliary">
+          <div class="section-title">
+            <h3>Auxiliary</h3>
+            <span data-color-kind>可选</span>
+          </div>
+          <div id="auxSwatches" class="swatch-grid"></div>
+        </section>
+
+        <section class="preview-section" data-preview="typography">
+          <div class="section-title">
+            <h3>Typography</h3>
+            <span id="typeCount">0 个 Style</span>
+          </div>
+          <div id="typePreview" class="type-table"></div>
+        </section>
+
+        <div class="two-column-preview">
+          <section class="preview-section" data-preview="radius">
+            <div class="section-title">
+              <h3>Radius</h3>
+              <span>px</span>
+            </div>
+            <div id="radiusPreview" class="token-list"></div>
+          </section>
+
+          <section class="preview-section" data-preview="spacing">
+            <div class="section-title">
+              <h3>Spacing</h3>
+              <span>4 的倍数</span>
+            </div>
+            <div id="spacingPreview" class="token-list"></div>
+          </section>
+        </div>
+
+        <section class="preview-section" data-preview="shadow">
+          <div class="section-title">
+            <h3>Shadow</h3>
+            <span id="shadowSource">固定 3 个 / Neutral Ambient</span>
+          </div>
+          <div id="shadowPreview" class="shadow-grid"></div>
+        </section>
+
+        <section class="preview-section">
+          <div class="section-title">
+            <h3>Config JSON</h3>
+            <span>后续给 Figma 插件读取</span>
+          </div>
+          <pre id="jsonPreview" class="json-preview"></pre>
+        </section>
+      </section>
+    </main>
+
+    <script src="./rules/config.js"></script>
+    <script src="./app-core.js"></script>
+    <script src="./app-render.js"></script>
+    <script src="./app-controls.js"></script>
+    <script src="./app-main.js"></script>
+  </body>
+</html>

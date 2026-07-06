@@ -1,0 +1,1121 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      :root {
+        --bg: #f7f8fa;
+        --panel: #ffffff;
+        --text: #22252a;
+        --muted: #6f7682;
+        --line: #e4e7ec;
+        --line-strong: #d6dbe3;
+        --accent: #2f6fd6;
+        --danger: #d64a5f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font: 12px/1.5 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      header {
+        display: grid;
+        gap: 4px;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 20px;
+        line-height: 28px;
+      }
+
+      h2 {
+        font-size: 14px;
+        line-height: 22px;
+      }
+
+      .hint {
+        color: var(--muted);
+      }
+
+      section {
+        display: grid;
+        gap: 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 14px;
+      }
+
+      label,
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+
+      .label {
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .required {
+        color: var(--danger);
+      }
+
+      input,
+      select {
+        width: 100%;
+        height: 36px;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fff;
+        color: var(--text);
+        padding: 0 10px;
+        outline: none;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgb(47 111 214 / 12%);
+      }
+
+      .color-input-shell {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 36px;
+        gap: 8px;
+        align-items: center;
+        width: 100%;
+      }
+
+      .color-input-shell input {
+        min-width: 0;
+      }
+
+      #primaryGradientFields:not(.is-hidden),
+      [data-theme-gradient-mode][data-mode="gradient"]:not(.is-hidden) {
+        display: grid;
+        gap: 8px;
+      }
+
+      .eyedropper-button {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fff;
+        color: #5d6775;
+        padding: 0;
+      }
+
+      .eyedropper-button:hover,
+      .eyedropper-button:focus {
+        border-color: var(--accent);
+        color: var(--accent);
+        box-shadow: 0 0 0 3px rgb(47 111 214 / 10%);
+      }
+
+      .eyedropper-button svg {
+        width: 17px;
+        height: 17px;
+        display: block;
+      }
+
+      .segmented,
+      .radio-pair {
+        display: grid;
+        gap: 8px;
+      }
+
+      .segmented {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfd;
+        padding: 4px;
+      }
+
+      .segmented label {
+        display: block;
+      }
+
+      .segmented input {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .segmented span {
+        display: grid;
+        place-items: center;
+        min-height: 34px;
+        border-radius: 6px;
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .segmented input:checked + span {
+        background: #fff;
+        color: var(--accent);
+        box-shadow: 0 1px 2px rgb(29 42 60 / 10%);
+      }
+
+      .radio-pair {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 28px;
+      }
+
+      .radio-triple {
+        gap: 12px 18px;
+      }
+
+      .radio-pair label,
+      .check-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 0 0 auto;
+        color: #3c424b;
+        cursor: pointer;
+        font-weight: 750;
+      }
+
+      .radio-pair input,
+      .check-row input {
+        width: 14px;
+        height: 14px;
+        margin: 0;
+        accent-color: var(--accent);
+      }
+
+      .section-head,
+      .theme-card-head,
+      .subsection-head,
+      .compact-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .theme-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .theme-card {
+        display: grid;
+        gap: 12px;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        background: #fbfcfd;
+        padding: 12px;
+      }
+
+      .theme-card:nth-child(even) {
+        background: #fff;
+      }
+
+      .theme-card-title {
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 850;
+      }
+
+      .divider {
+        height: 1px;
+        background: var(--line);
+      }
+
+      .color-row {
+        display: grid;
+        grid-template-columns: 1fr 36px;
+        gap: 8px;
+        align-items: end;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .swatch {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        background: #eef2f7;
+      }
+
+      .mini-button {
+        min-width: 28px;
+        height: 28px;
+        border-color: var(--line-strong);
+        background: #fff;
+        color: #2f3640;
+        padding: 0 8px;
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .mini-button:disabled {
+        opacity: 0.38;
+        cursor: not-allowed;
+      }
+
+      .theme-action {
+        border-color: #c8d3e4;
+        background: #eef4ff;
+        color: var(--accent);
+      }
+
+      .aux-action {
+        border-color: #ded6ea;
+        background: #fbf7ff;
+        color: #6f4bb8;
+      }
+
+      .aux-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .secondary-font-card {
+        display: grid;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfd;
+        padding: 10px;
+      }
+
+      .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        position: sticky;
+        bottom: 0;
+        background: linear-gradient(180deg, rgb(247 248 250 / 0), var(--bg) 30%);
+        padding-top: 12px;
+      }
+
+      button {
+        height: 38px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        font-weight: 850;
+        cursor: pointer;
+      }
+
+      .primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .secondary {
+        border-color: var(--line-strong);
+        background: #fff;
+        color: #3c424b;
+      }
+
+      .message {
+        white-space: pre-wrap;
+        border-radius: 8px;
+        padding: 10px;
+        display: none;
+      }
+
+      .message.is-visible {
+        display: block;
+      }
+
+      .message.success {
+        background: #ecfdf5;
+        color: #216e4e;
+      }
+
+      .message.error {
+        background: #fff4f2;
+        color: #9f2f3f;
+      }
+
+      .inline-message {
+        border-radius: 8px;
+        padding: 9px 10px;
+        font-weight: 700;
+      }
+
+      .inline-message.success {
+        background: #ecfdf5;
+        color: #216e4e;
+      }
+
+      .inline-message.error {
+        background: #fff4f2;
+        color: #9f2f3f;
+      }
+
+      .field-note {
+        border-radius: 8px;
+        background: #fff1f2;
+        color: #b34253;
+        font-weight: 650;
+        padding: 8px 10px;
+      }
+
+      .is-hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Design System Builder</h1>
+      </header>
+
+      <section>
+        <h2>基础信息</h2>
+        <div class="field">
+          <span class="label">项目类型 <span class="required">*</span></span>
+          <div class="segmented">
+            <label>
+              <input type="radio" name="systemType" value="lightweight" />
+              <span>轻量</span>
+            </label>
+            <label>
+              <input type="radio" name="systemType" value="standard" checked />
+              <span>标准</span>
+            </label>
+            <label>
+              <input type="radio" name="systemType" value="multi-theme" />
+              <span>多主题</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="multiThemeTypeField" class="field is-hidden">
+          <span class="label">多主题类型 <span class="required">*</span></span>
+          <div class="radio-pair">
+            <label><input type="radio" name="multiThemeType" value="light-dark" checked /> 明暗</label>
+            <label><input type="radio" name="multiThemeType" value="multi-primary" /> 多主色</label>
+          </div>
+        </div>
+
+        <div id="primaryColorField" class="field">
+          <span class="label">主色 <span class="required">*</span></span>
+          <div class="radio-pair">
+            <label><input type="radio" name="primaryKind" value="solid" checked /> 纯色</label>
+            <label><input type="radio" name="primaryKind" value="gradient" /> 渐变</label>
+          </div>
+          <div id="primarySolidFields">
+            <input id="primaryColor" placeholder="#4C82D6" spellcheck="false" />
+          </div>
+          <div id="primaryGradientFields" class="is-hidden">
+            <div class="two-col">
+              <input id="primaryGradientFrom" placeholder="#4C82D6 起点" spellcheck="false" />
+              <input id="primaryGradientTo" placeholder="#3362AC 终点" spellcheck="false" />
+            </div>
+            <input id="primaryGradientFallback" placeholder="#4C82D6 代表主色（用于变量）" spellcheck="false" />
+            <select id="primaryGradientDirection">
+              <option value="linear">Linear</option>
+              <option value="radial">Radial</option>
+              <option value="angular">Angular</option>
+              <option value="diamond">Diamond</option>
+            </select>
+          </div>
+        </div>
+
+        <label>
+          <span class="label">黑色 / Neutral 基准 <span class="required">*</span></span>
+          <input id="blackColor" placeholder="#28354D" spellcheck="false" />
+        </label>
+
+        <label>
+          <span class="label">主字体 <span class="required">*</span></span>
+          <input id="primaryFont" placeholder="例如 Poppins" />
+        </label>
+
+        <div id="secondaryFontSection" class="field">
+          <div class="section-head">
+            <span class="label">副字体</span>
+            <div class="compact-actions">
+              <button class="mini-button" id="removeSecondaryFontButton" type="button">- 字体</button>
+              <button class="mini-button" id="addSecondaryFontButton" type="button">+ 字体</button>
+            </div>
+          </div>
+          <div id="secondaryFontList" class="theme-list"></div>
+        </div>
+      </section>
+
+      <section id="multiThemeSection" class="is-hidden">
+        <h2>多主题配置</h2>
+        <div id="lightDarkFields">
+          <label>
+            <span class="label">浅色背景</span>
+            <input id="lightBackgroundColor" placeholder="#F8F4EC（填一个即可）" spellcheck="false" />
+          </label>
+          <label>
+            <span class="label">深色背景</span>
+            <input id="darkBackgroundColor" placeholder="留空自动推算" spellcheck="false" />
+          </label>
+          <div class="field-note">浅色 / 深色填一个即可，另一个会按 OKLCH Tone Mapping 自动推算；两个都填则使用手动值。</div>
+        </div>
+
+        <div id="multiPrimaryFields" class="is-hidden">
+          <div class="section-head">
+            <span class="label">主题色</span>
+            <div class="compact-actions">
+              <button class="mini-button theme-action" id="removeThemeButton" type="button">- 主题</button>
+              <button class="mini-button theme-action" id="addThemeButton" type="button">+ 主题</button>
+            </div>
+          </div>
+          <div id="themeList" class="theme-list"></div>
+          <div class="field">
+            <span class="label">背景策略</span>
+            <div class="radio-pair">
+              <label><input type="radio" name="themeBackgroundStrategy" value="shared" checked /> 统一</label>
+              <label><input type="radio" name="themeBackgroundStrategy" value="tone-pair" /> 冷暖</label>
+              <label><input type="radio" name="themeBackgroundStrategy" value="per-theme" /> 单独</label>
+            </div>
+          </div>
+          <div id="toneBackgroundFields" class="is-hidden">
+            <label>
+              <span class="label">冷色背景</span>
+              <input id="coolBackgroundColor" placeholder="#F6F9FF（选填）" spellcheck="false" />
+            </label>
+            <label>
+              <span class="label">暖色背景</span>
+              <input id="warmBackgroundColor" placeholder="#FFF7F0（选填）" spellcheck="false" />
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>颜色与字体</h2>
+        <label>
+          <span class="label">语义色</span>
+          <select id="semanticSet">
+            <option value="full">完整：红 / 黄 / 绿 / 蓝</option>
+            <option value="red-green">仅红 / 绿</option>
+            <option value="none">暂不生成</option>
+          </select>
+        </label>
+
+        <label>
+          <span id="auxLabel" class="label">辅助色</span>
+          <input id="auxColor" placeholder="#F7B0C6（选填）" spellcheck="false" />
+        </label>
+
+        <label id="backgroundColorField">
+          <span class="label">背景色</span>
+          <input id="backgroundColor" placeholder="#F7F8FA（选填）" spellcheck="false" />
+        </label>
+
+        <div class="field">
+          <span class="label">Neutral 类型</span>
+          <div class="radio-pair">
+            <label><input type="radio" name="neutralMode" value="solid" checked /> 实色灰阶</label>
+            <label><input type="radio" name="neutralMode" value="opacity" /> 透明 Overlay</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label">颜色输出</span>
+          <div class="radio-pair">
+            <label><input type="radio" name="colorOutput" value="variable" checked /> 变量</label>
+            <label><input type="radio" name="colorOutput" value="style" /> Style</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label">字体输出</span>
+          <div class="radio-pair">
+            <label><input type="radio" name="typographyOutput" value="style" checked /> Text Style</label>
+            <label><input type="radio" name="typographyOutput" value="token-style" /> Token + Style</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span class="label">字体预设</span>
+          <div class="radio-pair">
+            <label><input type="radio" name="typePreset" value="compact" /> 精简</label>
+            <label><input type="radio" name="typePreset" value="full" checked /> 完整</label>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>输出选项</h2>
+        <label class="check-row"><input id="visualTemplate" type="checkbox" /> 创建 Design System 可视化页面</label>
+      </section>
+
+      <div id="message" class="message"></div>
+
+      <div class="actions">
+        <button class="secondary" id="cancelButton">关闭</button>
+        <button class="primary" id="generateButton">生成到 Figma</button>
+      </div>
+    </main>
+
+    <script>
+      let pendingConfig = null;
+      const minThemeCount = 2;
+      const maxThemeCount = 5;
+      const minAuxCount = 1;
+      const maxAuxCount = 5;
+      const minSecondaryFontCount = 0;
+      const maxSecondaryFontCount = 2;
+      const themeFallbacks = ["#7FBCE4", "#F7B0C6", "#B9D77A", "#C7A9F2", "#F0C66B"];
+      const themeState = {
+        count: minThemeCount,
+        auxCounts: [minAuxCount, minAuxCount],
+        values: [],
+      };
+      const secondaryFontState = {
+        count: 1,
+        values: [],
+      };
+      const colorInputSelector = [
+        "#primaryColor",
+        "#primaryGradientFrom",
+        "#primaryGradientTo",
+        "#primaryGradientFallback",
+        "#blackColor",
+        "#lightBackgroundColor",
+        "#darkBackgroundColor",
+        "#coolBackgroundColor",
+        "#warmBackgroundColor",
+        "#auxColor",
+        "#backgroundColor",
+        '[data-field="primary"]',
+        '[data-field="gradientFrom"]',
+        '[data-field="gradientTo"]',
+        '[data-field="gradientFallback"]',
+        '[data-field="background"]',
+        "[data-aux-index]",
+      ].join(",");
+      let colorPickRequestId = 0;
+      let activePickTarget = null;
+
+      function readRadio(name) {
+        return document.querySelector(`input[name="${name}"]:checked`).value;
+      }
+
+      function themeInput(index, field) {
+        return document.querySelector(`[data-theme-index="${index}"][data-field="${field}"]`);
+      }
+
+      function themeAuxInput(themeIndex, auxIndex) {
+        return document.querySelector(`[data-theme-index="${themeIndex}"][data-aux-index="${auxIndex}"]`);
+      }
+
+      function secondaryFontInput(index, field) {
+        return document.querySelector(`[data-secondary-font-index="${index}"][data-field="${field}"]`);
+      }
+
+      function readThemes() {
+        return Array.from({ length: themeState.count }, (_, index) => {
+          const nameInput = themeInput(index, "name");
+          const colorInput = themeInput(index, "primary");
+          const kindInput = document.querySelector(`input[name="theme-${index}-kind"]:checked`);
+          const auxiliaryColors = Array.from({ length: themeState.auxCounts[index] || minAuxCount }, (_, auxIndex) => {
+            const input = themeAuxInput(index, auxIndex);
+            return {
+              name: `aux-${auxIndex + 1}`,
+              value: input ? input.value : "",
+            };
+          });
+          return {
+            name: nameInput && nameInput.value.trim() ? nameInput.value.trim() : `Theme ${index + 1}`,
+            primaryKind: kindInput ? kindInput.value : "solid",
+            primaryColor: colorInput ? colorInput.value : "",
+            gradientFrom: themeInput(index, "gradientFrom")?.value || "",
+            gradientTo: themeInput(index, "gradientTo")?.value || "",
+            gradientFallback: themeInput(index, "gradientFallback")?.value || "",
+            gradientDirection: themeInput(index, "gradientDirection")?.value || "linear",
+            auxiliaryColors,
+            backgroundColor: themeInput(index, "background")?.value || "",
+          };
+        });
+      }
+
+      function captureThemeValues() {
+        themeState.values = readThemes();
+      }
+
+      function readSecondaryFonts() {
+        return Array.from({ length: secondaryFontState.count }, (_, index) => {
+          const familyInput = secondaryFontInput(index, "family");
+          const usageInput = secondaryFontInput(index, "usage");
+          return {
+            family: familyInput ? familyInput.value.trim() : "",
+            usage: usageInput ? usageInput.value : "none",
+          };
+        });
+      }
+
+      function captureSecondaryFontValues() {
+        secondaryFontState.values = readSecondaryFonts();
+      }
+
+      function escapeAttribute(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/"/g, "&quot;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function isColorInput(node) {
+        return node && node.tagName === "INPUT" && node.matches(colorInputSelector);
+      }
+
+      function eyedropperIcon() {
+        return `
+          <svg viewBox="0 0 110 110" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M48.2751 34.3651C46.5056 33.3807 45.2009 32.1815 43.2907 32.6932C40.2321 33.5135 39.7516 37.5994 42.4391 39.158L71.5251 55.951C75.3454 58.1541 79.3063 52.4901 74.9157 49.7479L48.2751 34.3651ZM49.947 49.0211L59.2164 54.3727L43.0995 82.2907L43.1034 82.2946C40.0682 87.3493 35.0175 92.1227 29.9004 94.4506C29.373 88.9897 30.9668 81.8956 33.8301 76.9386L49.947 49.0211ZM63.365 56.7672L47.244 84.6892L47.24 84.6853C43.3767 91.3728 35.377 98.3613 28.619 99.9623V99.9584C27.3924 100.251 26.1346 99.5365 25.7713 98.31C23.783 91.6538 25.8338 81.224 29.6893 74.548L45.8103 46.622L39.8923 43.1962C30.74 37.6142 38.6462 23.3482 48.5837 29.0052L54.8571 18.1502C59.9157 10.1619 69.5681 7.74422 77.3651 12.244L77.369 12.2401C85.2518 16.7909 87.9741 26.9471 83.4199 34.8381L77.2363 45.5491C84.0996 49.51 82.4238 59.0491 75.4433 60.9161C73.3886 61.4669 71.1152 61.2364 69.1269 60.088L63.365 56.7672ZM73.0837 43.1582L52.7288 31.4082L58.9123 20.6972C60.5256 17.9003 63.1194 16.0253 66.053 15.2363C76.256 12.5019 84.4159 23.5293 79.2719 32.4433L73.0837 43.1582Z" fill="currentColor"/>
+          </svg>
+        `;
+      }
+
+      function attachColorPickers(root = document) {
+        root.querySelectorAll(colorInputSelector).forEach((input) => {
+          if (input.closest(".color-input-shell")) return;
+          const shell = document.createElement("div");
+          shell.className = "color-input-shell";
+          input.parentNode.insertBefore(shell, input);
+          shell.appendChild(input);
+
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "eyedropper-button";
+          button.title = "吸取当前选中图层的纯色（I）";
+          button.setAttribute("aria-label", "吸取当前选中图层的纯色");
+          button.setAttribute("aria-keyshortcuts", "I");
+          button.innerHTML = eyedropperIcon();
+          button.addEventListener("click", () => requestPickedColor(input));
+          shell.appendChild(button);
+        });
+      }
+
+      function requestPickedColor(input) {
+        if (!isColorInput(input)) return;
+        activePickTarget = input;
+        hideMessage();
+        clearInlineMessage(messageHostForInput(input));
+        input.focus();
+        colorPickRequestId += 1;
+        parent.postMessage(
+          {
+            pluginMessage: {
+              type: "pick-selected-color",
+              requestId: colorPickRequestId,
+            },
+          },
+          "*",
+        );
+      }
+
+      function applyPickedColor(message) {
+        const input = activePickTarget;
+        if (!message.ok) {
+          if (input && document.contains(input)) {
+            showInlineMessage(input, "error", message.message || "没有读取到可用的纯色。");
+          } else {
+            showMessage("error", message.message || "没有读取到可用的纯色。");
+          }
+          return;
+        }
+        activePickTarget = null;
+        if (!input || !document.contains(input)) {
+          showMessage("error", "请先点击一个颜色输入框，再吸取颜色。");
+          return;
+        }
+        input.value = message.hex;
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+        showInlineMessage(input, "success", `已吸取颜色 ${message.hex}`);
+      }
+
+      function isGradientTypeSelected(value, type) {
+        const normalized = ["left-right", "top-bottom", "diagonal"].includes(value) ? "linear" : value || "linear";
+        return normalized === type ? "selected" : "";
+      }
+
+      function readConfig() {
+        const themes = readThemes();
+        return {
+          systemType: readRadio("systemType"),
+          multiThemeType: readRadio("multiThemeType"),
+          primaryKind: readRadio("primaryKind"),
+          primaryColor: document.getElementById("primaryColor").value,
+          primaryGradientFrom: document.getElementById("primaryGradientFrom").value,
+          primaryGradientTo: document.getElementById("primaryGradientTo").value,
+          primaryGradientFallback: document.getElementById("primaryGradientFallback").value,
+          primaryGradientDirection: document.getElementById("primaryGradientDirection").value,
+          lightBackgroundColor: document.getElementById("lightBackgroundColor").value,
+          darkBackgroundColor: document.getElementById("darkBackgroundColor").value,
+          coolBackgroundColor: document.getElementById("coolBackgroundColor").value,
+          warmBackgroundColor: document.getElementById("warmBackgroundColor").value,
+          themeBackgroundStrategy: readRadio("themeBackgroundStrategy"),
+          themes,
+          themeColors: themes.map((theme) => theme.primaryColor),
+          blackColor: document.getElementById("blackColor").value,
+          primaryFont: document.getElementById("primaryFont").value,
+          secondaryFonts: readSecondaryFonts().filter((font) => font.family),
+          semanticSet: document.getElementById("semanticSet").value,
+          auxColor: document.getElementById("auxColor").value,
+          backgroundColor: document.getElementById("backgroundColor").value,
+          neutralMode: readRadio("neutralMode"),
+          colorOutput: readRadio("colorOutput"),
+          typographyOutput: readRadio("typographyOutput"),
+          typePreset: readRadio("typePreset"),
+          visualTemplate: document.getElementById("visualTemplate").checked,
+        };
+      }
+
+      function updateSwatch(input) {
+        const target = input.closest(".color-row")?.querySelector(".swatch");
+        if (!target) return;
+        const value = input.value.trim().replace(/^#/, "");
+        target.style.background = /^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(value) ? `#${value}` : "#eef2f7";
+      }
+
+      function updatePrimaryKindFields() {
+        const kind = readRadio("primaryKind");
+        document.getElementById("primarySolidFields").classList.toggle("is-hidden", kind !== "solid");
+        document.getElementById("primaryGradientFields").classList.toggle("is-hidden", kind !== "gradient");
+      }
+
+      function updateThemeKindFields(index) {
+        const kind = document.querySelector(`input[name="theme-${index}-kind"]:checked`)?.value || "solid";
+        document.querySelectorAll(`[data-theme-gradient-mode="${index}"]`).forEach((node) => {
+          node.classList.toggle("is-hidden", node.dataset.mode !== kind);
+        });
+      }
+
+      function renderThemes() {
+        const list = document.getElementById("themeList");
+        list.innerHTML = "";
+        themeState.auxCounts = Array.from({ length: themeState.count }, (_, index) => themeState.auxCounts[index] || minAuxCount);
+        for (let index = 0; index < themeState.count; index += 1) {
+          const required = index < minThemeCount;
+          const auxCount = themeState.auxCounts[index] || minAuxCount;
+          const saved = themeState.values[index] || {};
+          const card = document.createElement("div");
+          card.className = "theme-card";
+          card.innerHTML = `
+            <div class="theme-card-head">
+              <div>
+                <div class="theme-card-title">Theme ${index + 1}</div>
+                <div class="hint">${required ? "必填主色" : "可选补充"}</div>
+              </div>
+            </div>
+            <label>
+              <span class="label">名称</span>
+              <input data-theme-index="${index}" data-field="name" value="${escapeAttribute(saved.name || "")}" placeholder="Theme ${index + 1}" spellcheck="false" />
+            </label>
+            <div class="color-row">
+              <div class="field">
+                <span class="label">主色 ${required ? '<span class="required">*</span>' : ""}</span>
+                <div class="radio-pair">
+                  <label><input type="radio" name="theme-${index}-kind" data-theme-index="${index}" data-field="kind" value="solid" ${saved.primaryKind === "gradient" ? "" : "checked"} /> 纯色</label>
+                  <label><input type="radio" name="theme-${index}-kind" data-theme-index="${index}" data-field="kind" value="gradient" ${saved.primaryKind === "gradient" ? "checked" : ""} /> 渐变</label>
+                </div>
+                <div data-theme-gradient-mode="${index}" data-mode="solid" class="${saved.primaryKind === "gradient" ? "is-hidden" : ""}">
+                  <input data-theme-index="${index}" data-field="primary" value="${escapeAttribute(saved.primaryColor || "")}" placeholder="${themeFallbacks[index] || "#4C82D6"}${required ? "" : "（选填）"}" spellcheck="false" />
+                </div>
+                <div data-theme-gradient-mode="${index}" data-mode="gradient" class="${saved.primaryKind === "gradient" ? "" : "is-hidden"}">
+                  <div class="two-col">
+                    <input data-theme-index="${index}" data-field="gradientFrom" value="${escapeAttribute(saved.gradientFrom || "")}" placeholder="#4C82D6 起点" spellcheck="false" />
+                    <input data-theme-index="${index}" data-field="gradientTo" value="${escapeAttribute(saved.gradientTo || "")}" placeholder="#3362AC 终点" spellcheck="false" />
+                  </div>
+                  <input data-theme-index="${index}" data-field="gradientFallback" value="${escapeAttribute(saved.gradientFallback || "")}" placeholder="${themeFallbacks[index] || "#4C82D6"} 代表主色（用于变量）" spellcheck="false" />
+                  <select data-theme-index="${index}" data-field="gradientDirection">
+                    <option value="linear" ${isGradientTypeSelected(saved.gradientDirection, "linear")}>Linear</option>
+                    <option value="radial" ${isGradientTypeSelected(saved.gradientDirection, "radial")}>Radial</option>
+                    <option value="angular" ${isGradientTypeSelected(saved.gradientDirection, "angular")}>Angular</option>
+                    <option value="diamond" ${isGradientTypeSelected(saved.gradientDirection, "diamond")}>Diamond</option>
+                  </select>
+                </div>
+              </div>
+              <div class="swatch" aria-hidden="true"></div>
+            </div>
+            <div class="divider"></div>
+            <label class="theme-background-field is-hidden">
+              <span class="label">背景色</span>
+              <input data-theme-index="${index}" data-field="background" value="${escapeAttribute(saved.backgroundColor || "")}" placeholder="#F7F8FA（选填）" spellcheck="false" />
+            </label>
+            <div class="subsection-head">
+              <span class="label">辅助色信息</span>
+              <div class="compact-actions">
+                <button class="mini-button aux-action" type="button" data-action="remove-aux" data-theme-index="${index}">- 辅助</button>
+                <button class="mini-button aux-action" type="button" data-action="add-aux" data-theme-index="${index}">+ 辅助</button>
+              </div>
+            </div>
+            <div class="aux-list" data-aux-list="${index}"></div>
+          `;
+          list.appendChild(card);
+
+          const auxList = card.querySelector(`[data-aux-list="${index}"]`);
+          for (let auxIndex = 0; auxIndex < auxCount; auxIndex += 1) {
+            const savedAux = (saved.auxiliaryColors || [])[auxIndex] || {};
+            const row = document.createElement("div");
+            row.className = "color-row";
+            row.innerHTML = `
+              <label>
+                <span class="label">辅助色 ${auxIndex + 1}</span>
+                <input data-theme-index="${index}" data-aux-index="${auxIndex}" value="${escapeAttribute(savedAux.value || "")}" placeholder="#F7B0C6（选填）" spellcheck="false" />
+              </label>
+              <div class="swatch" aria-hidden="true"></div>
+            `;
+            auxList.appendChild(row);
+          }
+        }
+        document.getElementById("removeThemeButton").disabled = themeState.count <= minThemeCount;
+        document.getElementById("addThemeButton").disabled = themeState.count >= maxThemeCount;
+        document.querySelectorAll("[data-action='remove-aux']").forEach((button) => {
+          const index = Number(button.dataset.themeIndex);
+          button.disabled = (themeState.auxCounts[index] || minAuxCount) <= minAuxCount;
+        });
+        document.querySelectorAll("[data-action='add-aux']").forEach((button) => {
+          const index = Number(button.dataset.themeIndex);
+          button.disabled = (themeState.auxCounts[index] || minAuxCount) >= maxAuxCount;
+        });
+        attachColorPickers(list);
+        list.querySelectorAll(colorInputSelector).forEach((input) => {
+          input.addEventListener("input", () => updateSwatch(input));
+          updateSwatch(input);
+        });
+        document.querySelectorAll("[data-field='kind']").forEach((input) => {
+          input.addEventListener("change", () => updateThemeKindFields(Number(input.dataset.themeIndex)));
+        });
+      }
+
+      function changeThemeCount(delta) {
+        captureThemeValues();
+        const next = Math.max(minThemeCount, Math.min(maxThemeCount, themeState.count + delta));
+        if (next === themeState.count) return;
+        themeState.count = next;
+        themeState.auxCounts = themeState.auxCounts.slice(0, next);
+        while (themeState.auxCounts.length < next) themeState.auxCounts.push(minAuxCount);
+        renderThemes();
+      }
+
+      function changeAuxCount(themeIndex, delta) {
+        captureThemeValues();
+        const current = themeState.auxCounts[themeIndex] || minAuxCount;
+        const next = Math.max(minAuxCount, Math.min(maxAuxCount, current + delta));
+        if (next === current) return;
+        themeState.auxCounts[themeIndex] = next;
+        renderThemes();
+      }
+
+      function renderSecondaryFonts() {
+        const list = document.getElementById("secondaryFontList");
+        list.innerHTML = "";
+        for (let index = 0; index < secondaryFontState.count; index += 1) {
+          const saved = secondaryFontState.values[index] || {};
+          const usage = saved.usage || "none";
+          const card = document.createElement("div");
+          card.className = "secondary-font-card";
+          card.innerHTML = `
+            <label>
+              <span class="label">副字体 ${index + 1}</span>
+              <input data-secondary-font-index="${index}" data-field="family" value="${escapeAttribute(saved.family || "")}" placeholder="例如 Lora" />
+            </label>
+            <label>
+              <span class="label">副字体用途</span>
+              <select data-secondary-font-index="${index}" data-field="usage">
+                <option value="none" ${usage === "none" ? "selected" : ""}>不使用副字体</option>
+                <option value="headline" ${usage === "headline" ? "selected" : ""}>标题 / Headline</option>
+                <option value="title" ${usage === "title" ? "selected" : ""}>标题强调 / Title</option>
+                <option value="number" ${usage === "number" ? "selected" : ""}>数字 / Number</option>
+                <option value="brand" ${usage === "brand" ? "selected" : ""}>品牌展示 / Brand</option>
+              </select>
+            </label>
+          `;
+          list.appendChild(card);
+        }
+        document.getElementById("removeSecondaryFontButton").disabled = secondaryFontState.count <= minSecondaryFontCount;
+        document.getElementById("addSecondaryFontButton").disabled = secondaryFontState.count >= maxSecondaryFontCount;
+      }
+
+      function changeSecondaryFontCount(delta) {
+        captureSecondaryFontValues();
+        const next = Math.max(minSecondaryFontCount, Math.min(maxSecondaryFontCount, secondaryFontState.count + delta));
+        if (next === secondaryFontState.count) return;
+        secondaryFontState.count = next;
+        renderSecondaryFonts();
+      }
+
+      function applySystemDefaults() {
+        const type = readRadio("systemType");
+        document.getElementById("multiThemeTypeField").classList.toggle("is-hidden", type !== "multi-theme");
+        document.getElementById("multiThemeSection").classList.toggle("is-hidden", type !== "multi-theme");
+        document.getElementById("secondaryFontSection").classList.toggle("is-hidden", type === "lightweight");
+        if (type === "lightweight") {
+          document.getElementById("semanticSet").value = "red-green";
+          document.querySelector('input[name="neutralMode"][value="opacity"]').checked = true;
+          document.querySelector('input[name="colorOutput"][value="style"]').checked = true;
+          document.querySelector('input[name="typographyOutput"][value="style"]').checked = true;
+          document.querySelector('input[name="typePreset"][value="compact"]').checked = true;
+          updateMultiThemeFields();
+          return;
+        }
+        document.getElementById("semanticSet").value = "full";
+        document.querySelector('input[name="neutralMode"][value="solid"]').checked = true;
+        document.querySelector('input[name="colorOutput"][value="variable"]').checked = true;
+        document.querySelector('input[name="typographyOutput"][value="style"]').checked = true;
+        document.querySelector('input[name="typePreset"][value="full"]').checked = true;
+        updateMultiThemeFields();
+      }
+
+      function updateMultiThemeFields() {
+        const systemType = readRadio("systemType");
+        const type = readRadio("multiThemeType");
+        const strategy = readRadio("themeBackgroundStrategy");
+        const isMultiPrimary = systemType === "multi-theme" && type === "multi-primary";
+        document.getElementById("lightDarkFields").classList.toggle("is-hidden", type !== "light-dark");
+        document.getElementById("multiPrimaryFields").classList.toggle("is-hidden", type !== "multi-primary");
+        document.getElementById("primaryColorField").classList.toggle("is-hidden", isMultiPrimary);
+        document.getElementById("backgroundColorField").classList.toggle("is-hidden", systemType === "multi-theme" && (type === "light-dark" || (type === "multi-primary" && strategy !== "shared")));
+        document.getElementById("toneBackgroundFields").classList.toggle("is-hidden", !isMultiPrimary || strategy !== "tone-pair");
+        document.querySelectorAll(".theme-background-field").forEach((field) => {
+          field.classList.toggle("is-hidden", !isMultiPrimary || strategy !== "per-theme");
+        });
+        document.getElementById("auxLabel").textContent = isMultiPrimary ? "统一辅助色" : "辅助色";
+      }
+
+      function showMessage(type, text) {
+        const message = document.getElementById("message");
+        message.className = `message is-visible ${type}`;
+        message.textContent = text;
+      }
+
+      function hideMessage() {
+        const message = document.getElementById("message");
+        message.className = "message";
+        message.textContent = "";
+      }
+
+      function messageHostForInput(input) {
+        return input.closest(".field") || input.closest("label") || input.closest("section");
+      }
+
+      function clearInlineMessage(host) {
+        if (!host) return;
+        host.querySelectorAll(".inline-message").forEach((node) => node.remove());
+      }
+
+      function showInlineMessage(input, type, text) {
+        const host = messageHostForInput(input);
+        if (!host) {
+          showMessage(type, text);
+          return;
+        }
+        clearInlineMessage(host);
+        hideMessage();
+        const message = document.createElement("div");
+        message.className = `inline-message ${type}`;
+        message.textContent = text;
+        host.appendChild(message);
+      }
+
+      document.querySelectorAll('input[name="systemType"]').forEach((input) => {
+        input.addEventListener("change", applySystemDefaults);
+      });
+      document.querySelectorAll('input[name="multiThemeType"]').forEach((input) => {
+        input.addEventListener("change", updateMultiThemeFields);
+      });
+      document.querySelectorAll('input[name="themeBackgroundStrategy"]').forEach((input) => {
+        input.addEventListener("change", updateMultiThemeFields);
+      });
+      document.querySelectorAll('input[name="primaryKind"]').forEach((input) => {
+        input.addEventListener("change", updatePrimaryKindFields);
+      });
+      document.getElementById("addThemeButton").addEventListener("click", () => changeThemeCount(1));
+      document.getElementById("removeThemeButton").addEventListener("click", () => changeThemeCount(-1));
+      document.getElementById("addSecondaryFontButton").addEventListener("click", () => changeSecondaryFontCount(1));
+      document.getElementById("removeSecondaryFontButton").addEventListener("click", () => changeSecondaryFontCount(-1));
+      document.getElementById("themeList").addEventListener("click", (event) => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+        const themeIndex = Number(button.dataset.themeIndex);
+        changeAuxCount(themeIndex, button.dataset.action === "add-aux" ? 1 : -1);
+      });
+      renderThemes();
+      renderSecondaryFonts();
+      attachColorPickers();
+      updatePrimaryKindFields();
+      applySystemDefaults();
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key.toLowerCase() !== "i" || event.metaKey || event.ctrlKey || event.altKey) return;
+        const input = document.activeElement;
+        if (!isColorInput(input)) return;
+        event.preventDefault();
+        requestPickedColor(input);
+      });
+
+      document.getElementById("generateButton").addEventListener("click", () => {
+        pendingConfig = readConfig();
+        parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: false } }, "*");
+      });
+
+      document.getElementById("cancelButton").addEventListener("click", () => {
+        parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+      });
+
+      onmessage = (event) => {
+        const message = event.data.pluginMessage;
+        if (!message) return;
+
+        if (message.type === "confirm-overwrite") {
+          const confirmed = confirm(`${message.message}\n\n确定后会删除相关变量 / 样式再重新生成。`);
+          if (confirmed && pendingConfig) {
+            parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: true } }, "*");
+          }
+          return;
+        }
+
+        if (message.type === "picked-color") {
+          applyPickedColor(message);
+          return;
+        }
+
+        if (message.type === "success") {
+          showMessage("success", message.message);
+          return;
+        }
+
+        if (message.type === "error") {
+          showMessage("error", message.message);
+        }
+      };
+    </script>
+  </body>
+</html>

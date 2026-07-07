@@ -431,6 +431,8 @@ figma.ui.onmessage = async (message) => {
 
   if (message.type !== "generate") return;
 
+  let restoreSnapshot = null;
+
   try {
     const config = normalizeConfig(message.config);
     const issues = [...validateRawInputs(message.config || {}, config), ...validateConfig(config)];
@@ -452,16 +454,21 @@ figma.ui.onmessage = async (message) => {
       return;
     }
 
+    restoreSnapshot = message.confirmedOverwrite && existing.total > 0 ? await snapshotExisting(existing) : null;
+    const pagesToDeleteAfterSuccess = message.confirmedOverwrite && existing.total > 0 ? existing.pages.slice() : [];
+
     if (message.confirmedOverwrite && existing.total > 0) {
-      await deleteExisting(existing);
+      await deleteExisting(existing, { keepPages: true });
     }
 
     const result = await writeSystem(system);
+    await deletePages(pagesToDeleteAfterSuccess);
     figma.ui.postMessage({ type: "success", message: summarizeResult(result), result });
     figma.notify("Design system generated");
   } catch (error) {
     const messageText = error && error.message ? error.message : String(error);
-    figma.ui.postMessage({ type: "error", message: `生成失败，已清理本次新建的半成品。\n${messageText}` });
+    const restoreMessage = await restoreAfterFailedOverwrite(restoreSnapshot);
+    figma.ui.postMessage({ type: "error", message: `生成失败，已清理本次新建的半成品。${restoreMessage}\n${messageText}` });
   }
 };
 
@@ -745,17 +752,193 @@ async function scanExisting(system) {
   };
 }
 
-async function deleteExisting(existing) {
-  existing.variables.forEach((item) => item.remove());
-  existing.paintStyles.forEach((item) => item.remove());
-  existing.textStyles.forEach((item) => item.remove());
-  existing.effectStyles.forEach((item) => item.remove());
-  for (const page of existing.pages) {
-    if (figma.root.children.length <= 1) return;
-    if (figma.currentPage === page) {
-      await setCurrentPage(figma.root.children.find((candidate) => candidate !== page));
+async function snapshotExisting(existing) {
+  const collections = await getLocalCollections();
+  const collectionById = new Map(collections.map((collection) => [collection.id, collection]));
+  const collectionIds = new Set(existing.collections.map((collection) => collection.id));
+  existing.variables.forEach((variable) => {
+    if (variable.variableCollectionId) collectionIds.add(variable.variableCollectionId);
+  });
+
+  return {
+    collections: collections
+      .filter((collection) => collectionIds.has(collection.id))
+      .map((collection) => ({
+        name: collection.name,
+        modes: collection.modes.map((mode) => mode.name),
+      })),
+    variables: existing.variables.map((variable) => snapshotVariable(variable, collectionById.get(variable.variableCollectionId))),
+    paintStyles: existing.paintStyles.map(snapshotPaintStyle),
+    textStyles: existing.textStyles.map(snapshotTextStyle),
+    effectStyles: existing.effectStyles.map(snapshotEffectStyle),
+  };
+}
+
+function snapshotVariable(variable, collection) {
+  const valuesByModeName = {};
+  const modes = collection ? collection.modes : [];
+  modes.forEach((mode) => {
+    if (variable.valuesByMode && variable.valuesByMode[mode.modeId] !== undefined) {
+      valuesByModeName[mode.name] = cloneSnapshotValue(variable.valuesByMode[mode.modeId]);
     }
-    page.remove();
+  });
+
+  return {
+    name: variable.name,
+    type: variable.resolvedType || "COLOR",
+    collectionName: collection ? collection.name : "Design System",
+    modes: modes.map((mode) => mode.name),
+    valuesByModeName,
+  };
+}
+
+function snapshotPaintStyle(style) {
+  return {
+    name: style.name,
+    paints: cloneSnapshotValue(style.paints || []),
+    description: "description" in style ? String(style.description || "") : "",
+  };
+}
+
+function snapshotTextStyle(style) {
+  return {
+    name: style.name,
+    fontName: cloneSnapshotValue(style.fontName),
+    fontSize: style.fontSize,
+    lineHeight: cloneSnapshotValue(style.lineHeight),
+    letterSpacing: cloneSnapshotValue(style.letterSpacing),
+    paragraphSpacing: style.paragraphSpacing,
+    description: "description" in style ? String(style.description || "") : "",
+  };
+}
+
+function snapshotEffectStyle(style) {
+  return {
+    name: style.name,
+    effects: cloneSnapshotValue(style.effects || []),
+    description: "description" in style ? String(style.description || "") : "",
+  };
+}
+
+function cloneSnapshotValue(value) {
+  return value === undefined ? undefined : JSON.parse(JSON.stringify(value));
+}
+
+async function restoreAfterFailedOverwrite(snapshot) {
+  if (!snapshot) return "";
+  try {
+    await restoreExistingSnapshot(snapshot);
+    return "\n旧变量 / 样式已恢复；旧可视化页已保留。";
+  } catch (restoreError) {
+    const message = restoreError && restoreError.message ? restoreError.message : String(restoreError);
+    return `\n但恢复旧变量 / 样式时失败，请检查文件后再继续：${message}`;
+  }
+}
+
+async function restoreExistingSnapshot(snapshot) {
+  const collectionByName = new Map();
+  for (const collectionSnapshot of snapshot.collections) {
+    const collection = await getOrCreateCollection(collectionSnapshot.name);
+    const modes = syncCollectionModes(collection, collectionSnapshot.modes.length ? collectionSnapshot.modes : ["Default"]);
+    collectionByName.set(collectionSnapshot.name, { collection, modes });
+  }
+
+  for (const variableSnapshot of snapshot.variables) {
+    await restoreVariableSnapshot(variableSnapshot, collectionByName);
+  }
+  for (const styleSnapshot of snapshot.paintStyles) await restorePaintStyleSnapshot(styleSnapshot);
+  for (const styleSnapshot of snapshot.textStyles) await restoreTextStyleSnapshot(styleSnapshot);
+  for (const styleSnapshot of snapshot.effectStyles) await restoreEffectStyleSnapshot(styleSnapshot);
+}
+
+async function restoreVariableSnapshot(snapshot, collectionByName) {
+  let entry = collectionByName.get(snapshot.collectionName);
+  if (!entry) {
+    const collection = await getOrCreateCollection(snapshot.collectionName);
+    const modes = syncCollectionModes(collection, snapshot.modes.length ? snapshot.modes : ["Default"]);
+    entry = { collection, modes };
+    collectionByName.set(snapshot.collectionName, entry);
+  }
+
+  const variable = await createVariable(snapshot.name, entry.collection, snapshot.type, { optional: snapshot.type === "STRING" });
+  if (!variable) return;
+  markPluginOwned(variable);
+  entry.modes.forEach((mode) => {
+    const value = snapshot.valuesByModeName[mode.name];
+    if (value !== undefined) variable.setValueForMode(mode.modeId, cloneSnapshotValue(value));
+  });
+}
+
+async function restorePaintStyleSnapshot(snapshot) {
+  const style = (await findPaintStyleByName(snapshot.name)) || figma.createPaintStyle();
+  style.name = snapshot.name;
+  style.paints = cloneSnapshotValue(snapshot.paints || []);
+  restoreDescription(style, snapshot.description);
+  markPluginOwned(style);
+}
+
+async function restoreTextStyleSnapshot(snapshot) {
+  const style = (await findTextStyleByName(snapshot.name)) || figma.createTextStyle();
+  style.name = snapshot.name;
+  if (snapshot.fontName && snapshot.fontName.family && snapshot.fontName.style) {
+    try {
+      await figma.loadFontAsync(snapshot.fontName);
+    } catch (error) {
+      // Existing style restoration should remain best-effort if a font disappears.
+    }
+    style.fontName = snapshot.fontName;
+  }
+  if (snapshot.fontSize !== undefined) style.fontSize = snapshot.fontSize;
+  if (snapshot.lineHeight !== undefined) style.lineHeight = cloneSnapshotValue(snapshot.lineHeight);
+  if (snapshot.letterSpacing !== undefined) style.letterSpacing = cloneSnapshotValue(snapshot.letterSpacing);
+  if (snapshot.paragraphSpacing !== undefined) style.paragraphSpacing = snapshot.paragraphSpacing;
+  restoreDescription(style, snapshot.description);
+  markPluginOwned(style);
+}
+
+async function restoreEffectStyleSnapshot(snapshot) {
+  const style = (await findEffectStyleByName(snapshot.name)) || figma.createEffectStyle();
+  style.name = snapshot.name;
+  style.effects = cloneSnapshotValue(snapshot.effects || []);
+  restoreDescription(style, snapshot.description);
+  markPluginOwned(style);
+}
+
+function restoreDescription(node, description) {
+  if ("description" in node) node.description = String(description || "");
+}
+
+async function findPaintStyleByName(name) {
+  return (await getLocalPaintStyles()).find((style) => style.name === name);
+}
+
+async function findTextStyleByName(name) {
+  return (await getLocalTextStyles()).find((style) => style.name === name);
+}
+
+async function findEffectStyleByName(name) {
+  return (await getLocalEffectStyles()).find((style) => style.name === name);
+}
+
+async function deleteExisting(existing, options = {}) {
+  existing.variables.forEach((item) => safeRemove(item));
+  existing.paintStyles.forEach((item) => safeRemove(item));
+  existing.textStyles.forEach((item) => safeRemove(item));
+  existing.effectStyles.forEach((item) => safeRemove(item));
+  if (!options.keepPages) await deletePages(existing.pages);
+}
+
+async function deletePages(pages) {
+  for (const page of pages) {
+    try {
+      if (figma.root.children.length <= 1) return;
+      if (figma.currentPage === page) {
+        await setCurrentPage(figma.root.children.find((candidate) => candidate !== page));
+      }
+      safeRemove(page);
+    } catch (error) {
+      // Keep generation success visible even if an old visual page cannot be removed.
+    }
   }
 }
 

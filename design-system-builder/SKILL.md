@@ -16,22 +16,35 @@ The skill provides default templates, naming rules, Figma write flow, validation
 - Require a Figma link before writing to Figma. Without a Figma link, only draft a plan or configuration.
 - Ask only for token inputs needed to create variables and styles. Do not ask for app name, audience, or business context unless creative color/style inference is needed.
 - Do not invent the brand primary color. Ask for it if missing.
-- Require the black/gray neutral base before writing color tokens. Do not default it to `#000000`, and do not accept `#000000` unless the user explicitly confirms an exception.
 - Accept a solid brand primary or a brand primary gradient. If the brand primary is a gradient, require gradient stops, direction, and a solid fallback color because Figma color variables are solid RGBA values.
+- Unless the user explicitly asks for more, the `Brand` color group must contain only five solid colors: `Brand/primary`, two lighter primary colors, and two darker primary colors. Do not create `Brand/primary-text`; white belongs in `Neutrals/White` or `Neutral/00`.
+- Require the designer to provide the black/gray base color used for grey or neutral tokens. Do not default to `#000000`, and do not accept `#000000` as the base; ask for a product-appropriate black instead.
 - Default to consumer mobile app interaction patterns.
 - Do not generate hover, focus-visible, desktop cursor, tooltip, dashboard, or web-only states unless the user explicitly asks for web/desktop/admin behavior.
 - For lightweight product systems, default to style-first. Create paint, text, and effect styles where Figma supports styles; treat variables as optional and only create them when the user or custom configuration opts in.
 - For standard and multi-theme systems, create solid colors as variables only. Do not also create duplicate solid-color paint styles. Use paint styles only for gradients or other fills that Figma color variables cannot represent.
-- Require the designer to provide the font family before writing text styles. Default to one font family; support one to three font families when the user provides a mapping. If more than three font families are requested, ask for confirmation or simplification.
-- Use the compact typography preset for lightweight systems, use the full typography preset for standard and multi-theme systems unless the user selects compact or provides a custom type scale.
-- Use spacing values that are multiples of 4.
+- Require the designer to provide the font family before writing text styles. Default to one font family. If two or three font families are provided, ask which is primary and where each secondary font is used; the primary font gets the full preset, and secondary fonts only get purpose-based partial styles. If more than three font families are requested, ask for confirmation or simplification.
+- Treat font family as the only required typography input. Resolve preset weights automatically from Figma's available fonts: when an exact requested style is unavailable, choose the closest non-italic normal style (for example, `Semi Bold` to `Bold`, `Medium`, then `Regular`) instead of failing. Support fonts whose weight is embedded in the family name, such as `Monotalic-Bold`, and normalize separators including spaces, `_`, `-`, `.`, `/`, `\\`, and `*` during matching.
+- Show font validation feedback directly below the relevant font input. Exact matches may pass quietly or show a concise available state; normalized names and weight fallbacks must state the actual resolved font. Never silently accept a fuzzy spelling match: offer one explicit “use suggested font” action and block generation until the user confirms or edits it. If no candidate exists, show an inline error and block generation.
+- Use the compact typography preset for lightweight systems. For standard systems, default to the compact preset when the user does not specify a typography scale; use the full preset only when the user chooses it or the project scope clearly needs it. Use the full preset for multi-theme systems unless the user provides a custom type scale.
+- Do not include `40px+` or `48px+` heading styles in default mobile app typography. If the designer needs oversized display typography, ask for confirmation and create it as a special `Display` style rather than part of the default `Headline` scale.
+- Do not create a separate button text-style group by default. Reuse existing text styles for buttons; only create minimal dedicated `Button` styles when the user asks or a component needs a non-duplicated tighter line height.
+- Use spacing values that are multiples of 4. Default spacing must include `8px`, `12px`, `20px`, and `28px`.
 - Use `999px` as the maximum capsule radius.
 - Include the concrete pixel value in every radius variable name.
-- Keep Solid Neutral and Alpha Overlay separate. Solid Neutral is for text, icons, backgrounds, and surfaces; Alpha Overlay is for dividers, pressed states, disabled states, scrims, and background-dependent effects. In Light/Dark systems, Solid Neutral may use Light/Dark mode values, but Overlay Alpha stays global as `Overlay/Black` and `Overlay/White`.
-- For Light/Dark systems, adapt the Dark primary color instead of simply mixing the Light primary with white. Keep hue stable, raise lightness into a dark-background-safe range, cap saturation, and check minimum contrast against the dark background.
-- Group text style names with slash namespaces for scanability, such as `Headline/H1`, `Subtitle/S1`, `Body/B1`, `Caption/C1`, and `Button/Large`.
-- Use only three default shadow effect styles: `Shadow/S`, `Shadow/M`, and `Shadow/L`. Default shadows must cast downward only, keep one fixed geometry set, and use Neutral Ambient color instead of brand primary color. Designers may customize shadow layers or add warm/cool exceptions in agent/UI configuration.
+- Default radius values must include `8px`, `12px`, `20px`, and `28px`, plus `999px` for capsule/pill radius.
+- Support two neutral grey modes: opacity grey and solid neutral scale. If the user does not specify which grey mode to use, ask before writing.
+- For solid neutral scale, use `Neutral/900` through `Neutral/00`; `Neutral/900` is the designer-provided black/base color and `Neutral/00` is pure white.
+- Background colors are optional. Ask once whether the designer wants background color tokens; if not provided or not needed, skip them. Use `Background/BG` as the default single background name. For Light/Dark systems, one provided background is enough: derive the missing counterpart with OKLCH tone mapping unless the designer manually provides both.
+- Border and Surface are optional support tokens. Do not generate them merely because shadows exist. Ask before generating them unless a custom configuration explicitly includes them.
+- Auxiliary colors are optional. If the user does not provide auxiliary colors, ask whether they are needed; if yes, collect one base color and create `Auxiliary/base`, `Auxiliary/02`, and `Auxiliary/03`. In multi-brand / multi-primary systems, distinguish shared auxiliary from per-theme auxiliary: the shared/global input is "统一辅助色", while each theme card still uses "辅助色" for theme-specific auxiliary colors.
+- Keep semantic colors in familiar hue families: success green, warning yellow/orange, error red, and info blue/cyan. Tune their lightness, saturation, and greyness to match the brand primary so all semantic colors feel like one harmonious palette.
+- For multi-theme systems, first classify the subtype: one provided primary means Light/Dark; two or more primaries means multi-brand / multi-primary. Adapt semantic colors separately for each theme mode.
+- Group text style names with slash namespaces for scanability, such as `Headline/H1`, `Subtitle/S1`, `Body/B1`, and `Caption/C1`; use `Button/Large` only for optional dedicated button styles.
+- Use only three default shadow effect styles: `Shadow/S`, `Shadow/M`, and `Shadow/L`. Shadow tokens describe elevation only and must not split by light, dark, brand, button color, or theme. Use `Border` and `Surface` tokens to adapt different component surfaces.
 - Complete variables and styles first, validate them, then ask whether the user wants base components.
+- Ask in the first intake whether the user wants a visual design-system template page for all variables and styles. If not created initially, ask again near the end before optional base components.
+- When creating a visual template, create or reuse a Figma page named `Design System` and use auto layout for the page content frames.
 - Never create duplicate base components without inspecting existing Figma components first.
 - If the Figma file already contains variables or styles, summarize what exists and ask whether to keep and supplement, delete and rebuild, or cancel before writing.
 - Do not overwrite existing variables or styles with different values without surfacing the difference and confirming the action.
@@ -40,7 +53,7 @@ The skill provides default templates, naming rules, Figma write flow, validation
 ## Workflow
 
 1. Determine the task type: create, modify, audit, or optional base components.
-2. If creating, ask the user to choose a system type: lightweight product, standard product, or multi-theme. If a custom configuration is supplied, use it as the source of truth.
+2. If creating, ask the user to choose a system type: lightweight product, standard product, or multi-theme. Also ask whether to create a visual template page for all variables/styles. If a custom configuration is supplied, use it as the source of truth.
 3. Read `references/system-types.md` for required inputs and default included items.
 4. Read `references/token-rules.md` before generating token names, values, categories, modes, text styles, or effect styles.
 5. Read `references/typography-presets.md` before creating text styles or asking for typography inputs.
@@ -48,7 +61,8 @@ The skill provides default templates, naming rules, Figma write flow, validation
 7. If existing variables or styles are present, stop and ask the user how to handle them before writing.
 8. Create or update variables and styles according to the selected type or custom configuration. For a new/empty system, use the fast path.
 9. Validate the written Figma file: names, counts, values, modes, opacity systems, spacing multiples, radius naming, and semantic completeness.
-10. After variables and styles are complete, ask whether to generate base components. If yes, read `references/component-policy.md`, inspect existing components first, then only create missing foundations.
+10. After variables and styles are complete, ask again whether to create or update the visual template page if it was not already requested.
+11. Ask whether to generate base components. If yes, read `references/component-policy.md`, inspect existing components first, then only create missing foundations.
 
 ## System Types
 
@@ -56,7 +70,7 @@ Use the three default templates only as starting points:
 
 - Lightweight product: minimal style-first single-theme system for small mobile products or MVPs; variables are optional.
 - Standard product: complete single-theme system and the default recommendation.
-- Multi-theme: standard product system with theme modes. Light/Dark systems get Light and Dark Brand, Semantic, and Solid Neutral mode values when Solid Neutral is selected; Alpha Overlay stays global. Multi-primary systems share Semantic and Neutral/Overlay by default unless the user explicitly customizes them.
+- Multi-theme: standard product system repeated across two or more theme modes.
 
 Designers may remove, add, or customize items before generation. Treat custom project scope as intentional and preserve it unless it conflicts with a hard rule.
 

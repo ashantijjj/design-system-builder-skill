@@ -377,6 +377,61 @@
         color: #9f2f3f;
       }
 
+      .font-status {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        border-radius: 6px;
+        padding: 7px 8px;
+        font-size: 11px;
+        line-height: 16px;
+        font-weight: 700;
+      }
+
+      .font-status-copy {
+        min-width: 0;
+      }
+
+      .font-status.valid {
+        background: #edf9f2;
+        color: #247352;
+      }
+
+      .font-status.normalized {
+        background: #eef5ff;
+        color: #2f65b8;
+      }
+
+      .font-status.fallback,
+      .font-status.suggestion {
+        background: #fff8e8;
+        color: #99651c;
+      }
+
+      .font-status.error {
+        background: #fff1f2;
+        color: #b34253;
+      }
+
+      .font-suggestion-button {
+        flex: 0 0 auto;
+        width: auto;
+        height: 24px;
+        border: 1px solid currentColor;
+        border-radius: 5px;
+        background: #fff;
+        color: inherit;
+        padding: 0 7px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      #generateButton:disabled {
+        cursor: not-allowed;
+        background: #9bb7df;
+      }
+
       .field-note {
         border-radius: 8px;
         background: #fff1f2;
@@ -620,6 +675,13 @@
       ].join(",");
       let colorPickRequestId = 0;
       let activePickTarget = null;
+      let fontValidationRequestId = 0;
+      let latestFontValidationRequestId = 0;
+      let fontValidationTimer = null;
+      let pendingGenerateValidationRequestId = 0;
+      let fontValidationPending = false;
+      let generationInProgress = false;
+      const fontValidationState = new Map();
 
       function readRadio(name) {
         return document.querySelector(`input[name="${name}"]:checked`).value;
@@ -635,6 +697,170 @@
 
       function secondaryFontInput(index, field) {
         return document.querySelector(`[data-secondary-font-index="${index}"][data-field="${field}"]`);
+      }
+
+      function fontValidationIdForInput(input) {
+        if (input?.id === "primaryFont") return "primary";
+        const index = input?.dataset?.secondaryFontIndex;
+        return index === undefined ? "" : `secondary-${index}`;
+      }
+
+      function fontInputForValidationId(id) {
+        if (id === "primary") return document.getElementById("primaryFont");
+        const match = /^secondary-(\d+)$/.exec(String(id || ""));
+        return match ? secondaryFontInput(Number(match[1]), "family") : null;
+      }
+
+      function collectFontValidationRequests() {
+        const typePreset = readRadio("typePreset");
+        const primary = document.getElementById("primaryFont");
+        return [
+          {
+            id: "primary",
+            label: "主字体",
+            family: primary.value.trim(),
+            role: "primary",
+            usage: "primary",
+            typePreset,
+          },
+          ...readSecondaryFonts().map((font, index) => ({
+            id: `secondary-${index}`,
+            label: `副字体 ${index + 1}`,
+            family: font.family,
+            role: "secondary",
+            usage: font.usage,
+            typePreset,
+          })),
+        ];
+      }
+
+      function requestFontValidation({ strict = false, generateAfter = false } = {}) {
+        if (fontValidationTimer) {
+          clearTimeout(fontValidationTimer);
+          fontValidationTimer = null;
+        }
+        const requestId = ++fontValidationRequestId;
+        latestFontValidationRequestId = requestId;
+        if (generateAfter) {
+          pendingGenerateValidationRequestId = requestId;
+          fontValidationPending = true;
+          updateGenerateButton();
+        }
+        parent.postMessage(
+          {
+            pluginMessage: {
+              type: "validate-fonts",
+              requestId,
+              strict,
+              requests: collectFontValidationRequests(),
+            },
+          },
+          "*",
+        );
+      }
+
+      function scheduleFontValidation() {
+        cancelPendingGenerateValidation();
+        if (fontValidationTimer) clearTimeout(fontValidationTimer);
+        fontValidationTimer = setTimeout(() => requestFontValidation(), 320);
+      }
+
+      function cancelPendingGenerateValidation() {
+        if (!pendingGenerateValidationRequestId) return;
+        pendingGenerateValidationRequestId = 0;
+        fontValidationPending = false;
+        updateGenerateButton();
+      }
+
+      function fontStatusHost(input) {
+        return input?.closest("label") || input?.parentElement || null;
+      }
+
+      function clearFontStatus(input) {
+        const host = fontStatusHost(input);
+        host?.querySelectorAll(".font-status").forEach((node) => node.remove());
+      }
+
+      function clearFontValidationForInput(input) {
+        const id = fontValidationIdForInput(input);
+        if (id) fontValidationState.delete(id);
+        clearFontStatus(input);
+        updateGenerateButton();
+      }
+
+      function bindFontValidationInput(input) {
+        if (!input || input.dataset.fontValidationBound === "true") return;
+        input.dataset.fontValidationBound = "true";
+        input.addEventListener("input", () => {
+          clearFontValidationForInput(input);
+          scheduleFontValidation();
+        });
+        input.addEventListener("blur", () => requestFontValidation());
+      }
+
+      function bindSecondaryFontValidation(root = document) {
+        root.querySelectorAll('[data-secondary-font-index][data-field="family"]').forEach(bindFontValidationInput);
+        root.querySelectorAll('[data-secondary-font-index][data-field="usage"]').forEach((select) => {
+          if (select.dataset.fontValidationBound === "true") return;
+          select.dataset.fontValidationBound = "true";
+          select.addEventListener("change", () => {
+            const familyInput = secondaryFontInput(Number(select.dataset.secondaryFontIndex), "family");
+            clearFontValidationForInput(familyInput);
+            scheduleFontValidation();
+          });
+        });
+      }
+
+      function showFontStatus(input, result) {
+        clearFontStatus(input);
+        if (!input || ["empty", "inactive"].includes(result.state)) return;
+        const host = fontStatusHost(input);
+        if (!host) return;
+        const status = document.createElement("div");
+        status.className = `font-status ${result.state}`;
+        status.setAttribute("role", "status");
+        status.setAttribute("aria-live", "polite");
+        const copy = document.createElement("span");
+        copy.className = "font-status-copy";
+        copy.textContent = result.message;
+        status.appendChild(copy);
+        if (result.state === "suggestion" && result.suggestion) {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "font-suggestion-button";
+          button.textContent = `使用 ${result.suggestion}`;
+          button.addEventListener("click", () => {
+            input.value = result.suggestion;
+            input.focus();
+            clearFontValidationForInput(input);
+            requestFontValidation();
+          });
+          status.appendChild(button);
+        }
+        host.appendChild(status);
+      }
+
+      function renderFontValidationResults(results) {
+        fontValidationState.clear();
+        (results || []).forEach((result) => {
+          const input = fontInputForValidationId(result.id);
+          if (!input || input.value.trim() !== String(result.family || "").trim()) return;
+          fontValidationState.set(result.id, result);
+          showFontStatus(input, result);
+        });
+        updateGenerateButton();
+      }
+
+      function hasBlockingFontValidation() {
+        return [...fontValidationState.values()].some((result) => {
+          if (!["error", "suggestion"].includes(result.state)) return false;
+          const input = fontInputForValidationId(result.id);
+          return input && input.value.trim() === String(result.family || "").trim();
+        });
+      }
+
+      function updateGenerateButton() {
+        document.getElementById("generateButton").disabled = fontValidationPending || generationInProgress || hasBlockingFontValidation();
       }
 
       function readThemes() {
@@ -962,6 +1188,7 @@
         }
         document.getElementById("removeSecondaryFontButton").disabled = secondaryFontState.count <= minSecondaryFontCount;
         document.getElementById("addSecondaryFontButton").disabled = secondaryFontState.count >= maxSecondaryFontCount;
+        bindSecondaryFontValidation(list);
       }
 
       function changeSecondaryFontCount(delta) {
@@ -970,6 +1197,7 @@
         if (next === secondaryFontState.count) return;
         secondaryFontState.count = next;
         renderSecondaryFonts();
+        scheduleFontValidation();
       }
 
       function applySystemDefaults() {
@@ -1046,7 +1274,10 @@
       }
 
       document.querySelectorAll('input[name="systemType"]').forEach((input) => {
-        input.addEventListener("change", applySystemDefaults);
+        input.addEventListener("change", () => {
+          applySystemDefaults();
+          scheduleFontValidation();
+        });
       });
       document.querySelectorAll('input[name="multiThemeType"]').forEach((input) => {
         input.addEventListener("change", updateMultiThemeFields);
@@ -1056,6 +1287,9 @@
       });
       document.querySelectorAll('input[name="primaryKind"]').forEach((input) => {
         input.addEventListener("change", updatePrimaryKindFields);
+      });
+      document.querySelectorAll('input[name="typePreset"]').forEach((input) => {
+        input.addEventListener("change", scheduleFontValidation);
       });
       document.getElementById("addThemeButton").addEventListener("click", () => changeThemeCount(1));
       document.getElementById("removeThemeButton").addEventListener("click", () => changeThemeCount(-1));
@@ -1070,6 +1304,7 @@
       renderThemes();
       renderSecondaryFonts();
       attachColorPickers();
+      bindFontValidationInput(document.getElementById("primaryFont"));
       updatePrimaryKindFields();
       applySystemDefaults();
 
@@ -1083,7 +1318,7 @@
 
       document.getElementById("generateButton").addEventListener("click", () => {
         pendingConfig = readConfig();
-        parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: false } }, "*");
+        requestFontValidation({ strict: true, generateAfter: true });
       });
 
       document.getElementById("cancelButton").addEventListener("click", () => {
@@ -1098,6 +1333,9 @@
           const confirmed = confirm(`${message.message}\n\n确定后会删除相关变量 / 样式再重新生成。`);
           if (confirmed && pendingConfig) {
             parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: true } }, "*");
+          } else {
+            generationInProgress = false;
+            updateGenerateButton();
           }
           return;
         }
@@ -1107,12 +1345,33 @@
           return;
         }
 
+        if (message.type === "font-validation") {
+          if (message.requestId !== latestFontValidationRequestId) return;
+          renderFontValidationResults(message.results);
+          if (message.requestId !== pendingGenerateValidationRequestId) return;
+          pendingGenerateValidationRequestId = 0;
+          fontValidationPending = false;
+          if (hasBlockingFontValidation()) {
+            showMessage("error", "请先处理标红的字体信息，再生成。\n如有建议字体，请点击“使用”确认。\n");
+            updateGenerateButton();
+            return;
+          }
+          generationInProgress = true;
+          updateGenerateButton();
+          parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: false } }, "*");
+          return;
+        }
+
         if (message.type === "success") {
+          generationInProgress = false;
+          updateGenerateButton();
           showMessage("success", message.message);
           return;
         }
 
         if (message.type === "error") {
+          generationInProgress = false;
+          updateGenerateButton();
           showMessage("error", message.message);
         }
       };

@@ -26,6 +26,8 @@ Local MVP plugin for writing the design system into the currently open Figma fil
 - Supports solid primary colors and primary gradients. Gradients are paint styles; their representative color is used for variables.
 - Supports up to 5 multi-primary themes, each with up to 5 auxiliary colors.
 - Supports up to 2 secondary fonts in standard and multi-theme systems.
+- Resolves typography styles against the fonts available in Figma, including Regular-only fonts and libraries that encode weight in the family name.
+- Shows inline font resolution feedback, including explicit confirmation for high-confidence spelling suggestions before generation.
 - Before rebuilding, only prompts for same-name items, prior plugin-generated items, and the `Design System` visual page instead of deleting broad naming prefixes.
 
 This MVP writes to the currently open Figma file. It does not need a Figma link.

@@ -502,7 +502,8 @@ h3 {
 }
 
 .field input::placeholder {
-  color: #b7bec9;
+  color: #b7c0cc;
+  opacity: 1;
 }
 
 .field input.is-empty {

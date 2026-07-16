@@ -92,6 +92,11 @@
         outline: none;
       }
 
+      input::placeholder {
+        color: #b7c0cc;
+        opacity: 1;
+      }
+
       input:focus,
       select:focus {
         border-color: var(--accent);
@@ -302,6 +307,13 @@
         gap: 8px;
       }
 
+      .global-aux-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
       .secondary-font-card {
         display: grid;
         gap: 8px;
@@ -471,6 +483,12 @@
           </div>
         </div>
 
+        <label>
+          <span class="label">项目代号 <span class="required">*</span></span>
+          <input id="projectCode" placeholder="例如 OOG505" spellcheck="false" autocapitalize="characters" />
+          <p class="hint">用于变量命名前缀，例如 OOG505/Brand/primary。</p>
+        </label>
+
         <div id="multiThemeTypeField" class="field is-hidden">
           <span class="label">多主题类型 <span class="required">*</span></span>
           <div class="radio-pair">
@@ -580,10 +598,16 @@
           </select>
         </label>
 
-        <label>
-          <span id="auxLabel" class="label">辅助色</span>
-          <input id="auxColor" placeholder="#F7B0C6（选填）" spellcheck="false" />
-        </label>
+        <div class="field" id="globalAuxField">
+          <div class="global-aux-head">
+            <span id="auxLabel" class="label">辅助色</span>
+            <div id="globalAuxActions" class="compact-actions">
+              <button class="mini-button aux-action" type="button" id="removeGlobalAuxButton">- 辅助</button>
+              <button class="mini-button aux-action" type="button" id="addGlobalAuxButton">+ 辅助</button>
+            </div>
+          </div>
+          <div class="aux-list" id="globalAuxList"></div>
+        </div>
 
         <label id="backgroundColorField">
           <span class="label">背景色</span>
@@ -642,6 +666,7 @@
       const maxThemeCount = 5;
       const minAuxCount = 1;
       const maxAuxCount = 5;
+      const maxStandardAuxCount = 10;
       const minSecondaryFontCount = 0;
       const maxSecondaryFontCount = 2;
       const themeFallbacks = ["#7FBCE4", "#F7B0C6", "#B9D77A", "#C7A9F2", "#F0C66B"];
@@ -651,6 +676,10 @@
         values: [],
       };
       const secondaryFontState = {
+        count: 1,
+        values: [],
+      };
+      const globalAuxState = {
         count: 1,
         values: [],
       };
@@ -664,8 +693,10 @@
         "#darkBackgroundColor",
         "#coolBackgroundColor",
         "#warmBackgroundColor",
-        "#auxColor",
         "#backgroundColor",
+        '[data-global-aux-field="value"]',
+        '[data-global-aux-field="gradientFrom"]',
+        '[data-global-aux-field="gradientTo"]',
         '[data-field="primary"]',
         '[data-field="gradientFrom"]',
         '[data-field="gradientTo"]',
@@ -693,6 +724,14 @@
 
       function themeAuxInput(themeIndex, auxIndex) {
         return document.querySelector(`[data-theme-index="${themeIndex}"][data-aux-index="${auxIndex}"]`);
+      }
+
+      function globalAuxInput(index) {
+        return globalAuxField(index, "value");
+      }
+
+      function globalAuxField(index, field) {
+        return document.querySelector(`[data-global-aux-index="${index}"][data-global-aux-field="${field}"]`);
       }
 
       function secondaryFontInput(index, field) {
@@ -904,6 +943,25 @@
         });
       }
 
+      function readGlobalAuxColors() {
+        return Array.from({ length: globalAuxState.count }, (_, index) => {
+          const kindInput = document.querySelector(`input[name="global-aux-${index}-kind"]:checked`);
+          const kind = kindInput ? kindInput.value : "solid";
+          return {
+            name: `aux-${index + 1}`,
+            kind,
+            value: globalAuxField(index, "value")?.value || "",
+            gradientFrom: globalAuxField(index, "gradientFrom")?.value || "",
+            gradientTo: globalAuxField(index, "gradientTo")?.value || "",
+            gradientDirection: globalAuxField(index, "gradientDirection")?.value || "linear",
+          };
+        });
+      }
+
+      function captureGlobalAuxValues() {
+        globalAuxState.values = readGlobalAuxColors();
+      }
+
       function captureSecondaryFontValues() {
         secondaryFontState.values = readSecondaryFonts();
       }
@@ -994,6 +1052,7 @@
       function readConfig() {
         const themes = readThemes();
         return {
+          projectCode: document.getElementById("projectCode").value,
           systemType: readRadio("systemType"),
           multiThemeType: readRadio("multiThemeType"),
           primaryKind: readRadio("primaryKind"),
@@ -1013,7 +1072,8 @@
           primaryFont: document.getElementById("primaryFont").value,
           secondaryFonts: readSecondaryFonts().filter((font) => font.family),
           semanticSet: document.getElementById("semanticSet").value,
-          auxColor: document.getElementById("auxColor").value,
+          auxColor: globalAuxField(0, "value")?.value || "",
+          auxColors: readGlobalAuxColors(),
           backgroundColor: document.getElementById("backgroundColor").value,
           neutralMode: readRadio("neutralMode"),
           colorOutput: readRadio("colorOutput"),
@@ -1160,6 +1220,78 @@
         renderThemes();
       }
 
+      function renderGlobalAuxColors() {
+        const list = document.getElementById("globalAuxList");
+        list.innerHTML = "";
+        const type = readRadio("systemType");
+        const multiThemeType = readRadio("multiThemeType");
+        const isStandard = type === "standard";
+        const isMultiPrimary = type === "multi-theme" && multiThemeType === "multi-primary";
+        const count = isStandard ? globalAuxState.count : 1;
+        globalAuxState.count = count;
+        for (let index = 0; index < count; index += 1) {
+          const saved = globalAuxState.values[index] || {};
+          const kind = saved.kind || "solid";
+          const solidHidden = kind === "gradient" ? "is-hidden" : "";
+          const gradientHidden = kind === "solid" ? "is-hidden" : "";
+          const row = document.createElement("div");
+          row.className = "field";
+          row.innerHTML = `
+            <span class="label">${isStandard ? `辅助色 ${index + 1}` : isMultiPrimary ? "统一辅助色" : "辅助色"}</span>
+            <div class="radio-pair">
+              <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="solid" ${kind === "solid" ? "checked" : ""} /> 纯色</label>
+              <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="gradient" ${kind === "gradient" ? "checked" : ""} /> 渐变</label>
+              <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="both" ${kind === "both" ? "checked" : ""} /> 都有</label>
+            </div>
+            <div class="color-row ${solidHidden}" data-global-aux-mode="${index}" data-mode="solid">
+              <label>
+                <input data-global-aux-index="${index}" data-global-aux-field="value" value="${escapeAttribute(saved.value || "")}" placeholder="#F7B0C6 纯色${kind === "both" ? "" : "（选填）"}" spellcheck="false" />
+              </label>
+              <div class="swatch" aria-hidden="true"></div>
+            </div>
+            <div class="${gradientHidden}" data-global-aux-mode="${index}" data-mode="gradient">
+              <div class="two-col">
+                <input data-global-aux-index="${index}" data-global-aux-field="gradientFrom" value="${escapeAttribute(saved.gradientFrom || "")}" placeholder="#F7B0C6 起点" spellcheck="false" />
+                <input data-global-aux-index="${index}" data-global-aux-field="gradientTo" value="${escapeAttribute(saved.gradientTo || "")}" placeholder="#E68FA8 终点" spellcheck="false" />
+              </div>
+              <select data-global-aux-index="${index}" data-global-aux-field="gradientDirection">
+                <option value="linear" ${isGradientTypeSelected(saved.gradientDirection, "linear")}>Linear</option>
+                <option value="radial" ${isGradientTypeSelected(saved.gradientDirection, "radial")}>Radial</option>
+                <option value="angular" ${isGradientTypeSelected(saved.gradientDirection, "angular")}>Angular</option>
+                <option value="diamond" ${isGradientTypeSelected(saved.gradientDirection, "diamond")}>Diamond</option>
+              </select>
+            </div>
+          `;
+          list.appendChild(row);
+        }
+        document.getElementById("globalAuxActions").classList.toggle("is-hidden", !isStandard);
+        document.getElementById("removeGlobalAuxButton").disabled = globalAuxState.count <= 1;
+        document.getElementById("addGlobalAuxButton").disabled = globalAuxState.count >= maxStandardAuxCount;
+        attachColorPickers(list);
+        list.querySelectorAll(colorInputSelector).forEach((input) => {
+          input.addEventListener("input", () => updateSwatch(input));
+          updateSwatch(input);
+        });
+        list.querySelectorAll('[data-global-aux-field="kind"]').forEach((input) => {
+          input.addEventListener("change", () => updateGlobalAuxKindFields(Number(input.dataset.globalAuxIndex)));
+        });
+      }
+
+      function updateGlobalAuxKindFields(index) {
+        const kind = document.querySelector(`input[name="global-aux-${index}-kind"]:checked`)?.value || "solid";
+        document.querySelectorAll(`[data-global-aux-mode="${index}"]`).forEach((node) => {
+          node.classList.toggle("is-hidden", node.dataset.mode === "solid" ? kind === "gradient" : kind === "solid");
+        });
+      }
+
+      function changeGlobalAuxCount(delta) {
+        captureGlobalAuxValues();
+        const next = Math.max(1, Math.min(maxStandardAuxCount, globalAuxState.count + delta));
+        if (next === globalAuxState.count) return;
+        globalAuxState.count = next;
+        renderGlobalAuxColors();
+      }
+
       function renderSecondaryFonts() {
         const list = document.getElementById("secondaryFontList");
         list.innerHTML = "";
@@ -1212,6 +1344,7 @@
           document.querySelector('input[name="typographyOutput"][value="style"]').checked = true;
           document.querySelector('input[name="typePreset"][value="compact"]').checked = true;
           updateMultiThemeFields();
+          renderGlobalAuxColors();
           return;
         }
         document.getElementById("semanticSet").value = "full";
@@ -1220,6 +1353,7 @@
         document.querySelector('input[name="typographyOutput"][value="style"]').checked = true;
         document.querySelector('input[name="typePreset"][value="full"]').checked = true;
         updateMultiThemeFields();
+        renderGlobalAuxColors();
       }
 
       function updateMultiThemeFields() {
@@ -1236,6 +1370,7 @@
           field.classList.toggle("is-hidden", !isMultiPrimary || strategy !== "per-theme");
         });
         document.getElementById("auxLabel").textContent = isMultiPrimary ? "统一辅助色" : "辅助色";
+        renderGlobalAuxColors();
       }
 
       function showMessage(type, text) {
@@ -1293,6 +1428,8 @@
       });
       document.getElementById("addThemeButton").addEventListener("click", () => changeThemeCount(1));
       document.getElementById("removeThemeButton").addEventListener("click", () => changeThemeCount(-1));
+      document.getElementById("addGlobalAuxButton").addEventListener("click", () => changeGlobalAuxCount(1));
+      document.getElementById("removeGlobalAuxButton").addEventListener("click", () => changeGlobalAuxCount(-1));
       document.getElementById("addSecondaryFontButton").addEventListener("click", () => changeSecondaryFontCount(1));
       document.getElementById("removeSecondaryFontButton").addEventListener("click", () => changeSecondaryFontCount(-1));
       document.getElementById("themeList").addEventListener("click", (event) => {
@@ -1302,6 +1439,7 @@
         changeAuxCount(themeIndex, button.dataset.action === "add-aux" ? 1 : -1);
       });
       renderThemes();
+      renderGlobalAuxColors();
       renderSecondaryFonts();
       attachColorPickers();
       bindFontValidationInput(document.getElementById("primaryFont"));

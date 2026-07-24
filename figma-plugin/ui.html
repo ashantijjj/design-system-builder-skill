@@ -726,6 +726,10 @@
         return document.querySelector(`[data-theme-index="${themeIndex}"][data-aux-index="${auxIndex}"]`);
       }
 
+      function themeAuxField(themeIndex, auxIndex, field) {
+        return document.querySelector(`[data-theme-index="${themeIndex}"][data-aux-index="${auxIndex}"][data-aux-field="${field}"]`);
+      }
+
       function globalAuxInput(index) {
         return globalAuxField(index, "value");
       }
@@ -767,7 +771,7 @@
             label: `副字体 ${index + 1}`,
             family: font.family,
             role: "secondary",
-            usage: font.usage,
+            usages: font.usages,
             typePreset,
           })),
         ];
@@ -839,11 +843,11 @@
 
       function bindSecondaryFontValidation(root = document) {
         root.querySelectorAll('[data-secondary-font-index][data-field="family"]').forEach(bindFontValidationInput);
-        root.querySelectorAll('[data-secondary-font-index][data-field="usage"]').forEach((select) => {
-          if (select.dataset.fontValidationBound === "true") return;
-          select.dataset.fontValidationBound = "true";
-          select.addEventListener("change", () => {
-            const familyInput = secondaryFontInput(Number(select.dataset.secondaryFontIndex), "family");
+        root.querySelectorAll('[data-secondary-font-index][data-field="usage"]').forEach((input) => {
+          if (input.dataset.fontValidationBound === "true") return;
+          input.dataset.fontValidationBound = "true";
+          input.addEventListener("change", () => {
+            const familyInput = secondaryFontInput(Number(input.dataset.secondaryFontIndex), "family");
             clearFontValidationForInput(familyInput);
             scheduleFontValidation();
           });
@@ -908,10 +912,15 @@
           const colorInput = themeInput(index, "primary");
           const kindInput = document.querySelector(`input[name="theme-${index}-kind"]:checked`);
           const auxiliaryColors = Array.from({ length: themeState.auxCounts[index] || minAuxCount }, (_, auxIndex) => {
-            const input = themeAuxInput(index, auxIndex);
+            const kindInput = document.querySelector(`input[name="theme-${index}-aux-${auxIndex}-kind"]:checked`);
+            const kind = kindInput ? kindInput.value : "solid";
             return {
               name: `aux-${auxIndex + 1}`,
-              value: input ? input.value : "",
+              kind,
+              value: themeAuxField(index, auxIndex, "value")?.value || "",
+              gradientFrom: themeAuxField(index, auxIndex, "gradientFrom")?.value || "",
+              gradientTo: themeAuxField(index, auxIndex, "gradientTo")?.value || "",
+              gradientDirection: themeAuxField(index, auxIndex, "gradientDirection")?.value || "linear",
             };
           });
           return {
@@ -935,10 +944,10 @@
       function readSecondaryFonts() {
         return Array.from({ length: secondaryFontState.count }, (_, index) => {
           const familyInput = secondaryFontInput(index, "family");
-          const usageInput = secondaryFontInput(index, "usage");
+          const usages = Array.from(document.querySelectorAll(`[data-secondary-font-index="${index}"][data-field="usage"]:checked`)).map((input) => input.value);
           return {
             family: familyInput ? familyInput.value.trim() : "",
-            usage: usageInput ? usageInput.value : "none",
+            usages,
           };
         });
       }
@@ -1169,14 +1178,36 @@
           const auxList = card.querySelector(`[data-aux-list="${index}"]`);
           for (let auxIndex = 0; auxIndex < auxCount; auxIndex += 1) {
             const savedAux = (saved.auxiliaryColors || [])[auxIndex] || {};
+            const auxKind = savedAux.kind || "solid";
+            const solidHidden = auxKind === "gradient" ? "is-hidden" : "";
+            const gradientHidden = auxKind === "solid" ? "is-hidden" : "";
             const row = document.createElement("div");
-            row.className = "color-row";
+            row.className = "field";
             row.innerHTML = `
-              <label>
-                <span class="label">辅助色 ${auxIndex + 1}</span>
-                <input data-theme-index="${index}" data-aux-index="${auxIndex}" value="${escapeAttribute(savedAux.value || "")}" placeholder="#F7B0C6（选填）" spellcheck="false" />
-              </label>
-              <div class="swatch" aria-hidden="true"></div>
+              <span class="label">辅助色 ${auxIndex + 1}</span>
+              <div class="radio-pair">
+                <label><input type="radio" name="theme-${index}-aux-${auxIndex}-kind" data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="kind" value="solid" ${auxKind === "solid" ? "checked" : ""} /> 纯色</label>
+                <label><input type="radio" name="theme-${index}-aux-${auxIndex}-kind" data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="kind" value="gradient" ${auxKind === "gradient" ? "checked" : ""} /> 渐变</label>
+                <label><input type="radio" name="theme-${index}-aux-${auxIndex}-kind" data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="kind" value="both" ${auxKind === "both" ? "checked" : ""} /> 都有</label>
+              </div>
+              <div class="color-row ${solidHidden}" data-theme-aux-mode="${index}-${auxIndex}" data-mode="solid">
+                <label>
+                  <input data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="value" value="${escapeAttribute(savedAux.value || "")}" placeholder="#F7B0C6 纯色${auxKind === "both" ? "" : "（选填）"}" spellcheck="false" />
+                </label>
+                <div class="swatch" aria-hidden="true"></div>
+              </div>
+              <div class="${gradientHidden}" data-theme-aux-mode="${index}-${auxIndex}" data-mode="gradient">
+                <div class="two-col">
+                  <input data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="gradientFrom" value="${escapeAttribute(savedAux.gradientFrom || "")}" placeholder="#F7B0C6 起点" spellcheck="false" />
+                  <input data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="gradientTo" value="${escapeAttribute(savedAux.gradientTo || "")}" placeholder="#E68FA8 终点" spellcheck="false" />
+                </div>
+                <select data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="gradientDirection">
+                  <option value="linear" ${isGradientTypeSelected(savedAux.gradientDirection, "linear")}>Linear</option>
+                  <option value="radial" ${isGradientTypeSelected(savedAux.gradientDirection, "radial")}>Radial</option>
+                  <option value="angular" ${isGradientTypeSelected(savedAux.gradientDirection, "angular")}>Angular</option>
+                  <option value="diamond" ${isGradientTypeSelected(savedAux.gradientDirection, "diamond")}>Diamond</option>
+                </select>
+              </div>
             `;
             auxList.appendChild(row);
           }
@@ -1198,6 +1229,16 @@
         });
         document.querySelectorAll("[data-field='kind']").forEach((input) => {
           input.addEventListener("change", () => updateThemeKindFields(Number(input.dataset.themeIndex)));
+        });
+        document.querySelectorAll("[data-aux-field='kind']").forEach((input) => {
+          input.addEventListener("change", () => updateThemeAuxKindFields(Number(input.dataset.themeIndex), Number(input.dataset.auxIndex)));
+        });
+      }
+
+      function updateThemeAuxKindFields(themeIndex, auxIndex) {
+        const kind = document.querySelector(`input[name="theme-${themeIndex}-aux-${auxIndex}-kind"]:checked`)?.value || "solid";
+        document.querySelectorAll(`[data-theme-aux-mode="${themeIndex}-${auxIndex}"]`).forEach((node) => {
+          node.classList.toggle("is-hidden", node.dataset.mode === "solid" ? kind === "gradient" : kind === "solid");
         });
       }
 
@@ -1297,7 +1338,11 @@
         list.innerHTML = "";
         for (let index = 0; index < secondaryFontState.count; index += 1) {
           const saved = secondaryFontState.values[index] || {};
-          const usage = saved.usage || "none";
+          const usages = Array.isArray(saved.usages)
+            ? saved.usages
+            : saved.usage && saved.usage !== "none"
+              ? [saved.usage]
+              : [];
           const card = document.createElement("div");
           card.className = "secondary-font-card";
           card.innerHTML = `
@@ -1305,16 +1350,15 @@
               <span class="label">副字体 ${index + 1}</span>
               <input data-secondary-font-index="${index}" data-field="family" value="${escapeAttribute(saved.family || "")}" placeholder="例如 Lora" />
             </label>
-            <label>
-              <span class="label">副字体用途</span>
-              <select data-secondary-font-index="${index}" data-field="usage">
-                <option value="none" ${usage === "none" ? "selected" : ""}>不使用副字体</option>
-                <option value="headline" ${usage === "headline" ? "selected" : ""}>标题 / Headline</option>
-                <option value="title" ${usage === "title" ? "selected" : ""}>标题强调 / Title</option>
-                <option value="number" ${usage === "number" ? "selected" : ""}>数字 / Number</option>
-                <option value="brand" ${usage === "brand" ? "selected" : ""}>品牌展示 / Brand</option>
-              </select>
-            </label>
+            <div class="field">
+              <span class="label">副字体用途（可多选）</span>
+              <div class="radio-pair radio-triple">
+                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="headline" ${usages.includes("headline") ? "checked" : ""} /> 标题 / Headline</label>
+                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="title" ${usages.includes("title") ? "checked" : ""} /> 标题强调 / Title</label>
+                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="number" ${usages.includes("number") ? "checked" : ""} /> 数字 / Number</label>
+                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="brand" ${usages.includes("brand") ? "checked" : ""} /> 品牌展示 / Brand</label>
+              </div>
+            </div>
           `;
           list.appendChild(card);
         }
@@ -1468,7 +1512,7 @@
         if (!message) return;
 
         if (message.type === "confirm-overwrite") {
-          const confirmed = confirm(`${message.message}\n\n确定后会删除相关变量 / 样式再重新生成。`);
+          const confirmed = confirm(`${message.message}\n\n确定后会清空当前文件所有本地变量、Paint/Text/Effect styles，并删除旧的设计系统可视化页；业务页面不会被删除。`);
           if (confirmed && pendingConfig) {
             parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: true } }, "*");
           } else {

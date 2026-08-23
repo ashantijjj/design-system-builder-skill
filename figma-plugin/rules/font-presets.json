@@ -1,0 +1,7716 @@
+{
+  "schemaVersion": "google-font-presets/1.0.0",
+  "generatedAt": "2026-08-12",
+  "status": "final-reviewed-pending-runtime-validation",
+  "ruleBaseline": "google-fonts-preset-plan/0.2",
+  "sourceSnapshot": {
+    "provider": "google-fonts",
+    "catalogEndpoint": "https://fonts.google.com/metadata/fonts",
+    "retrievedAt": "2026-08-11",
+    "catalogFamilyCount": 1942,
+    "officialRepositoryCommit": "038b637da7b3fd956a4ed93ffc607c3d5e4ce172",
+    "normalizationVersion": "google-catalog-normalization/1.0.0",
+    "selectionVersion": "candidate-pool/1.0.0",
+    "filterVersion": "candidate-hard-filter/1.0.1",
+    "reviewedScripts": [
+      "latin"
+    ],
+    "reviewedLanguages": [
+      "en"
+    ],
+    "latinExtStatus": "metadata-only",
+    "apiFieldsDeferred": [
+      "version",
+      "tags"
+    ]
+  },
+  "secondaryUsageSchema": {
+    "schemaVersion": "secondary-levels/1.0.0",
+    "order": [
+      "headline",
+      "subtitle",
+      "body",
+      "caption"
+    ],
+    "labels": {
+      "headline": "标题 / Headline",
+      "subtitle": "副标题 / Subtitle",
+      "body": "正文 / Body",
+      "caption": "辅助信息 / Caption"
+    },
+    "levels": {
+      "standard": {
+        "headline": [
+          { "name": "Headline/H1", "weightRole": "strong", "size": 38, "line": 44 },
+          { "name": "Headline/H2", "weightRole": "strong", "size": 34, "line": 40 },
+          { "name": "Headline/H3", "weightRole": "strong", "size": 30, "line": 36 },
+          { "name": "Headline/H4", "weightRole": "strong", "size": 26, "line": 32 }
+        ],
+        "subtitle": [
+          { "name": "Subtitle/S1", "weightRole": "emphasis", "size": 24, "line": 32 },
+          { "name": "Subtitle/S2", "weightRole": "emphasis", "size": 20, "line": 28 }
+        ],
+        "body": [
+          { "name": "Body/B1", "weightRole": "baseUi", "size": 18, "line": 28 },
+          { "name": "Body/B2", "weightRole": "baseUi", "size": 16, "line": 24 }
+        ],
+        "caption": [
+          { "name": "Caption/C1", "weightRole": "baseUi", "size": 14, "line": 20 },
+          { "name": "Caption/C2", "weightRole": "baseUi", "size": 12, "line": 16 },
+          { "name": "Caption/C3", "weightRole": "baseUi", "size": 10, "line": 14, "nonCriticalOnly": true }
+        ]
+      },
+      "large": {
+        "headline": [
+          { "name": "Headline/H1", "weightRole": "strong", "size": 42, "line": 50 },
+          { "name": "Headline/H2", "weightRole": "strong", "size": 38, "line": 46 },
+          { "name": "Headline/H3", "weightRole": "strong", "size": 34, "line": 42 },
+          { "name": "Headline/H4", "weightRole": "strong", "size": 30, "line": 38 }
+        ],
+        "subtitle": [
+          { "name": "Subtitle/S1", "weightRole": "emphasis", "size": 26, "line": 34 },
+          { "name": "Subtitle/S2", "weightRole": "emphasis", "size": 22, "line": 30 }
+        ],
+        "body": [
+          { "name": "Body/B1", "weightRole": "baseUi", "size": 20, "line": 30 },
+          { "name": "Body/B2", "weightRole": "baseUi", "size": 18, "line": 28 }
+        ],
+        "caption": [
+          { "name": "Caption/C1", "weightRole": "baseUi", "size": 16, "line": 24 },
+          { "name": "Caption/C2", "weightRole": "baseUi", "size": 14, "line": 20 },
+          { "name": "Caption/C3", "weightRole": "baseUi", "size": 12, "line": 16 }
+        ]
+      }
+    }
+  },
+  "summary": {
+    "reviewed": 77,
+    "includedProfiles": 51,
+    "byDecision": {
+      "Primary": 25,
+      "Secondary": 26,
+      "Reject": 26
+    },
+    "byCategoryAndDecision": {
+      "sans-serif": {
+        "Primary": 25,
+        "Secondary": 7,
+        "Reject": 8
+      },
+      "serif": {
+        "Primary": 0,
+        "Secondary": 12,
+        "Reject": 8
+      },
+      "display": {
+        "Primary": 0,
+        "Secondary": 7,
+        "Reject": 10
+      }
+    }
+  },
+  "overlapPolicy": {
+    "action": "retain-and-rank",
+    "explanation": "51 families passed visual review. Functional overlap is handled with recommendationLevel, displayPriority, cluster metadata, and retention notes rather than deleting a user-approved family to force a quota."
+  },
+  "profiles": {
+    "roboto": {
+      "id": "roboto",
+      "family": "Roboto",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2026-02-19",
+        "dateAdded": "2013-01-08",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "math",
+          "symbols",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 75,
+            "max": 100,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": true,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 2,
+          "trendingRank": 1062,
+          "styleRank": 10,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Open Sans",
+          "Google Sans",
+          "Inter",
+          "DM Sans",
+          "Manrope",
+          "Figtree"
+        ],
+        "retentionNote": "Retained for platform familiarity and Android contexts; not a default visual recommendation."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Clear at small sizes with a complete, stable UI weight ladder."
+        ]
+      }
+    },
+    "open-sans": {
+      "id": "open-sans",
+      "family": "Open Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2011-02-02",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "hebrew",
+          "latin",
+          "latin-ext",
+          "math",
+          "symbols",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italicWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "axes": {
+          "wdth": {
+            "min": 75,
+            "max": 100,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 300,
+            "max": 800,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 3,
+          "trendingRank": 1120,
+          "styleRank": 142,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Roboto",
+          "Google Sans",
+          "Inter",
+          "DM Sans",
+          "Manrope",
+          "Figtree"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "Yes",
+        "notes": [
+          "User marked Primary; Regular may be too thin but Base UI can use a heavier role."
+        ]
+      }
+    },
+    "google-sans": {
+      "id": "google-sans",
+      "family": "Google Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2026-07-22",
+        "dateAdded": "2025-12-09",
+        "subsets": [
+          "menu",
+          "armenian",
+          "bengali",
+          "canadian-aboriginal",
+          "cyrillic",
+          "cyrillic-ext",
+          "devanagari",
+          "ethiopic",
+          "georgian",
+          "greek",
+          "greek-ext",
+          "gujarati",
+          "gurmukhi",
+          "hebrew",
+          "khmer",
+          "lao",
+          "latin",
+          "latin-ext",
+          "malayalam",
+          "oriya",
+          "sinhala",
+          "symbols",
+          "tamil",
+          "telugu",
+          "thai",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "axes": {
+          "GRAD": {
+            "min": -50,
+            "max": 200,
+            "defaultValue": 0
+          },
+          "opsz": {
+            "min": 17,
+            "max": 18,
+            "defaultValue": 18
+          },
+          "wght": {
+            "min": 400,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": true,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 4,
+          "trendingRank": 799,
+          "styleRank": 326,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Roboto",
+          "Open Sans",
+          "Inter",
+          "DM Sans",
+          "Manrope",
+          "Figtree"
+        ],
+        "retentionNote": "Retained for its recognizable Google-like product voice; avoid generic use."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Visually strong for UI; keep it as an extended option because its recognizable Google-like product voice limits brand neutrality."
+        ]
+      }
+    },
+    "inter": {
+      "id": "inter",
+      "family": "Inter",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2020-01-24",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "opsz": {
+            "min": 14,
+            "max": 32,
+            "defaultValue": 14
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style",
+            "v1.2.0-baseline"
+          ],
+          "popularityRank": 5,
+          "trendingRank": 948,
+          "styleRank": 11,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Roboto",
+          "Open Sans",
+          "Google Sans",
+          "DM Sans",
+          "Manrope",
+          "Figtree"
+        ],
+        "retentionNote": "Retained as the v1.2.0 compatibility baseline; not a default visual recommendation for this team."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "No",
+        "notes": [
+          "User marked Primary."
+        ]
+      }
+    },
+    "montserrat": {
+      "id": "montserrat",
+      "family": "Montserrat",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2011-12-13",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 7,
+          "trendingRank": 1229,
+          "styleRank": 12,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "geometric-contemporary-ui",
+        "similarApprovedFamilies": [
+          "Outfit",
+          "Mulish",
+          "Jost"
+        ],
+        "retentionNote": "Retained for wide geometric branding; note text capacity and light Regular texture."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "Yes",
+        "notes": [
+          "User marked Primary; Regular thinness does not disqualify it."
+        ]
+      }
+    },
+    "arimo": {
+      "id": "arimo",
+      "family": "Arimo",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2026-05-18",
+        "dateAdded": "2026-05-12",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "hebrew",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "axes": {
+          "wght": {
+            "min": 400,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 15,
+          "trendingRank": 742,
+          "styleRank": 327,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "utility-neutral-ui",
+        "similarApprovedFamilies": [
+          "Noto Sans"
+        ],
+        "retentionNote": "Retained as a compact, low-risk utility UI option."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Neutral, compact, and readable; useful as a low-risk utility UI option."
+        ]
+      }
+    },
+    "noto-sans": {
+      "id": "noto-sans",
+      "family": "Noto Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2013-02-27",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "devanagari",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 62.5,
+            "max": 100,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": true,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 19,
+          "trendingRank": 1796,
+          "styleRank": 15,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "utility-neutral-ui",
+        "similarApprovedFamilies": [
+          "Arimo"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "High legibility and broad neutral coverage with distinct required weights."
+        ]
+      }
+    },
+    "oswald": {
+      "id": "oswald",
+      "family": "Oswald",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2012-02-29",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [],
+        "axes": {
+          "wght": {
+            "min": 200,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 21,
+          "trendingRank": 1099,
+          "styleRank": 442,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": [],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "condensed-headline",
+        "similarApprovedFamilies": [
+          "Bebas Neue"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Condensed construction is unsuitable for Primary UI but works as a strong headline voice."
+        ]
+      }
+    },
+    "dm-sans": {
+      "id": "dm-sans",
+      "family": "DM Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2019-06-11",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "opsz": {
+            "min": 9,
+            "max": 40,
+            "defaultValue": 14
+          },
+          "wght": {
+            "min": 100,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 23,
+          "trendingRank": 723,
+          "styleRank": 8,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Roboto",
+          "Open Sans",
+          "Google Sans",
+          "Inter",
+          "Manrope",
+          "Figtree"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "No",
+        "notes": [
+          "User marked Primary."
+        ]
+      }
+    },
+    "nunito": {
+      "id": "nunito",
+      "family": "Nunito",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2012-08-12",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 200,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 24,
+          "trendingRank": 643,
+          "styleRank": 16,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "friendly-rounded-ui",
+        "similarApprovedFamilies": [
+          "Nunito Sans",
+          "Rubik",
+          "Ysabeau Infant"
+        ],
+        "retentionNote": "Overlaps Nunito Sans but is more rounded, which supports especially friendly products."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Friendly rounded forms remain readable in small UI text."
+        ]
+      }
+    },
+    "raleway": {
+      "id": "raleway",
+      "family": "Raleway",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2012-09-07",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 25,
+          "trendingRank": 1204,
+          "styleRank": 17,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "geometric-editorial-ui",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Retained for an elegant geometric voice; use a heavier Base UI at small sizes."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Regular is thin, but Medium/Semi Bold/Bold form a usable UI ladder."
+        ]
+      }
+    },
+    "nunito-sans": {
+      "id": "nunito-sans",
+      "family": "Nunito Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2016-12-07",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "YTLC": {
+            "min": 440,
+            "max": 540,
+            "defaultValue": 500
+          },
+          "opsz": {
+            "min": 6,
+            "max": 12,
+            "defaultValue": 12
+          },
+          "wdth": {
+            "min": 75,
+            "max": 125,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 200,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 26,
+          "trendingRank": 1608,
+          "styleRank": 18,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "friendly-rounded-ui",
+        "similarApprovedFamilies": [
+          "Nunito",
+          "Rubik",
+          "Ysabeau Infant"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Balanced, friendly, and more neutral than Nunito while retaining excellent UI readability."
+        ]
+      }
+    },
+    "rubik": {
+      "id": "rubik",
+      "family": "Rubik",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2015-07-22",
+        "subsets": [
+          "menu",
+          "arabic",
+          "cyrillic",
+          "cyrillic-ext",
+          "hebrew",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 300,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 30,
+          "trendingRank": 973,
+          "styleRank": 112,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "friendly-rounded-ui",
+        "similarApprovedFamilies": [
+          "Nunito",
+          "Nunito Sans",
+          "Ysabeau Infant"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Distinctive but durable rounded-square forms; good hierarchy at 12–32px."
+        ]
+      }
+    },
+    "archivo-black": {
+      "id": "archivo-black",
+      "family": "Archivo Black",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2012-09-18",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 31,
+          "trendingRank": 1693,
+          "styleRank": 907,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "heavy-sans-headline",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "No",
+        "notes": [
+          "User marked Secondary for headlines."
+        ]
+      }
+    },
+    "ubuntu": {
+      "id": "ubuntu",
+      "family": "Ubuntu",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-02",
+        "dateAdded": "2010-12-15",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          700
+        ],
+        "italicWeights": [
+          300,
+          400,
+          500,
+          700
+        ],
+        "axes": {},
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 33,
+          "trendingRank": 1501,
+          "styleRank": 328,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "humanist-distinctive-ui",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Retained for a distinct humanist voice; avoid when strict neutrality is required."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Readable humanist forms; 400/500/700 provide three distinct required UI roles."
+        ]
+      }
+    },
+    "manrope": {
+      "id": "manrope",
+      "family": "Manrope",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2019-10-02",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italicWeights": [],
+        "axes": {
+          "wght": {
+            "min": 200,
+            "max": 800,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 35,
+          "trendingRank": 615,
+          "styleRank": 389,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Roboto",
+          "Open Sans",
+          "Google Sans",
+          "Inter",
+          "DM Sans",
+          "Figtree"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "Yes",
+        "notes": [
+          "User marked Primary; Regular may be thin but the role ladder remains usable."
+        ]
+      }
+    },
+    "outfit": {
+      "id": "outfit",
+      "family": "Outfit",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2021-09-27",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 36,
+          "trendingRank": 726,
+          "styleRank": 206,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "geometric-contemporary-ui",
+        "similarApprovedFamilies": [
+          "Montserrat",
+          "Mulish",
+          "Jost"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Regular is light, while Medium and above are clean and contemporary for UI."
+        ]
+      }
+    },
+    "work-sans": {
+      "id": "work-sans",
+      "family": "Work Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2015-07-08",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 38,
+          "trendingRank": 1084,
+          "styleRank": 20,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "humanist-product-ui",
+        "similarApprovedFamilies": [
+          "Sofia Sans",
+          "Ancizar Sans"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Neutral humanist construction and stable weight differentiation."
+        ]
+      }
+    },
+    "bebas-neue": {
+      "id": "bebas-neue",
+      "family": "Bebas Neue",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2019-10-16",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 44,
+          "trendingRank": 1093,
+          "styleRank": 909,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "condensed-headline",
+        "similarApprovedFamilies": [
+          "Oswald"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Single-weight condensed caps are effective for short headlines only."
+        ]
+      }
+    },
+    "figtree": {
+      "id": "figtree",
+      "family": "Figtree",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2022-07-21",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 300,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 46,
+          "trendingRank": 924,
+          "styleRank": 114,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "neutral-product-ui",
+        "similarApprovedFamilies": [
+          "Roboto",
+          "Open Sans",
+          "Google Sans",
+          "Inter",
+          "DM Sans",
+          "Manrope"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Excellent UI readability, open forms, and clear weight separation."
+        ]
+      }
+    },
+    "mulish": {
+      "id": "mulish",
+      "family": "Mulish",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2011-05-25",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 200,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 47,
+          "trendingRank": 970,
+          "styleRank": 23,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "geometric-contemporary-ui",
+        "similarApprovedFamilies": [
+          "Montserrat",
+          "Outfit",
+          "Jost"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Regular is visually light; Medium/Semi Bold/Bold remain clear and modern for UI."
+        ]
+      }
+    },
+    "barlow": {
+      "id": "barlow",
+      "family": "Barlow",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2017-10-26",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {},
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 51,
+          "trendingRank": 768,
+          "styleRank": 24,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "compact-humanist-ui",
+        "similarApprovedFamilies": [
+          "Archivo"
+        ],
+        "retentionNote": "Retained for information density without reaching a fully condensed width."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Slightly narrow humanist forms remain readable and provide useful project variety."
+        ]
+      }
+    },
+    "jost": {
+      "id": "jost",
+      "family": "Jost",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2020-02-11",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 56,
+          "trendingRank": 650,
+          "styleRank": 25,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "geometric-contemporary-ui",
+        "similarApprovedFamilies": [
+          "Montserrat",
+          "Outfit",
+          "Mulish"
+        ],
+        "retentionNote": "Retained for a more classic geometric voice; rank below Outfit and Montserrat."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Geometric and modern; Regular is light but the heavier UI ladder is clean."
+        ]
+      }
+    },
+    "archivo": {
+      "id": "archivo",
+      "family": "Archivo",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2016-12-03",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 62,
+            "max": 125,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 60,
+          "trendingRank": 1096,
+          "styleRank": 26,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "compact-humanist-ui",
+        "similarApprovedFamilies": [
+          "Barlow"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Compact without becoming condensed; good information density and hierarchy."
+        ]
+      }
+    },
+    "sofia-sans": {
+      "id": "sofia-sans",
+      "family": "Sofia Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2021-01-13",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 210,
+          "trendingRank": 1665,
+          "styleRank": 1,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "humanist-product-ui",
+        "similarApprovedFamilies": [
+          "Work Sans",
+          "Ancizar Sans"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Regular is light; Medium and above form a strong contemporary UI system."
+        ]
+      }
+    },
+    "ysabeau-office": {
+      "id": "ysabeau-office",
+      "family": "Ysabeau Office",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2023-06-21",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext",
+          "math",
+          "symbols",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 1048,
+          "trendingRank": 1419,
+          "styleRank": 5,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "editorial-sans-headline",
+        "similarApprovedFamilies": [
+          "Ysabeau"
+        ],
+        "retentionNote": "Retained for a restrained editorial Sans headline voice."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-second-round-screenshot",
+        "regularThin": "Yes",
+        "notes": [
+          "User changed it to Secondary; generate Headline only at 20px and above."
+        ]
+      }
+    },
+    "elms-sans": {
+      "id": "elms-sans",
+      "family": "Elms Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-12-10",
+        "dateAdded": "2025-11-03",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "trending"
+          ],
+          "popularityRank": 1143,
+          "trendingRank": 40,
+          "styleRank": 75,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "geometric-headline",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Retained for spacious geometric headline rhythm; not for body UI."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Wide spacing and geometric rhythm are distinctive for headlines but inefficient for body UI."
+        ]
+      }
+    },
+    "ysabeau": {
+      "id": "ysabeau",
+      "family": "Ysabeau",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2023-04-19",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext",
+          "math",
+          "symbols",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 1296,
+          "trendingRank": 590,
+          "styleRank": 6,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "editorial-sans-headline",
+        "similarApprovedFamilies": [
+          "Ysabeau Office"
+        ],
+        "retentionNote": "Retained for a stronger editorial voice; paired with Office but not a default."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-second-round-screenshot",
+        "regularThin": "Yes",
+        "notes": [
+          "User changed it to Secondary; generate Headline only at 20px and above."
+        ]
+      }
+    },
+    "ysabeau-infant": {
+      "id": "ysabeau-infant",
+      "family": "Ysabeau Infant",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2023-06-21",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext",
+          "math",
+          "symbols",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 1475,
+          "trendingRank": 1761,
+          "styleRank": 7,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "friendly-rounded-ui",
+        "similarApprovedFamilies": [
+          "Nunito",
+          "Nunito Sans",
+          "Rubik"
+        ],
+        "retentionNote": "Retained for friendly simplified forms suited to approachable and accessibility-led products."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Friendly simplified forms suit approachable and accessibility-oriented products; use Medium for Base UI."
+        ]
+      }
+    },
+    "pliant": {
+      "id": "pliant",
+      "family": "Pliant",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2026-06-08",
+        "dateAdded": "2026-06-05",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 100,
+            "max": 125,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "trending"
+          ],
+          "popularityRank": 1589,
+          "trendingRank": 29,
+          "styleRank": 82,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "acceptable",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "extended",
+        "functionalCluster": "expressive-rounded-ui",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Included as Primary by user decision; expressive enough to remain an extended option."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-second-round-screenshot",
+        "regularThin": "No",
+        "notes": [
+          "User changed it to Primary; Regular is already substantial, so Base UI uses 400."
+        ]
+      }
+    },
+    "kedebideri": {
+      "id": "kedebideri",
+      "family": "Kedebideri",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2026-01-29",
+        "dateAdded": "2025-09-10",
+        "subsets": [
+          "menu",
+          "beria-erfe",
+          "latin"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "trending"
+          ],
+          "popularityRank": 1625,
+          "trendingRank": 31,
+          "styleRank": 486,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "humanist-sans-headline",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Retained for narrow humanist headlines; preserve the Latin-only review boundary."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-second-round-screenshot",
+        "regularThin": "No",
+        "notes": [
+          "User changed it to Secondary; generate Headline only at 20px and above."
+        ]
+      }
+    },
+    "ancizar-sans": {
+      "id": "ancizar-sans",
+      "family": "Ancizar Sans",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "sans-serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2025-05-08",
+        "subsets": [
+          "menu",
+          "greek",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 1628,
+          "trendingRank": 1549,
+          "styleRank": 9,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": true,
+        "secondaryEligible": false,
+        "recommendationLevel": "recommended",
+        "reasonCodes": [
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": {
+          "reading": {
+            "required": false,
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": []
+          },
+          "baseUi": {
+            "required": true,
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": []
+          },
+          "emphasis": {
+            "required": true,
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ]
+          },
+          "strong": {
+            "required": true,
+            "requestedWeight": 700,
+            "expectedStyle": "Bold",
+            "styleAliases": []
+          }
+        },
+        "secondary": null
+      },
+      "curation": {
+        "finalDecision": "Primary",
+        "displayPriority": "core",
+        "functionalCluster": "humanist-product-ui",
+        "similarApprovedFamilies": [
+          "Work Sans",
+          "Sofia Sans"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Open forms and strong hierarchy make it a viable contemporary UI family."
+        ]
+      }
+    },
+    "playfair-display": {
+      "id": "playfair-display",
+      "family": "Playfair Display",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2011-11-16",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 400,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 27,
+          "trendingRank": 878,
+          "styleRank": 143,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "high-contrast-editorial-serif",
+        "similarApprovedFamilies": [
+          "Instrument Serif",
+          "DM Serif Display",
+          "Petrona"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "High-contrast editorial serif works well for larger branded headlines."
+        ]
+      }
+    },
+    "merriweather": {
+      "id": "merriweather",
+      "family": "Merriweather",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-02",
+        "dateAdded": "2011-05-11",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "opsz": {
+            "min": 18,
+            "max": 144,
+            "defaultValue": 18
+          },
+          "wdth": {
+            "min": 87,
+            "max": 112,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 300,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 37,
+          "trendingRank": 1108,
+          "styleRank": 113,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "sturdy-editorial-serif",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "No",
+        "notes": [
+          "User marked Secondary for headlines."
+        ]
+      }
+    },
+    "lora": {
+      "id": "lora",
+      "family": "Lora",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2011-07-06",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "math",
+          "symbols",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "axes": {
+          "wght": {
+            "min": 400,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 39,
+          "trendingRank": 783,
+          "styleRank": 329,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "editorial-serif",
+        "similarApprovedFamilies": [
+          "Noto Serif Display"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "Yes",
+        "notes": [
+          "User marked Secondary for headlines; Regular is visually thin."
+        ]
+      }
+    },
+    "libre-baskerville": {
+      "id": "libre-baskerville",
+      "family": "Libre Baskerville",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-11-20",
+        "dateAdded": "2012-11-30",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700
+        ],
+        "axes": {
+          "wght": {
+            "min": 400,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 70,
+          "trendingRank": 557,
+          "styleRank": 331,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": [],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "classic-editorial-serif",
+        "similarApprovedFamilies": [
+          "EB Garamond"
+        ],
+        "retentionNote": "Retained for a sturdy classic headline role despite overlap with Merriweather and Lora."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Classic but sturdy serif that remains clear at moderate headline sizes."
+        ]
+      }
+    },
+    "cormorant-garamond": {
+      "id": "cormorant-garamond",
+      "family": "Cormorant Garamond",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2016-06-15",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "axes": {
+          "wght": {
+            "min": 300,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 75,
+          "trendingRank": 622,
+          "styleRank": 173,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": [],
+            "minRecommendedSizePx": 28
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "high-contrast-classic-serif",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Retained for the highest-contrast classical role; minimum size remains high."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "Yes",
+        "notes": [
+          "User marked Secondary; high contrast requires a larger minimum size."
+        ]
+      }
+    },
+    "eb-garamond": {
+      "id": "eb-garamond",
+      "family": "EB Garamond",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2026-06-30",
+        "dateAdded": "2011-03-23",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "axes": {
+          "wght": {
+            "min": 400,
+            "max": 800,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 89,
+          "trendingRank": 894,
+          "styleRank": 174,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 500,
+            "expectedStyle": "Medium",
+            "styleAliases": [],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "classic-editorial-serif",
+        "similarApprovedFamilies": [
+          "Libre Baskerville"
+        ],
+        "retentionNote": "Retained for an old-style Garamond voice; does not replace modern editorial serifs."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Elegant old-style serif; Medium improves headline stability below 24px."
+        ]
+      }
+    },
+    "instrument-serif": {
+      "id": "instrument-serif",
+      "family": "Instrument Serif",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2023-03-21",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [
+          400
+        ],
+        "axes": {},
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 90,
+          "trendingRank": 243,
+          "styleRank": 776,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 28
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "high-contrast-editorial-serif",
+        "similarApprovedFamilies": [
+          "Playfair Display",
+          "DM Serif Display",
+          "Petrona"
+        ],
+        "retentionNote": "Retained as a single-weight high-contrast display option limited to large headlines."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Single-weight high-contrast style needs larger headlines to avoid fragile strokes."
+        ]
+      }
+    },
+    "bitter": {
+      "id": "bitter",
+      "family": "Bitter",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2026-06-30",
+        "dateAdded": "2011-12-19",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 103,
+          "trendingRank": 770,
+          "styleRank": 33,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 20
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "slab-serif-headline",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-second-round-screenshot",
+        "regularThin": "No",
+        "notes": [
+          "User changed it to Secondary; use as a Slab Serif Headline at 20px and above."
+        ]
+      }
+    },
+    "fraunces": {
+      "id": "fraunces",
+      "family": "Fraunces",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2020-07-23",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "SOFT": {
+            "min": 0,
+            "max": 100,
+            "defaultValue": 0
+          },
+          "WONK": {
+            "min": 0,
+            "max": 1,
+            "defaultValue": 0
+          },
+          "opsz": {
+            "min": 9,
+            "max": 144,
+            "defaultValue": 14
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity",
+            "style"
+          ],
+          "popularityRank": 109,
+          "trendingRank": 291,
+          "styleRank": 35,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "expressive-soft-serif",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Distinctive soft serif brings a clear brand voice without losing headline readability."
+        ]
+      }
+    },
+    "dm-serif-display": {
+      "id": "dm-serif-display",
+      "family": "DM Serif Display",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2019-06-11",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [
+          400
+        ],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "team-reference"
+          ],
+          "popularityRank": 115,
+          "trendingRank": 314,
+          "styleRank": 777,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "high-contrast-editorial-serif",
+        "similarApprovedFamilies": [
+          "Playfair Display",
+          "Instrument Serif",
+          "Petrona"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "No",
+        "notes": [
+          "User marked Secondary for headlines."
+        ]
+      }
+    },
+    "petrona": {
+      "id": "petrona",
+      "family": "Petrona",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2026-06-30",
+        "dateAdded": "2020-07-14",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 413,
+          "trendingRank": 1162,
+          "styleRank": 56,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "high-contrast-editorial-serif",
+        "similarApprovedFamilies": [
+          "Playfair Display",
+          "Instrument Serif",
+          "DM Serif Display"
+        ],
+        "retentionNote": "Retained by user decision; overlaps editorial serifs and remains an extended option."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-second-round-screenshot",
+        "regularThin": "Yes",
+        "notes": [
+          "User confirmed Secondary; keep Headline at 24px and above."
+        ]
+      }
+    },
+    "noto-serif-display": {
+      "id": "noto-serif-display",
+      "family": "Noto Serif Display",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "serif",
+        "lastModified": "2025-09-05",
+        "dateAdded": "2020-11-19",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 62.5,
+            "max": 100,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": true,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 427,
+          "trendingRank": 700,
+          "styleRank": 57,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "editorial-serif",
+        "similarApprovedFamilies": [
+          "Lora"
+        ],
+        "retentionNote": "Retained for pairing with Noto Sans; not a standalone default recommendation."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "Yes",
+        "notes": [
+          "Purpose-built display contrast is clear at larger headings and complements Noto Sans."
+        ]
+      }
+    },
+    "changa-one": {
+      "id": "changa-one",
+      "family": "Changa One",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2011-11-30",
+        "subsets": [
+          "menu",
+          "latin"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [
+          400
+        ],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 80,
+          "trendingRank": 2045,
+          "styleRank": 775,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "playful-heavy-display",
+        "similarApprovedFamilies": [
+          "Lilita One"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Compact playful weight works for short energetic headlines."
+        ]
+      }
+    },
+    "lilita-one": {
+      "id": "lilita-one",
+      "family": "Lilita One",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2012-01-11",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 111,
+          "trendingRank": 165,
+          "styleRank": 915,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "playful-heavy-display",
+        "similarApprovedFamilies": [
+          "Changa One"
+        ],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Friendly heavy display face suits short playful or fitness headlines."
+        ]
+      }
+    },
+    "bungee": {
+      "id": "bungee",
+      "family": "Bungee",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2016-06-15",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 134,
+          "trendingRank": 979,
+          "styleRank": 918,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 28
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "block-campaign-display",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Blocky all-caps voice is useful for bold campaign headlines only."
+        ]
+      }
+    },
+    "lobster": {
+      "id": "lobster",
+      "family": "Lobster",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2010-05-17",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 140,
+          "trendingRank": 482,
+          "styleRank": 920,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 28
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "script-display",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "user-screenshot-review",
+        "regularThin": "No",
+        "notes": [
+          "User marked Secondary for expressive headlines."
+        ]
+      }
+    },
+    "abril-fatface": {
+      "id": "abril-fatface",
+      "family": "Abril Fatface",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2011-08-31",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "popularity"
+          ],
+          "popularityRank": 163,
+          "trendingRank": 932,
+          "styleRank": 924,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 28
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "high-contrast-editorial-display",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Strong editorial contrast and recognizable headline presence."
+        ]
+      }
+    },
+    "grandstander": {
+      "id": "grandstander",
+      "family": "Grandstander",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2020-07-23",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display",
+          "Handwriting"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "style"
+          ],
+          "popularityRank": 592,
+          "trendingRank": 957,
+          "styleRank": 64,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 600,
+            "expectedStyle": "Semi Bold",
+            "styleAliases": [
+              "SemiBold",
+              "Semibold"
+            ],
+            "minRecommendedSizePx": 24
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "core",
+        "functionalCluster": "playful-display",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Passed the unified visual review and retains an independent valid role."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Playful but controlled forms provide a useful casual headline option."
+        ]
+      }
+    },
+    "sekuya": {
+      "id": "sekuya",
+      "family": "Sekuya",
+      "profileVersion": "1.0.0",
+      "profileStatus": "reviewed",
+      "source": {
+        "provider": "google-fonts",
+        "category": "display",
+        "lastModified": "2025-12-10",
+        "dateAdded": "2025-12-08",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "tags": {},
+        "deferredFields": [
+          "version",
+          "tags"
+        ],
+        "isOpenSource": true,
+        "isBrandFont": false,
+        "discoverySnapshots": {
+          "selectedBy": [
+            "trending"
+          ],
+          "popularityRank": 1180,
+          "trendingRank": 10,
+          "styleRank": 1392,
+          "capturedAt": "2026-08-11"
+        }
+      },
+      "eligibility": {
+        "primaryUiEligible": false,
+        "secondaryEligible": true,
+        "recommendationLevel": "secondary-only",
+        "reasonCodes": [
+          "HEADLINE_ONLY",
+          "RUNTIME_STYLES_NOT_VERIFIED"
+        ]
+      },
+      "mappings": {
+        "primary": null,
+        "secondary": {
+          "recommendedLevels": [
+            "headline"
+          ],
+          "headline": {
+            "requestedWeight": 400,
+            "expectedStyle": "Regular",
+            "styleAliases": [],
+            "minRecommendedSizePx": 32
+          }
+        }
+      },
+      "curation": {
+        "finalDecision": "Secondary",
+        "displayPriority": "extended",
+        "functionalCluster": "sports-display",
+        "similarApprovedFamilies": [],
+        "retentionNote": "Retained for sports and competition contexts; narrow use and high minimum size."
+      },
+      "review": {
+        "reviewedAt": "2026-08-12",
+        "reviewedScripts": [
+          "latin"
+        ],
+        "reviewedLanguages": [
+          "en"
+        ],
+        "latinExtStatus": "metadata-only",
+        "sampleVersion": "font-review-sample/1.0.0",
+        "decisionSource": "assistant-unified-sample-review",
+        "regularThin": "No",
+        "notes": [
+          "Wide all-caps sports voice works only in large, short headline settings."
+        ]
+      }
+    }
+  },
+  "rejected": [
+    {
+      "id": "lato",
+      "family": "Lato",
+      "category": "sans-serif",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject; retained exactly as entered in the sample sheet."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2010-12-15",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          300,
+          400,
+          700,
+          900
+        ],
+        "italicWeights": [
+          100,
+          300,
+          400,
+          700,
+          900
+        ],
+        "axes": {},
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 9,
+        "trendingRank": 1031,
+        "styleRank": 172
+      }
+    },
+    {
+      "id": "roboto-condensed",
+      "family": "Roboto Condensed",
+      "category": "sans-serif",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2012-06-26",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": true
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity",
+          "style"
+        ],
+        "popularityRank": 16,
+        "trendingRank": 1207,
+        "styleRank": 14
+      }
+    },
+    {
+      "id": "pt-sans",
+      "family": "PT Sans",
+      "category": "sans-serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Only two upright weights and insufficient distinctive value as a Secondary headline font."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2010-09-21",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400,
+          700
+        ],
+        "italicWeights": [
+          400,
+          700
+        ],
+        "axes": {},
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 43,
+        "trendingRank": 1110,
+        "styleRank": 560
+      }
+    },
+    {
+      "id": "saira",
+      "family": "Saira",
+      "category": "sans-serif",
+      "decisionSource": "user-second-round-screenshot",
+      "notes": [
+        "User changed it to Reject in round two; Primary mappings and uses are cleared."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-11-18",
+        "dateAdded": "2017-07-31",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 50,
+            "max": 125,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity",
+          "style"
+        ],
+        "popularityRank": 45,
+        "trendingRank": 836,
+        "styleRank": 22
+      }
+    },
+    {
+      "id": "sofia-sans-condensed",
+      "family": "Sofia Sans Condensed",
+      "category": "sans-serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Default width is too condensed for general UI and overlaps the already rejected Roboto Condensed role."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2022-11-16",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 315,
+        "trendingRank": 2028,
+        "styleRank": 2
+      }
+    },
+    {
+      "id": "sofia-sans-extra-condensed",
+      "family": "Sofia Sans Extra Condensed",
+      "category": "sans-serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Extreme condensation harms general UI readability and is too narrow in use."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2022-11-16",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 415,
+        "trendingRank": 2203,
+        "styleRank": 3
+      }
+    },
+    {
+      "id": "reddit-sans-condensed",
+      "family": "Reddit Sans Condensed",
+      "category": "sans-serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Condensed default conflicts with the calibrated rejection of condensed Primary families."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2024-02-21",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [],
+        "axes": {
+          "wght": {
+            "min": 200,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "trending"
+        ],
+        "popularityRank": 564,
+        "trendingRank": 20,
+        "styleRank": 354
+      }
+    },
+    {
+      "id": "sofia-sans-semi-condensed",
+      "family": "Sofia Sans Semi Condensed",
+      "category": "sans-serif",
+      "decisionSource": "user-second-round-screenshot",
+      "notes": [
+        "User changed it to Reject; theoretical readability does not justify a redundant semi-condensed preset."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2022-11-16",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "italicWeights": [
+          1,
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "axes": {
+          "wght": {
+            "min": 1,
+            "max": 1000,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 618,
+        "trendingRank": 232,
+        "styleRank": 4
+      }
+    },
+    {
+      "id": "roboto-slab",
+      "family": "Roboto Slab",
+      "category": "serif",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2013-04-10",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": true
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 28,
+        "trendingRank": 1002,
+        "styleRank": 204
+      }
+    },
+    {
+      "id": "noto-serif",
+      "family": "Noto Serif",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Competent but visually generic for this preset set; overlaps stronger selected serif roles."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-05",
+        "dateAdded": "2013-02-27",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "math",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 62.5,
+            "max": 100,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": true
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity",
+          "style"
+        ],
+        "popularityRank": 64,
+        "trendingRank": 1650,
+        "styleRank": 28
+      }
+    },
+    {
+      "id": "pt-serif",
+      "family": "PT Serif",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Only two upright weights and insufficient distinctive headline value."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2011-02-09",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400,
+          700
+        ],
+        "italicWeights": [
+          400,
+          700
+        ],
+        "axes": {},
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 69,
+        "trendingRank": 1595,
+        "styleRank": 561
+      }
+    },
+    {
+      "id": "roboto-serif",
+      "family": "Roboto Serif",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Technically capable but too close to neutral utility serif territory already covered elsewhere."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2026-04-14",
+        "dateAdded": "2022-02-10",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "GRAD": {
+            "min": -50,
+            "max": 100,
+            "defaultValue": 0
+          },
+          "opsz": {
+            "min": 8,
+            "max": 144,
+            "defaultValue": 14
+          },
+          "wdth": {
+            "min": 50,
+            "max": 150,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": true
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 209,
+        "trendingRank": 697,
+        "styleRank": 48
+      }
+    },
+    {
+      "id": "andada-pro",
+      "family": "Andada Pro",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Readable but lacks a sufficiently distinct role compared with selected Merriweather, Lora, and Libre Baskerville."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2026-06-30",
+        "dateAdded": "2021-05-19",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "italicWeights": [
+          400,
+          500,
+          600,
+          700,
+          800
+        ],
+        "axes": {
+          "wght": {
+            "min": 400,
+            "max": 840,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "trending"
+        ],
+        "popularityRank": 243,
+        "trendingRank": 34,
+        "styleRank": 180
+      }
+    },
+    {
+      "id": "aleo",
+      "family": "Aleo",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Slab-like construction overlaps the rejected Roboto Slab direction."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2018-12-11",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 259,
+        "trendingRank": 1840,
+        "styleRank": 51
+      }
+    },
+    {
+      "id": "rokkitt",
+      "family": "Rokkitt",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Slab construction and fragile small-size texture do not justify a separate preset role."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2011-07-27",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 345,
+        "trendingRank": 978,
+        "styleRank": 55
+      }
+    },
+    {
+      "id": "libertinus-serif",
+      "family": "Libertinus Serif",
+      "category": "serif",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Strong classical face, but the preset already has clearer editorial and reading-oriented serif choices."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-07-30",
+        "dateAdded": "2025-07-28",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "greek-ext",
+          "hebrew",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400,
+          600,
+          700
+        ],
+        "italicWeights": [
+          400,
+          600,
+          700
+        ],
+        "axes": {},
+        "classifications": [],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "trending"
+        ],
+        "popularityRank": 956,
+        "trendingRank": 15,
+        "styleRank": 475
+      }
+    },
+    {
+      "id": "black-ops-one",
+      "family": "Black Ops One",
+      "category": "display",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Stencil treatment is too narrow and militaristic for a reusable first-batch preset."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2011-07-27",
+        "subsets": [
+          "menu",
+          "cyrillic-ext",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 41,
+        "trendingRank": 687,
+        "styleRank": 908
+      }
+    },
+    {
+      "id": "lobster-two",
+      "family": "Lobster Two",
+      "category": "display",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Overlaps the user-approved Lobster while offering no clearer independent role."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-11",
+        "dateAdded": "2011-06-21",
+        "subsets": [
+          "menu",
+          "latin"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400,
+          700
+        ],
+        "italicWeights": [
+          400,
+          700
+        ],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 76,
+        "trendingRank": 1469,
+        "styleRank": 563
+      }
+    },
+    {
+      "id": "alfa-slab-one",
+      "family": "Alfa Slab One",
+      "category": "display",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-04",
+        "dateAdded": "2011-12-19",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 85,
+        "trendingRank": 226,
+        "styleRank": 913
+      }
+    },
+    {
+      "id": "gravitas-one",
+      "family": "Gravitas One",
+      "category": "display",
+      "decisionSource": "user-second-round-screenshot",
+      "notes": [
+        "User changed it to Reject; display uses and minimum size are cleared."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2011-06-29",
+        "subsets": [
+          "menu",
+          "latin"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 143,
+        "trendingRank": 120,
+        "styleRank": 921
+      }
+    },
+    {
+      "id": "comfortaa",
+      "family": "Comfortaa",
+      "category": "display",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2011-08-10",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "greek",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          300,
+          400,
+          500,
+          600,
+          700
+        ],
+        "italicWeights": [],
+        "axes": {
+          "wght": {
+            "min": 300,
+            "max": 700,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "popularity"
+        ],
+        "popularityRank": 148,
+        "trendingRank": 1012,
+        "styleRank": 495
+      }
+    },
+    {
+      "id": "museomoderno",
+      "family": "MuseoModerno",
+      "category": "display",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-08",
+        "dateAdded": "2020-05-17",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 510,
+        "trendingRank": 1091,
+        "styleRank": 61
+      }
+    },
+    {
+      "id": "anybody",
+      "family": "Anybody",
+      "category": "display",
+      "decisionSource": "user-second-round-screenshot",
+      "notes": [
+        "User changed it to Reject; display uses and minimum size are cleared."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2022-03-02",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 50,
+            "max": 150,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 835,
+        "trendingRank": 2002,
+        "styleRank": 70
+      }
+    },
+    {
+      "id": "rubik-spray-paint",
+      "family": "Rubik Spray Paint",
+      "category": "display",
+      "decisionSource": "user-screenshot-review",
+      "notes": [
+        "User marked Reject."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-05-30",
+        "dateAdded": "2022-11-24",
+        "subsets": [
+          "menu",
+          "cyrillic",
+          "cyrillic-ext",
+          "hebrew",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          400
+        ],
+        "italicWeights": [],
+        "axes": {},
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "trending"
+        ],
+        "popularityRank": 890,
+        "trendingRank": 6,
+        "styleRank": 1217
+      }
+    },
+    {
+      "id": "bitcount-prop-single",
+      "family": "Bitcount Prop Single",
+      "category": "display",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Pixel/digital texture is too specialized and repeats the narrow-use issue seen in Rubik Spray Paint."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-16",
+        "dateAdded": "2025-01-09",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [],
+        "axes": {
+          "CRSV": {
+            "min": 0,
+            "max": 1,
+            "defaultValue": 0.5
+          },
+          "ELSH": {
+            "min": 0,
+            "max": 100,
+            "defaultValue": 0
+          },
+          "ELXP": {
+            "min": 0,
+            "max": 100,
+            "defaultValue": 0
+          },
+          "slnt": {
+            "min": -8,
+            "max": 0,
+            "defaultValue": 0
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "trending"
+        ],
+        "popularityRank": 1094,
+        "trendingRank": 11,
+        "styleRank": 276
+      }
+    },
+    {
+      "id": "tourney",
+      "family": "Tourney",
+      "category": "display",
+      "decisionSource": "assistant-unified-sample-review",
+      "notes": [
+        "Outline treatment and all-caps behavior are too specialized for the first preset library."
+      ],
+      "source": {
+        "provider": "google-fonts",
+        "lastModified": "2025-09-10",
+        "dateAdded": "2021-04-29",
+        "subsets": [
+          "menu",
+          "latin",
+          "latin-ext",
+          "vietnamese"
+        ],
+        "primaryScript": "",
+        "primaryLanguage": "",
+        "languages": [],
+        "uprightWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "italicWeights": [
+          100,
+          200,
+          300,
+          400,
+          500,
+          600,
+          700,
+          800,
+          900
+        ],
+        "axes": {
+          "wdth": {
+            "min": 75,
+            "max": 125,
+            "defaultValue": 100
+          },
+          "wght": {
+            "min": 100,
+            "max": 900,
+            "defaultValue": 400
+          }
+        },
+        "classifications": [
+          "Display"
+        ],
+        "colorCapabilities": [],
+        "isOpenSource": true,
+        "isBrandFont": false
+      },
+      "discovery": {
+        "selectedBy": [
+          "style"
+        ],
+        "popularityRank": 1403,
+        "trendingRank": 2135,
+        "styleRank": 79
+      }
+    }
+  ]
+}

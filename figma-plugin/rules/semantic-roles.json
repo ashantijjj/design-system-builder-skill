@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "1.1.0",
+  "profile": "but-v1",
+  "collectionName": "Design System",
+  "sharedBindings": {},
+  "colorRoles": [
+    {
+      "role": "surface.action.primary.default",
+      "variablePath": "Surface/Action/Primary/Default",
+      "source": "Brand/primary",
+      "scopes": ["FRAME_FILL", "SHAPE_FILL"]
+    },
+    {
+      "role": "surface.action.primary.pressed",
+      "variablePath": "Surface/Action/Primary/Pressed",
+      "source": "Brand/primary-dark-1",
+      "scopes": ["FRAME_FILL", "SHAPE_FILL"]
+    },
+    {
+      "role": "surface.action.secondary.pressed",
+      "variablePath": "Surface/Action/Secondary/Pressed",
+      "source": "Brand/primary-light-2",
+      "scopes": ["FRAME_FILL", "SHAPE_FILL"]
+    },
+    {
+      "role": "surface.disabled",
+      "variablePath": "Surface/Disabled",
+      "sourceByNeutralMode": {
+        "solid": "Neutral/100",
+        "opacity": "Overlay/Black/5%"
+      },
+      "scopes": ["FRAME_FILL", "SHAPE_FILL"]
+    },
+    {
+      "role": "content.onAction",
+      "variablePath": "Content/OnAction",
+      "sourceByNeutralMode": {
+        "solid": "Neutral/00",
+        "opacity": "Overlay/White/100%"
+      },
+      "scopes": ["TEXT_FILL"]
+    },
+    {
+      "role": "content.action.secondary",
+      "variablePath": "Content/Action/Secondary",
+      "source": "Brand/primary",
+      "scopes": ["TEXT_FILL"]
+    },
+    {
+      "role": "content.disabled",
+      "variablePath": "Content/Disabled",
+      "sourceByNeutralMode": {
+        "solid": "Neutral/400",
+        "opacity": "Overlay/Black/40%"
+      },
+      "scopes": ["TEXT_FILL"]
+    },
+    {
+      "role": "icon.onAction",
+      "variablePath": "Icon/OnAction",
+      "sourceByNeutralMode": {
+        "solid": "Neutral/00",
+        "opacity": "Overlay/White/100%"
+      },
+      "scopes": ["SHAPE_FILL"]
+    },
+    {
+      "role": "icon.action.secondary",
+      "variablePath": "Icon/Action/Secondary",
+      "source": "Brand/primary",
+      "scopes": ["SHAPE_FILL"]
+    },
+    {
+      "role": "icon.disabled",
+      "variablePath": "Icon/Disabled",
+      "sourceByNeutralMode": {
+        "solid": "Neutral/400",
+        "opacity": "Overlay/Black/40%"
+      },
+      "scopes": ["SHAPE_FILL"]
+    },
+    {
+      "role": "border.action.secondary.default",
+      "variablePath": "Border/Action/Secondary/Default",
+      "source": "Brand/primary",
+      "scopes": ["STROKE_COLOR"]
+    },
+    {
+      "role": "border.action.secondary.pressed",
+      "variablePath": "Border/Action/Secondary/Pressed",
+      "source": "Brand/primary-dark-1",
+      "scopes": ["STROKE_COLOR"]
+    },
+    {
+      "role": "border.disabled",
+      "variablePath": "Border/Disabled",
+      "sourceByNeutralMode": {
+        "solid": "Neutral/300",
+        "opacity": "Overlay/Black/20%"
+      },
+      "scopes": ["STROKE_COLOR"]
+    }
+  ],
+  "resources": {
+    "spacing": {
+      "action.padding.inline": "Spacing/16px",
+      "action.padding.block": "Spacing/12px"
+    },
+    "radius": {
+      "action.container": "Radius/12px"
+    },
+    "typography": {
+      "action.label": {
+        "standard": "Subtitle/S1",
+        "large": "Subtitle/S1"
+      }
+    },
+    "effects": {
+      "action.default": "Shadow/S"
+    }
+  }
+}

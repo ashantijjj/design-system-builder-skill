@@ -416,7 +416,8 @@
       }
 
       .font-status.fallback,
-      .font-status.suggestion {
+      .font-status.suggestion,
+      .font-status.warning {
         background: #fff8e8;
         color: #99651c;
       }
@@ -455,6 +456,24 @@
       .is-hidden {
         display: none;
       }
+
+      .destructive-note {
+        border: 1px solid #d6a44a;
+        border-radius: 6px;
+        background: #fff8e8;
+        color: #6d4d12;
+        padding: 10px 12px;
+        font-size: 12px;
+        line-height: 18px;
+      }
+
+      .build-status {
+        border-top: 1px solid var(--line);
+        padding-top: 12px;
+        font-size: 12px;
+        line-height: 18px;
+        color: var(--muted);
+      }
     </style>
   </head>
   <body>
@@ -462,6 +481,10 @@
       <header>
         <h1>Design System Builder</h1>
       </header>
+
+      <div class="destructive-note">
+        此功能仅用于 0-1 项目。生成时会直接清除当前文件中的全部本地 Variables 和 Styles，并重新创建设计系统。请确认无需保留后再运行。
+      </div>
 
       <section>
         <h2>基础信息</h2>
@@ -639,10 +662,10 @@
         </div>
 
         <div class="field">
-          <span class="label">字体预设</span>
+          <span class="label">Typography Scale</span>
           <div class="radio-pair">
-            <label><input type="radio" name="typePreset" value="compact" /> 精简</label>
-            <label><input type="radio" name="typePreset" value="full" checked /> 完整</label>
+            <label><input type="radio" name="typographyScale" value="standard" checked /> Standard</label>
+            <label><input type="radio" name="typographyScale" value="large" /> Large</label>
           </div>
         </div>
       </section>
@@ -654,10 +677,13 @@
 
       <div id="message" class="message"></div>
 
+      <div id="buildStatus" class="build-status">正在读取生成状态...</div>
+
       <div class="actions">
         <button class="secondary" id="cancelButton">关闭</button>
-        <button class="primary" id="generateButton">生成到 Figma</button>
+        <button class="primary" id="generateButton">Step 1：生成 Design System</button>
       </div>
+      <button class="secondary" id="componentButton" type="button" disabled>Step 2：Generate Components</button>
     </main>
 
     <script>
@@ -712,6 +738,10 @@
       let pendingGenerateValidationRequestId = 0;
       let fontValidationPending = false;
       let generationInProgress = false;
+      let buildState = { status: "EMPTY", cleanupPending: false };
+      let currentManifest = null;
+      let componentGeneratorAvailable = false;
+      let secondaryLevelSchema = null;
       const fontValidationState = new Map();
 
       function readRadio(name) {
@@ -755,7 +785,8 @@
       }
 
       function collectFontValidationRequests() {
-        const typePreset = readRadio("typePreset");
+        const typographyScale = readRadio("typographyScale");
+        const systemType = readRadio("systemType");
         const primary = document.getElementById("primaryFont");
         return [
           {
@@ -764,16 +795,16 @@
             family: primary.value.trim(),
             role: "primary",
             usage: "primary",
-            typePreset,
+            typographyScale,
           },
-          ...readSecondaryFonts().map((font, index) => ({
+          ...(systemType === "lightweight" ? [] : readSecondaryFonts().map((font, index) => ({
             id: `secondary-${index}`,
             label: `副字体 ${index + 1}`,
             family: font.family,
             role: "secondary",
-            usages: font.usages,
-            typePreset,
-          })),
+            levels: font.levels,
+            typographyScale,
+          }))),
         ];
       }
 
@@ -843,7 +874,7 @@
 
       function bindSecondaryFontValidation(root = document) {
         root.querySelectorAll('[data-secondary-font-index][data-field="family"]').forEach(bindFontValidationInput);
-        root.querySelectorAll('[data-secondary-font-index][data-field="usage"]').forEach((input) => {
+        root.querySelectorAll('[data-secondary-font-index][data-field="level"]').forEach((input) => {
           if (input.dataset.fontValidationBound === "true") return;
           input.dataset.fontValidationBound = "true";
           input.addEventListener("change", () => {
@@ -885,13 +916,35 @@
 
       function renderFontValidationResults(results) {
         fontValidationState.clear();
+        let secondaryUsagesChanged = false;
         (results || []).forEach((result) => {
           const input = fontInputForValidationId(result.id);
           if (!input || input.value.trim() !== String(result.family || "").trim()) return;
+          secondaryUsagesChanged = applySecondaryUsageAvailability(result) || secondaryUsagesChanged;
           fontValidationState.set(result.id, result);
           showFontStatus(input, result);
         });
         updateGenerateButton();
+        if (secondaryUsagesChanged) scheduleFontValidation();
+      }
+
+      function applySecondaryUsageAvailability(result) {
+        const match = /^secondary-(\d+)$/.exec(String(result.id || ""));
+        if (!match) return false;
+        const index = Number(match[1]);
+        const approvedLevels = result.knownProfile ? new Set(result.approvedLevels || []) : null;
+        let changed = false;
+        document.querySelectorAll(`[data-secondary-font-index="${index}"][data-field="level"]`).forEach((input) => {
+          const allowed = !approvedLevels || approvedLevels.has(input.value);
+          const label = input.closest("label");
+          input.disabled = !allowed;
+          if (label) label.hidden = !allowed;
+          if (!allowed && input.checked) {
+            input.checked = false;
+            changed = true;
+          }
+        });
+        return changed;
       }
 
       function hasBlockingFontValidation() {
@@ -903,7 +956,41 @@
       }
 
       function updateGenerateButton() {
-        document.getElementById("generateButton").disabled = fontValidationPending || generationInProgress || hasBlockingFontValidation();
+        const canRunStep1 = ["EMPTY", "FOUNDATION_INVALID", "FOUNDATION_VALID", "COMPONENTS_FAILED"].includes(buildState.status) && !buildState.cleanupPending;
+        const isRebuild = ["FOUNDATION_VALID", "COMPONENTS_FAILED"].includes(buildState.status);
+        const generateButton = document.getElementById("generateButton");
+        generateButton.disabled =
+          !canRunStep1 || fontValidationPending || generationInProgress || hasBlockingFontValidation();
+        generateButton.textContent = isRebuild
+          ? "重新生成 Design System"
+          : "Step 1：生成 Design System";
+        const canRunStep2 =
+          ["FOUNDATION_VALID", "COMPONENTS_FAILED"].includes(buildState.status) &&
+          currentManifest?.status === "valid" &&
+          currentManifest?.capabilities?.componentReady === true &&
+          !buildState.cleanupPending;
+        const componentButton = document.getElementById("componentButton");
+        componentButton.disabled = !canRunStep2 || !componentGeneratorAvailable || generationInProgress;
+        componentButton.textContent = canRunStep2 && !componentGeneratorAvailable
+          ? "Step 2 已解锁：组件生成器待接入"
+          : "Step 2：Generate Components";
+      }
+
+      function renderBuildState(state, manifest) {
+        buildState = state || { status: "EMPTY", cleanupPending: false };
+        currentManifest = manifest || null;
+        const details = [
+          `Build State: ${buildState.status || "EMPTY"}`,
+          `Manifest: ${manifest?.status || "none"}`,
+        ];
+        if (manifest?.systemRevision) details.push(`Revision: ${manifest.systemRevision}`);
+        if (buildState.cleanupPending) details.push("Cleanup pending");
+        const componentReasons = manifest?.typography?.componentReady?.reasons || [];
+        if (manifest?.status === "valid" && manifest?.capabilities?.componentReady === false && componentReasons.length) {
+          details.push(`Step 2 禁用：${componentReasons.join("；")}`);
+        }
+        document.getElementById("buildStatus").textContent = details.join(" · ");
+        updateGenerateButton();
       }
 
       function readThemes() {
@@ -944,10 +1031,10 @@
       function readSecondaryFonts() {
         return Array.from({ length: secondaryFontState.count }, (_, index) => {
           const familyInput = secondaryFontInput(index, "family");
-          const usages = Array.from(document.querySelectorAll(`[data-secondary-font-index="${index}"][data-field="usage"]:checked`)).map((input) => input.value);
+          const levels = Array.from(document.querySelectorAll(`[data-secondary-font-index="${index}"][data-field="level"]:checked`)).map((input) => input.value);
           return {
             family: familyInput ? familyInput.value.trim() : "",
-            usages,
+            levels,
           };
         });
       }
@@ -1087,7 +1174,7 @@
           neutralMode: readRadio("neutralMode"),
           colorOutput: readRadio("colorOutput"),
           typographyOutput: readRadio("typographyOutput"),
-          typePreset: readRadio("typePreset"),
+          typographyScale: readRadio("typographyScale"),
           visualTemplate: document.getElementById("visualTemplate").checked,
         };
       }
@@ -1178,7 +1265,7 @@
           const auxList = card.querySelector(`[data-aux-list="${index}"]`);
           for (let auxIndex = 0; auxIndex < auxCount; auxIndex += 1) {
             const savedAux = (saved.auxiliaryColors || [])[auxIndex] || {};
-            const auxKind = savedAux.kind || "solid";
+            const auxKind = savedAux.kind === "gradient" ? "gradient" : "solid";
             const solidHidden = auxKind === "gradient" ? "is-hidden" : "";
             const gradientHidden = auxKind === "solid" ? "is-hidden" : "";
             const row = document.createElement("div");
@@ -1188,11 +1275,10 @@
               <div class="radio-pair">
                 <label><input type="radio" name="theme-${index}-aux-${auxIndex}-kind" data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="kind" value="solid" ${auxKind === "solid" ? "checked" : ""} /> 纯色</label>
                 <label><input type="radio" name="theme-${index}-aux-${auxIndex}-kind" data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="kind" value="gradient" ${auxKind === "gradient" ? "checked" : ""} /> 渐变</label>
-                <label><input type="radio" name="theme-${index}-aux-${auxIndex}-kind" data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="kind" value="both" ${auxKind === "both" ? "checked" : ""} /> 都有</label>
               </div>
               <div class="color-row ${solidHidden}" data-theme-aux-mode="${index}-${auxIndex}" data-mode="solid">
                 <label>
-                  <input data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="value" value="${escapeAttribute(savedAux.value || "")}" placeholder="#F7B0C6 纯色${auxKind === "both" ? "" : "（选填）"}" spellcheck="false" />
+                  <input data-theme-index="${index}" data-aux-index="${auxIndex}" data-aux-field="value" value="${escapeAttribute(savedAux.value || "")}" placeholder="#F7B0C6 纯色（选填）" spellcheck="false" />
                 </label>
                 <div class="swatch" aria-hidden="true"></div>
               </div>
@@ -1272,7 +1358,7 @@
         globalAuxState.count = count;
         for (let index = 0; index < count; index += 1) {
           const saved = globalAuxState.values[index] || {};
-          const kind = saved.kind || "solid";
+          const kind = saved.kind === "gradient" ? "gradient" : "solid";
           const solidHidden = kind === "gradient" ? "is-hidden" : "";
           const gradientHidden = kind === "solid" ? "is-hidden" : "";
           const row = document.createElement("div");
@@ -1282,11 +1368,10 @@
             <div class="radio-pair">
               <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="solid" ${kind === "solid" ? "checked" : ""} /> 纯色</label>
               <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="gradient" ${kind === "gradient" ? "checked" : ""} /> 渐变</label>
-              <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="both" ${kind === "both" ? "checked" : ""} /> 都有</label>
             </div>
             <div class="color-row ${solidHidden}" data-global-aux-mode="${index}" data-mode="solid">
               <label>
-                <input data-global-aux-index="${index}" data-global-aux-field="value" value="${escapeAttribute(saved.value || "")}" placeholder="#F7B0C6 纯色${kind === "both" ? "" : "（选填）"}" spellcheck="false" />
+                <input data-global-aux-index="${index}" data-global-aux-field="value" value="${escapeAttribute(saved.value || "")}" placeholder="#F7B0C6 纯色（选填）" spellcheck="false" />
               </label>
               <div class="swatch" aria-hidden="true"></div>
             </div>
@@ -1338,11 +1423,7 @@
         list.innerHTML = "";
         for (let index = 0; index < secondaryFontState.count; index += 1) {
           const saved = secondaryFontState.values[index] || {};
-          const usages = Array.isArray(saved.usages)
-            ? saved.usages
-            : saved.usage && saved.usage !== "none"
-              ? [saved.usage]
-              : [];
+          const levels = Array.isArray(saved.levels) ? saved.levels : [];
           const card = document.createElement("div");
           card.className = "secondary-font-card";
           card.innerHTML = `
@@ -1351,12 +1432,9 @@
               <input data-secondary-font-index="${index}" data-field="family" value="${escapeAttribute(saved.family || "")}" placeholder="例如 Lora" />
             </label>
             <div class="field">
-              <span class="label">副字体用途（可多选）</span>
+              <span class="label">副字体应用层级（可多选）</span>
               <div class="radio-pair radio-triple">
-                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="headline" ${usages.includes("headline") ? "checked" : ""} /> 标题 / Headline</label>
-                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="title" ${usages.includes("title") ? "checked" : ""} /> 标题强调 / Title</label>
-                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="number" ${usages.includes("number") ? "checked" : ""} /> 数字 / Number</label>
-                <label><input type="checkbox" data-secondary-font-index="${index}" data-field="usage" value="brand" ${usages.includes("brand") ? "checked" : ""} /> 品牌展示 / Brand</label>
+                ${secondaryLevelOptions(index, levels)}
               </div>
             </div>
           `;
@@ -1365,6 +1443,43 @@
         document.getElementById("removeSecondaryFontButton").disabled = secondaryFontState.count <= minSecondaryFontCount;
         document.getElementById("addSecondaryFontButton").disabled = secondaryFontState.count >= maxSecondaryFontCount;
         bindSecondaryFontValidation(list);
+      }
+
+      function secondaryLevelOptions(index, selectedLevels) {
+        const scale = readRadio("typographyScale");
+        const fallback = {
+          order: ["headline", "subtitle", "body", "caption"],
+          labels: {
+            headline: "标题 / Headline",
+            subtitle: "副标题 / Subtitle",
+            body: "正文 / Body",
+            caption: "辅助信息 / Caption",
+          },
+          levels: {
+            standard: {
+              headline: [{ name: "Headline/H1", size: 38 }, { name: "Headline/H4", size: 26 }],
+              subtitle: [{ name: "Subtitle/S1", size: 24 }, { name: "Subtitle/S2", size: 20 }],
+              body: [{ name: "Body/B1", size: 18 }, { name: "Body/B2", size: 16 }],
+              caption: [{ name: "Caption/C1", size: 14 }, { name: "Caption/C3", size: 10 }],
+            },
+            large: {
+              headline: [{ name: "Headline/H1", size: 42 }, { name: "Headline/H4", size: 30 }],
+              subtitle: [{ name: "Subtitle/S1", size: 26 }, { name: "Subtitle/S2", size: 22 }],
+              body: [{ name: "Body/B1", size: 20 }, { name: "Body/B2", size: 18 }],
+              caption: [{ name: "Caption/C1", size: 16 }, { name: "Caption/C3", size: 12 }],
+            },
+          },
+        };
+        const schema = secondaryLevelSchema || fallback;
+        return (schema.order || fallback.order).map((level) => {
+          const definitions = schema.levels?.[scale]?.[level] || [];
+          const first = definitions[0];
+          const last = definitions[definitions.length - 1];
+          const styleRange = first && last ? `${first.name.split("/").at(-1)}–${last.name.split("/").at(-1)}` : "";
+          const sizeRange = first && last ? `${first.size}–${last.size}px` : "";
+          const checked = selectedLevels.includes(level) ? "checked" : "";
+          return `<label><input type="checkbox" data-secondary-font-index="${index}" data-field="level" value="${level}" ${checked} /> ${schema.labels?.[level] || fallback.labels[level]}（${styleRange} · ${sizeRange}）</label>`;
+        }).join("");
       }
 
       function changeSecondaryFontCount(delta) {
@@ -1386,7 +1501,6 @@
           document.querySelector('input[name="neutralMode"][value="opacity"]').checked = true;
           document.querySelector('input[name="colorOutput"][value="style"]').checked = true;
           document.querySelector('input[name="typographyOutput"][value="style"]').checked = true;
-          document.querySelector('input[name="typePreset"][value="compact"]').checked = true;
           updateMultiThemeFields();
           renderGlobalAuxColors();
           return;
@@ -1395,7 +1509,6 @@
         document.querySelector('input[name="neutralMode"][value="solid"]').checked = true;
         document.querySelector('input[name="colorOutput"][value="variable"]').checked = true;
         document.querySelector('input[name="typographyOutput"][value="style"]').checked = true;
-        document.querySelector('input[name="typePreset"][value="full"]').checked = true;
         updateMultiThemeFields();
         renderGlobalAuxColors();
       }
@@ -1467,8 +1580,12 @@
       document.querySelectorAll('input[name="primaryKind"]').forEach((input) => {
         input.addEventListener("change", updatePrimaryKindFields);
       });
-      document.querySelectorAll('input[name="typePreset"]').forEach((input) => {
-        input.addEventListener("change", scheduleFontValidation);
+      document.querySelectorAll('input[name="typographyScale"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          captureSecondaryFontValues();
+          renderSecondaryFonts();
+          scheduleFontValidation();
+        });
       });
       document.getElementById("addThemeButton").addEventListener("click", () => changeThemeCount(1));
       document.getElementById("removeThemeButton").addEventListener("click", () => changeThemeCount(-1));
@@ -1499,6 +1616,8 @@
       });
 
       document.getElementById("generateButton").addEventListener("click", () => {
+        const isRebuild = ["FOUNDATION_VALID", "COMPONENTS_FAILED"].includes(buildState.status);
+        if (isRebuild && !window.confirm("重新生成会清除当前文件中的全部本地 Variables 和 Styles，并重新创建设计系统。\n\n确定要继续吗？")) return;
         pendingConfig = readConfig();
         requestFontValidation({ strict: true, generateAfter: true });
       });
@@ -1507,18 +1626,20 @@
         parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
       });
 
+      document.getElementById("componentButton").addEventListener("click", () => {
+        parent.postMessage({ pluginMessage: { type: "generate-components" } }, "*");
+      });
+
       onmessage = (event) => {
         const message = event.data.pluginMessage;
         if (!message) return;
 
-        if (message.type === "confirm-overwrite") {
-          const confirmed = confirm(`${message.message}\n\n确定后会清空当前文件所有本地变量、Paint/Text/Effect styles，并删除旧的设计系统可视化页；业务页面不会被删除。`);
-          if (confirmed && pendingConfig) {
-            parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: true } }, "*");
-          } else {
-            generationInProgress = false;
-            updateGenerateButton();
-          }
+        if (message.type === "build-state") {
+          componentGeneratorAvailable = Boolean(message.componentGeneratorAvailable);
+          secondaryLevelSchema = message.secondaryLevelSchema || secondaryLevelSchema;
+          renderBuildState(message.state, message.manifest);
+          captureSecondaryFontValues();
+          renderSecondaryFonts();
           return;
         }
 
@@ -1540,14 +1661,35 @@
           }
           generationInProgress = true;
           updateGenerateButton();
-          parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig, confirmedOverwrite: false } }, "*");
+          parent.postMessage({ pluginMessage: { type: "generate", config: pendingConfig } }, "*");
           return;
         }
 
         if (message.type === "success") {
           generationInProgress = false;
           updateGenerateButton();
-          showMessage("success", message.message);
+          const exportFiles = (message.exports && message.exports.files) || [];
+          exportFiles.forEach((file, index) => {
+            window.setTimeout(() => {
+              const blob = new Blob([file.content], {
+                type: file.mimeType || "text/plain;charset=utf-8",
+              });
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = file.filename;
+              link.style.display = "none";
+              document.body.appendChild(link);
+              link.click();
+              link.remove();
+              window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+            }, index * 200);
+          });
+          const exportNotice = exportFiles.length
+            ? "\n\n已下载到默认下载位置：" +
+              exportFiles.map((file) => file.filename).join("、")
+            : "";
+          showMessage("success", message.message + exportNotice);
           return;
         }
 
@@ -1557,6 +1699,8 @@
           showMessage("error", message.message);
         }
       };
+
+      parent.postMessage({ pluginMessage: { type: "ui-ready" } }, "*");
     </script>
   </body>
 </html>

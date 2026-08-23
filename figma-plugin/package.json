@@ -1,0 +1,9 @@
+{
+  "name": "design-system-builder-figma-plugin",
+  "private": true,
+  "version": "1.2.0",
+  "scripts": {
+    "check": "node --check code.js && node scripts/sync-rules-to-plugin.js",
+    "test": "node --test tests/*.test.js"
+  }
+}

@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "google-font-presets/1.0.0",
+  "schemaVersion": "google-font-presets/1.2.0",
   "generatedAt": "2026-08-12",
   "status": "final-reviewed-pending-runtime-validation",
-  "ruleBaseline": "google-fonts-preset-plan/0.2",
+  "ruleBaseline": "google-fonts-preset-plan/0.4",
   "sourceSnapshot": {
     "provider": "google-fonts",
     "catalogEndpoint": "https://fonts.google.com/metadata/fonts",
@@ -25,7 +25,9 @@
     ]
   },
   "secondaryUsageSchema": {
-    "schemaVersion": "secondary-levels/1.0.0",
+    "schemaVersion": "secondary-levels/2.1.0",
+    "selectionPolicy": "designer-controlled",
+    "lineHeightPolicy": "fixed-preset",
     "order": [
       "headline",
       "subtitle",
@@ -41,47 +43,88 @@
     "levels": {
       "standard": {
         "headline": [
-          { "name": "Headline/H1", "weightRole": "strong", "size": 38, "line": 44 },
-          { "name": "Headline/H2", "weightRole": "strong", "size": 34, "line": 40 },
-          { "name": "Headline/H3", "weightRole": "strong", "size": 30, "line": 36 },
-          { "name": "Headline/H4", "weightRole": "strong", "size": 26, "line": 32 }
+          {
+            "name": "Headline/H1",
+            "weightRole": "strong",
+            "size": 38,
+            "line": 44
+          },
+          {
+            "name": "Headline/H2",
+            "weightRole": "strong",
+            "size": 34,
+            "line": 40
+          },
+          {
+            "name": "Headline/H3",
+            "weightRole": "strong",
+            "size": 30,
+            "line": 36
+          },
+          {
+            "name": "Headline/H4",
+            "weightRole": "strong",
+            "size": 26,
+            "line": 32
+          }
         ],
         "subtitle": [
-          { "name": "Subtitle/S1", "weightRole": "emphasis", "size": 24, "line": 32 },
-          { "name": "Subtitle/S2", "weightRole": "emphasis", "size": 20, "line": 28 }
+          {
+            "name": "Subtitle/S1",
+            "weightRole": "emphasis",
+            "size": 24,
+            "line": 32
+          },
+          {
+            "name": "Subtitle/S2",
+            "weightRole": "emphasis",
+            "size": 20,
+            "line": 28
+          }
         ],
         "body": [
-          { "name": "Body/B1", "weightRole": "baseUi", "size": 18, "line": 28 },
-          { "name": "Body/B2", "weightRole": "baseUi", "size": 16, "line": 24 }
+          {
+            "name": "Body/B1",
+            "weightRole": "baseUi",
+            "size": 18,
+            "line": 28
+          },
+          {
+            "name": "Body/B2",
+            "weightRole": "baseUi",
+            "size": 16,
+            "line": 24
+          }
         ],
         "caption": [
-          { "name": "Caption/C1", "weightRole": "baseUi", "size": 14, "line": 20 },
-          { "name": "Caption/C2", "weightRole": "baseUi", "size": 12, "line": 16 },
-          { "name": "Caption/C3", "weightRole": "baseUi", "size": 10, "line": 14, "nonCriticalOnly": true }
-        ]
-      },
-      "large": {
-        "headline": [
-          { "name": "Headline/H1", "weightRole": "strong", "size": 42, "line": 50 },
-          { "name": "Headline/H2", "weightRole": "strong", "size": 38, "line": 46 },
-          { "name": "Headline/H3", "weightRole": "strong", "size": 34, "line": 42 },
-          { "name": "Headline/H4", "weightRole": "strong", "size": 30, "line": 38 }
-        ],
-        "subtitle": [
-          { "name": "Subtitle/S1", "weightRole": "emphasis", "size": 26, "line": 34 },
-          { "name": "Subtitle/S2", "weightRole": "emphasis", "size": 22, "line": 30 }
-        ],
-        "body": [
-          { "name": "Body/B1", "weightRole": "baseUi", "size": 20, "line": 30 },
-          { "name": "Body/B2", "weightRole": "baseUi", "size": 18, "line": 28 }
-        ],
-        "caption": [
-          { "name": "Caption/C1", "weightRole": "baseUi", "size": 16, "line": 24 },
-          { "name": "Caption/C2", "weightRole": "baseUi", "size": 14, "line": 20 },
-          { "name": "Caption/C3", "weightRole": "baseUi", "size": 12, "line": 16 }
+          {
+            "name": "Caption/C1",
+            "weightRole": "baseUi",
+            "size": 14,
+            "line": 20
+          },
+          {
+            "name": "Caption/C2",
+            "weightRole": "baseUi",
+            "size": 12,
+            "line": 16
+          },
+          {
+            "name": "Caption/C3",
+            "weightRole": "baseUi",
+            "size": 10,
+            "line": 14,
+            "nonCriticalOnly": true
+          }
         ]
       }
     }
+  },
+  "roleAssignmentPolicy": {
+    "schemaVersion": "font-role-assignment/1.0.0",
+    "assignmentSource": "designer-input-position",
+    "runtimeGate": "figma-font-availability-and-load",
+    "legacyEligibilityFields": "recommendation-metadata-only"
   },
   "summary": {
     "reviewed": 77,
@@ -1156,21 +1199,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 500,
             "expectedStyle": "Medium",
-            "styleAliases": [],
-            "minRecommendedSizePx": 24
+            "styleAliases": []
           }
         }
       },
@@ -1929,21 +1967,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 24
+            "styleAliases": []
           }
         }
       },
@@ -2503,21 +2536,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 24
+            "styleAliases": []
           }
         }
       },
@@ -3410,24 +3438,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 20
+            ]
           }
         }
       },
@@ -3525,24 +3548,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -3647,24 +3665,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 20
+            ]
           }
         }
       },
@@ -4014,24 +4027,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 20
+            ]
           }
         }
       },
@@ -4256,24 +4264,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -4381,24 +4384,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -4488,24 +4486,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 20
+            ]
           }
         }
       },
@@ -4592,21 +4585,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 500,
             "expectedStyle": "Medium",
-            "styleAliases": [],
-            "minRecommendedSizePx": 20
+            "styleAliases": []
           }
         }
       },
@@ -4698,21 +4686,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 500,
             "expectedStyle": "Medium",
-            "styleAliases": [],
-            "minRecommendedSizePx": 28
+            "styleAliases": []
           }
         }
       },
@@ -4804,21 +4787,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 500,
             "expectedStyle": "Medium",
-            "styleAliases": [],
-            "minRecommendedSizePx": 20
+            "styleAliases": []
           }
         }
       },
@@ -4893,21 +4871,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 28
+            "styleAliases": []
           }
         }
       },
@@ -5010,24 +4983,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 20
+            ]
           }
         }
       },
@@ -5139,24 +5107,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -5231,21 +5194,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 24
+            "styleAliases": []
           }
         }
       },
@@ -5345,24 +5303,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -5473,24 +5426,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -5566,21 +5514,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 24
+            "styleAliases": []
           }
         }
       },
@@ -5655,21 +5598,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 24
+            "styleAliases": []
           }
         }
       },
@@ -5745,21 +5683,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 28
+            "styleAliases": []
           }
         }
       },
@@ -5835,21 +5768,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 28
+            "styleAliases": []
           }
         }
       },
@@ -5922,21 +5850,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 28
+            "styleAliases": []
           }
         }
       },
@@ -6035,24 +5958,19 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 600,
             "expectedStyle": "Semi Bold",
             "styleAliases": [
               "SemiBold",
               "Semibold"
-            ],
-            "minRecommendedSizePx": 24
+            ]
           }
         }
       },
@@ -6125,21 +6043,16 @@
         "secondaryEligible": true,
         "recommendationLevel": "secondary-only",
         "reasonCodes": [
-          "HEADLINE_ONLY",
           "RUNTIME_STYLES_NOT_VERIFIED"
         ]
       },
       "mappings": {
         "primary": null,
         "secondary": {
-          "recommendedLevels": [
-            "headline"
-          ],
           "headline": {
             "requestedWeight": 400,
             "expectedStyle": "Regular",
-            "styleAliases": [],
-            "minRecommendedSizePx": 32
+            "styleAliases": []
           }
         }
       },

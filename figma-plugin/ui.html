@@ -47,6 +47,15 @@
         line-height: 28px;
       }
 
+      .app-version {
+        margin-left: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 18px;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
       h2 {
         font-size: 14px;
         line-height: 22px;
@@ -193,6 +202,10 @@
 
       .radio-triple {
         gap: 12px 18px;
+      }
+
+      .secondary-level-select-all {
+        flex-basis: 100% !important;
       }
 
       .radio-pair label,
@@ -474,17 +487,77 @@
         line-height: 18px;
         color: var(--muted);
       }
+
+      .import-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .import-actions button {
+        width: auto;
+        padding: 0 12px;
+      }
+
+      .import-summary {
+        display: grid;
+        gap: 7px;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fbfcfd;
+        padding: 10px;
+      }
+
+      .import-summary.is-hidden {
+        display: none;
+      }
+
+      .import-summary-list {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        gap: 4px 10px;
+        margin: 0;
+      }
+
+      .import-summary-list dt {
+        color: var(--muted);
+        font-weight: 750;
+      }
+
+      .import-summary-list dd {
+        min-width: 0;
+        margin: 0;
+        overflow-wrap: anywhere;
+      }
     </style>
   </head>
   <body>
     <main>
       <header>
-        <h1>Design System Builder</h1>
+        <h1>Design System Builder <span class="app-version">v1.3.11</span></h1>
       </header>
 
       <div class="destructive-note">
-        此功能仅用于 0-1 项目。生成时会直接清除当前文件中的全部本地 Variables 和 Styles，并重新创建设计系统。请确认无需保留后再运行。
+        此功能仅用于 0-1 项目。生成时会删除全部本地 Variables、Paint Styles、Effect Styles，以及插件生成和正式 H/S/B/C Text Styles；无关的手工 Text Styles 会保留。
       </div>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>Import Direction Sidecar</h2>
+            <p class="hint">仅预填已人工验证的方向，不会自动运行 Builder。</p>
+          </div>
+          <div class="import-actions">
+            <input id="directionSidecarFile" class="is-hidden" type="file" accept=".json,application/json" />
+            <button class="secondary" id="chooseDirectionSidecarButton" type="button">选择 JSON</button>
+          </div>
+        </div>
+        <div id="directionSidecarStatus" class="message" aria-live="polite"></div>
+        <div id="directionSidecarSummary" class="import-summary is-hidden">
+          <dl id="directionSidecarSummaryList" class="import-summary-list"></dl>
+          <button class="primary" id="applyDirectionSidecarButton" type="button">确认并预填表单</button>
+        </div>
+      </section>
 
       <section>
         <h2>基础信息</h2>
@@ -508,8 +581,8 @@
 
         <label>
           <span class="label">项目代号 <span class="required">*</span></span>
-          <input id="projectCode" placeholder="例如 OOG505" spellcheck="false" autocapitalize="characters" />
-          <p class="hint">用于变量命名前缀，例如 OOG505/Brand/primary。</p>
+          <input id="projectCode" maxlength="20" placeholder="例如 OOG505" spellcheck="false" />
+          <p class="hint">1–20 个字符；可用文字、数字、空格、-、_，用于变量命名前缀。</p>
         </label>
 
         <div id="multiThemeTypeField" class="field is-hidden">
@@ -551,7 +624,7 @@
 
         <label>
           <span class="label">主字体 <span class="required">*</span></span>
-          <input id="primaryFont" placeholder="例如 Poppins" />
+          <input id="primaryFont" data-font-role="primary" placeholder="例如 Poppins" />
         </label>
 
         <div id="secondaryFontSection" class="field">
@@ -688,6 +761,9 @@
 
     <script>
       let pendingConfig = null;
+      let pendingDirectionSidecar = null;
+      let directionSidecarRequestId = 0;
+      let latestDirectionSidecarRequestId = 0;
       const minThemeCount = 2;
       const maxThemeCount = 5;
       const minAuxCount = 1;
@@ -708,6 +784,7 @@
       const globalAuxState = {
         count: 1,
         values: [],
+        importedExactCount: false,
       };
       const colorInputSelector = [
         "#primaryColor",
@@ -874,15 +951,49 @@
 
       function bindSecondaryFontValidation(root = document) {
         root.querySelectorAll('[data-secondary-font-index][data-field="family"]').forEach(bindFontValidationInput);
+        root.querySelectorAll('[data-secondary-font-index][data-field="level-all"]').forEach((input) => {
+          if (input.dataset.fontValidationBound === "true") return;
+          input.dataset.fontValidationBound = "true";
+          input.addEventListener("change", () => {
+            const index = Number(input.dataset.secondaryFontIndex);
+            secondaryLevelInputs(index, root).forEach((levelInput) => {
+              levelInput.checked = input.checked;
+            });
+            syncSecondaryLevelAllState(index, root);
+            notifySecondaryLevelChange(index);
+          });
+        });
         root.querySelectorAll('[data-secondary-font-index][data-field="level"]').forEach((input) => {
           if (input.dataset.fontValidationBound === "true") return;
           input.dataset.fontValidationBound = "true";
           input.addEventListener("change", () => {
-            const familyInput = secondaryFontInput(Number(input.dataset.secondaryFontIndex), "family");
-            clearFontValidationForInput(familyInput);
-            scheduleFontValidation();
+            const index = Number(input.dataset.secondaryFontIndex);
+            syncSecondaryLevelAllState(index, root);
+            notifySecondaryLevelChange(index);
           });
         });
+        root.querySelectorAll('[data-secondary-font-index][data-field="level-all"]').forEach((input) => {
+          syncSecondaryLevelAllState(Number(input.dataset.secondaryFontIndex), root);
+        });
+      }
+
+      function secondaryLevelInputs(index, root = document) {
+        return Array.from(root.querySelectorAll(`[data-secondary-font-index="${index}"][data-field="level"]`));
+      }
+
+      function syncSecondaryLevelAllState(index, root = document) {
+        const selectAll = root.querySelector(`[data-secondary-font-index="${index}"][data-field="level-all"]`);
+        if (!selectAll) return;
+        const levelInputs = secondaryLevelInputs(index, root);
+        const checkedCount = levelInputs.filter((input) => input.checked).length;
+        selectAll.checked = levelInputs.length > 0 && checkedCount === levelInputs.length;
+        selectAll.indeterminate = checkedCount > 0 && checkedCount < levelInputs.length;
+      }
+
+      function notifySecondaryLevelChange(index) {
+        const familyInput = secondaryFontInput(index, "family");
+        clearFontValidationForInput(familyInput);
+        scheduleFontValidation();
       }
 
       function showFontStatus(input, result) {
@@ -916,35 +1027,13 @@
 
       function renderFontValidationResults(results) {
         fontValidationState.clear();
-        let secondaryUsagesChanged = false;
         (results || []).forEach((result) => {
           const input = fontInputForValidationId(result.id);
           if (!input || input.value.trim() !== String(result.family || "").trim()) return;
-          secondaryUsagesChanged = applySecondaryUsageAvailability(result) || secondaryUsagesChanged;
           fontValidationState.set(result.id, result);
           showFontStatus(input, result);
         });
         updateGenerateButton();
-        if (secondaryUsagesChanged) scheduleFontValidation();
-      }
-
-      function applySecondaryUsageAvailability(result) {
-        const match = /^secondary-(\d+)$/.exec(String(result.id || ""));
-        if (!match) return false;
-        const index = Number(match[1]);
-        const approvedLevels = result.knownProfile ? new Set(result.approvedLevels || []) : null;
-        let changed = false;
-        document.querySelectorAll(`[data-secondary-font-index="${index}"][data-field="level"]`).forEach((input) => {
-          const allowed = !approvedLevels || approvedLevels.has(input.value);
-          const label = input.closest("label");
-          input.disabled = !allowed;
-          if (label) label.hidden = !allowed;
-          if (!allowed && input.checked) {
-            input.checked = false;
-            changed = true;
-          }
-        });
-        return changed;
       }
 
       function hasBlockingFontValidation() {
@@ -1044,7 +1133,7 @@
           const kindInput = document.querySelector(`input[name="global-aux-${index}-kind"]:checked`);
           const kind = kindInput ? kindInput.value : "solid";
           return {
-            name: `aux-${index + 1}`,
+            name: globalAuxField(index, "name")?.value.trim() || `aux-${index + 1}`,
             kind,
             value: globalAuxField(index, "value")?.value || "",
             gradientFrom: globalAuxField(index, "gradientFrom")?.value || "",
@@ -1354,7 +1443,7 @@
         const multiThemeType = readRadio("multiThemeType");
         const isStandard = type === "standard";
         const isMultiPrimary = type === "multi-theme" && multiThemeType === "multi-primary";
-        const count = isStandard ? globalAuxState.count : 1;
+        const count = isStandard || globalAuxState.importedExactCount ? globalAuxState.count : 1;
         globalAuxState.count = count;
         for (let index = 0; index < count; index += 1) {
           const saved = globalAuxState.values[index] || {};
@@ -1365,6 +1454,7 @@
           row.className = "field";
           row.innerHTML = `
             <span class="label">${isStandard ? `辅助色 ${index + 1}` : isMultiPrimary ? "统一辅助色" : "辅助色"}</span>
+            <input data-global-aux-index="${index}" data-global-aux-field="name" value="${escapeAttribute(saved.name || `aux-${index + 1}`)}" placeholder="辅助色名称" />
             <div class="radio-pair">
               <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="solid" ${kind === "solid" ? "checked" : ""} /> 纯色</label>
               <label><input type="radio" name="global-aux-${index}-kind" data-global-aux-index="${index}" data-global-aux-field="kind" value="gradient" ${kind === "gradient" ? "checked" : ""} /> 渐变</label>
@@ -1429,7 +1519,7 @@
           card.innerHTML = `
             <label>
               <span class="label">副字体 ${index + 1}</span>
-              <input data-secondary-font-index="${index}" data-field="family" value="${escapeAttribute(saved.family || "")}" placeholder="例如 Lora" />
+              <input data-secondary-font-index="${index}" data-field="family" data-font-role="secondary" value="${escapeAttribute(saved.family || "")}" placeholder="例如 Lora" />
             </label>
             <div class="field">
               <span class="label">副字体应用层级（可多选）</span>
@@ -1463,15 +1553,17 @@
               caption: [{ name: "Caption/C1", size: 14 }, { name: "Caption/C3", size: 10 }],
             },
             large: {
-              headline: [{ name: "Headline/H1", size: 42 }, { name: "Headline/H4", size: 30 }],
-              subtitle: [{ name: "Subtitle/S1", size: 26 }, { name: "Subtitle/S2", size: 22 }],
-              body: [{ name: "Body/B1", size: 20 }, { name: "Body/B2", size: 18 }],
+              headline: [{ name: "Headline/H1", size: 36 }, { name: "Headline/H3", size: 28 }],
+              subtitle: [{ name: "Subtitle/S1", size: 26 }, { name: "Subtitle/S2", size: 24 }],
+              body: [{ name: "Body/B1", size: 20 }, { name: "Body/B2", size: 20 }],
               caption: [{ name: "Caption/C1", size: 16 }, { name: "Caption/C3", size: 12 }],
             },
           },
         };
         const schema = secondaryLevelSchema || fallback;
-        return (schema.order || fallback.order).map((level) => {
+        const order = schema.order || fallback.order;
+        const allSelected = order.length > 0 && order.every((level) => selectedLevels.includes(level));
+        const options = order.map((level) => {
           const definitions = schema.levels?.[scale]?.[level] || [];
           const first = definitions[0];
           const last = definitions[definitions.length - 1];
@@ -1480,6 +1572,7 @@
           const checked = selectedLevels.includes(level) ? "checked" : "";
           return `<label><input type="checkbox" data-secondary-font-index="${index}" data-field="level" value="${level}" ${checked} /> ${schema.labels?.[level] || fallback.labels[level]}（${styleRange} · ${sizeRange}）</label>`;
         }).join("");
+        return `<label class="secondary-level-select-all"><input type="checkbox" data-secondary-font-index="${index}" data-field="level-all" ${allSelected ? "checked" : ""} /> 全选</label>${options}`;
       }
 
       function changeSecondaryFontCount(delta) {
@@ -1534,6 +1627,85 @@
         const message = document.getElementById("message");
         message.className = `message is-visible ${type}`;
         message.textContent = text;
+      }
+
+      function showDirectionSidecarStatus(type, text) {
+        const message = document.getElementById("directionSidecarStatus");
+        message.className = `message is-visible ${type}`;
+        message.textContent = text;
+      }
+
+      function clearDirectionSidecarStatus() {
+        const message = document.getElementById("directionSidecarStatus");
+        message.className = "message";
+        message.textContent = "";
+      }
+
+      function summaryRow(list, label, value) {
+        const term = document.createElement("dt");
+        term.textContent = label;
+        const description = document.createElement("dd");
+        description.textContent = value || "-";
+        list.append(term, description);
+      }
+
+      function renderDirectionSidecarSummary(summary) {
+        const host = document.getElementById("directionSidecarSummary");
+        const list = document.getElementById("directionSidecarSummaryList");
+        list.innerHTML = "";
+        if (summary.directionName) summaryRow(list, "Direction", summary.directionName);
+        summaryRow(list, "Primary", summary.primary.kind === "gradient"
+          ? `${summary.primary.gradientType} ${summary.primary.start} → ${summary.primary.end}; representative ${summary.primary.representativeColor} (${summary.primary.representativeSource})`
+          : `solid ${summary.primary.representativeColor}`);
+        summaryRow(list, "Black / Background", `${summary.blackSeed} / ${summary.background}`);
+        summaryRow(list, "Auxiliaries", summary.auxiliaries.length
+          ? summary.auxiliaries.map((item) => item.kind === "gradient"
+            ? `${item.name} ${item.gradientDirection} ${item.gradientFrom} → ${item.gradientTo}`
+            : `${item.name} ${item.value}`).join("; ")
+          : "无");
+        summaryRow(list, "Typography", `${summary.primaryFont} / ${summary.secondaryFont}`);
+        host.classList.remove("is-hidden");
+      }
+
+      function setFormValue(id, value) {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.value = value || "";
+        input.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+
+      function applyDirectionSidecarToForm(formPatch) {
+        const kindInput = document.querySelector(`input[name="primaryKind"][value="${formPatch.primaryKind}"]`);
+        if (kindInput) kindInput.checked = true;
+        setFormValue("primaryColor", formPatch.primaryColor);
+        setFormValue("primaryGradientFrom", formPatch.primaryGradientFrom);
+        setFormValue("primaryGradientTo", formPatch.primaryGradientTo);
+        setFormValue("primaryGradientFallback", formPatch.primaryGradientFallback);
+        document.getElementById("primaryGradientDirection").value = formPatch.primaryGradientDirection;
+        updatePrimaryKindFields();
+
+        setFormValue("blackColor", formPatch.blackColor);
+        setFormValue("backgroundColor", formPatch.backgroundColor);
+
+        globalAuxState.count = formPatch.auxColors.length;
+        globalAuxState.values = formPatch.auxColors.map((auxiliary) => ({ ...auxiliary }));
+        globalAuxState.importedExactCount = true;
+        renderGlobalAuxColors();
+
+        setFormValue("primaryFont", formPatch.primaryFont);
+        secondaryFontState.count = 1;
+        secondaryFontState.values = [{ family: formPatch.secondaryFont, levels: [] }];
+        renderSecondaryFonts();
+        scheduleFontValidation();
+      }
+
+      function readDirectionSidecarFile(file) {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener("load", () => resolve(String(reader.result || "")));
+          reader.addEventListener("error", () => reject(new Error("无法读取所选文件。")));
+          reader.readAsText(file);
+        });
       }
 
       function hideMessage() {
@@ -1592,6 +1764,39 @@
       document.getElementById("addGlobalAuxButton").addEventListener("click", () => changeGlobalAuxCount(1));
       document.getElementById("removeGlobalAuxButton").addEventListener("click", () => changeGlobalAuxCount(-1));
       document.getElementById("addSecondaryFontButton").addEventListener("click", () => changeSecondaryFontCount(1));
+      document.getElementById("chooseDirectionSidecarButton").addEventListener("click", () => {
+        document.getElementById("directionSidecarFile").click();
+      });
+      document.getElementById("directionSidecarFile").addEventListener("change", async (event) => {
+        const file = event.target.files?.[0];
+        event.target.value = "";
+        if (!file) return;
+        pendingDirectionSidecar = null;
+        document.getElementById("directionSidecarSummary").classList.add("is-hidden");
+        clearDirectionSidecarStatus();
+        try {
+          const source = await readDirectionSidecarFile(file);
+          const requestId = ++directionSidecarRequestId;
+          latestDirectionSidecarRequestId = requestId;
+          parent.postMessage({
+            pluginMessage: {
+              type: "import-direction-sidecar",
+              requestId,
+              fileName: file.name,
+              source,
+            },
+          }, "*");
+        } catch (error) {
+          showDirectionSidecarStatus("error", error && error.message ? error.message : String(error));
+        }
+      });
+      document.getElementById("applyDirectionSidecarButton").addEventListener("click", () => {
+        if (!pendingDirectionSidecar) return;
+        applyDirectionSidecarToForm(pendingDirectionSidecar.formPatch);
+        showDirectionSidecarStatus("success", "Sidecar 已预填到表单。请检查或继续修改，再点击原有生成按钮。");
+        pendingDirectionSidecar = null;
+        document.getElementById("directionSidecarSummary").classList.add("is-hidden");
+      });
       document.getElementById("removeSecondaryFontButton").addEventListener("click", () => changeSecondaryFontCount(-1));
       document.getElementById("themeList").addEventListener("click", (event) => {
         const button = event.target.closest("button[data-action]");
@@ -1617,7 +1822,7 @@
 
       document.getElementById("generateButton").addEventListener("click", () => {
         const isRebuild = ["FOUNDATION_VALID", "COMPONENTS_FAILED"].includes(buildState.status);
-        if (isRebuild && !window.confirm("重新生成会清除当前文件中的全部本地 Variables 和 Styles，并重新创建设计系统。\n\n确定要继续吗？")) return;
+        if (isRebuild && !window.confirm("重新生成会删除全部本地 Variables、Paint Styles、Effect Styles，以及插件生成和正式 H/S/B/C Text Styles；无关的手工 Text Styles 会保留。\n\n确定要继续吗？")) return;
         pendingConfig = readConfig();
         requestFontValidation({ strict: true, generateAfter: true });
       });
@@ -1645,6 +1850,23 @@
 
         if (message.type === "picked-color") {
           applyPickedColor(message);
+          return;
+        }
+
+        if (message.type === "direction-sidecar-result") {
+          if (message.requestId !== latestDirectionSidecarRequestId) return;
+          if (!message.ok) {
+            pendingDirectionSidecar = null;
+            document.getElementById("directionSidecarSummary").classList.add("is-hidden");
+            showDirectionSidecarStatus("error", message.message || "Sidecar 导入失败。");
+            return;
+          }
+          pendingDirectionSidecar = {
+            formPatch: message.formPatch,
+            summary: message.summary,
+          };
+          clearDirectionSidecarStatus();
+          renderDirectionSidecarSummary(message.summary);
           return;
         }
 

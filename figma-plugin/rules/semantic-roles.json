@@ -112,7 +112,7 @@
     "typography": {
       "action.label": {
         "standard": "Subtitle/S1",
-        "large": "Subtitle/S1"
+        "large": "Body/B2"
       }
     },
     "effects": {

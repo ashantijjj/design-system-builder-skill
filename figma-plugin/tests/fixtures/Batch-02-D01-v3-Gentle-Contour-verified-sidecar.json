@@ -1,0 +1,60 @@
+{
+  "batch": "Batch-02",
+  "direction": {
+    "id": "D01",
+    "name": "Gentle Contour"
+  },
+  "directionName": "Gentle Contour",
+  "revision": "v3",
+  "selectionStatus": "selected",
+  "verificationStatus": "human-verified",
+  "builderMappingStatus": "not-mapped",
+  "verifiedColorSystem": {
+    "primary": {
+      "kind": "gradient",
+      "gradientType": "Linear",
+      "start": "#CE9C51",
+      "end": "#D5A85F",
+      "representativeColor": "#CE9C51"
+    },
+    "blackSeed": "#1F1F1F",
+    "background": "#FBF6F0",
+    "auxiliaries": [
+      {
+        "name": "Sand",
+        "kind": "solid",
+        "value": "#E9DCC5",
+        "semanticRole": "supporting neutral",
+        "applicationEvidence": "surface details"
+      },
+      {
+        "name": "Sage",
+        "kind": "solid",
+        "value": "#B7C8B0",
+        "semanticRole": "calm accent",
+        "applicationEvidence": "secondary controls"
+      }
+    ]
+  },
+  "verifiedTypography": {
+    "primaryFont": {
+      "family": "Manrope",
+      "license": "OFL-1.1",
+      "licenseSource": "record-only"
+    },
+    "secondaryFont": {
+      "family": "Fraunces",
+      "license": "OFL-1.1",
+      "licenseSource": "record-only"
+    },
+    "secondaryUsage": ["headline"]
+  },
+  "manualVisualRules": {
+    "layout": "editorial",
+    "componentLanguage": "soft",
+    "iconStyle": "outline",
+    "assetStrategy": "photography",
+    "material": "paper",
+    "avoid": ["harsh contrast"]
+  }
+}
